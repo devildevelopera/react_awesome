@@ -1,0 +1,270 @@
+{
+  "store_name": "AWESOME",
+  "store_slug": "react-awesome",
+  "products": [
+  {
+    "name": "Super Cool Product",
+    "url": "01",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 100,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Modern Product",
+    "url": "02",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.png"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 200,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Fast Product",
+    "url": "03",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 300,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "04",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 400,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "05",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 1500,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "06",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 250,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "07",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 350,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "08",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 450,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "09",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 550,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "10",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 50,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "11",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 750,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  },
+  {
+    "name": "Super Nice Product",
+    "url": "12",
+    "description": "What a great product!",
+    "photos": ["1.jpg", "2.jpg"],
+    "details": [
+      "These are details that get rendered as bullet points",
+      "Useful for short + sweet info"
+    ],
+    "price": 250,
+    "variants":
+    {
+      "name": "metadata",
+      "options": [
+      {
+        "label": "option 1"
+      },
+      {
+        "label": "option 2"
+      }]
+    }
+  }
+]
+}

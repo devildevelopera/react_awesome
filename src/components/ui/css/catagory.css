@@ -1,0 +1,12 @@
+.buttongroup {
+    text-align: center;
+    padding: 10px;
+}
+.buttongroup button {
+    min-width: 90px;
+    margin: 5px 10px;
+    font-size: 15px;
+}
+.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters a:hover {
+    text-decoration: none;
+}

@@ -1,0 +1,29 @@
+.makeStyles-grow-1  {
+    font-family: inherit !important;
+}
+.MuiTypography-h6 {
+    font-family: inherit !important;
+}
+.makeStyles-searchIcon-6 {
+    color: yellowgreen;
+}
+.MuiIconButton-label {
+    color: yellowgreen;
+}
+.MuiBadge-anchorOriginTopRightRectangle {
+    color: red !important;
+    border: 1px solid red;
+    background-color: #fff !important;
+}
+.MuiMenu-list {
+    display: grid;
+}
+.MuiButton-root {
+    text-transform: none !important;
+}
+.makeStyles-sectionDesktop-11 a {
+    margin: auto;
+}
+.MuiMenuItem-root {
+    font-size: 15px !important;
+}
