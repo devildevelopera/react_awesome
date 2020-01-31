@@ -65,7 +65,7 @@ function ProductDetails(props) {
   return (
     <div>
         <h2 style={{ marginTop: "0" }}>{product.name}</h2>
-        <Description>{product.description}</Description>
+        {/* <Description>{product.description}</Description> */}
         { !!variants.length &&
           <FlexWrapper>
             {variants.map((variant,i) => {
@@ -106,7 +106,7 @@ function ProductDetails(props) {
             style={{ width: "40px", margin: "0 30px 0" }}
           />
         </Right>
-        { product.details &&
+        {/* { product.details &&
           <Details>
             <ul>
               {product.details.map((detail,i) =>
@@ -114,7 +114,8 @@ function ProductDetails(props) {
               )}
             </ul>
           </Details>
-        }
+        } */}
+        <Description>{product.description}</Description>
       </div>
   );
 };

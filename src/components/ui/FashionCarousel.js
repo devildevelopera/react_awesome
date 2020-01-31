@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Carousel } from "react-bootstrap";
+import { Link } from 'react-router-dom';
+
 import './css/fasion_carousel.css';
 
 const FashionIMG = styled.div `
@@ -42,9 +44,9 @@ class FashionCarousel extends React.Component {
           >
             { products.map((product,i) => {
               return <Carousel.Item>
-                
-                <FashionIMG img={"http://localhost:3000/uploads/"+product.img_arr[0]}/>
-
+                <Link key={i} to={`/product/`+product._id}>
+                  <FashionIMG img={"http://localhost:3000/uploads/"+product.img_arr[0]}/>
+                </Link>
                 <Carousel.Caption>
                   <h3>{product.name}</h3>
                   <p>
