@@ -57,11 +57,11 @@ class Carousel extends React.Component {
           {photos.map((p,i) => {
             return <IMG
               onClick={() => this.setImg(p)}
-              img={"http://localhost:3000/uploads/"+p} key={i}
+              img={"http://151.106.5.210:3005/uploads/"+p} key={i}
             />
           })}
         </div>
-        <LargeIMG img={`http://localhost:3000/uploads/${img}`} />
+        <LargeIMG img={`http://151.106.5.210:3005/uploads/${img}`} />
       </Wrapper>
     );
   }
