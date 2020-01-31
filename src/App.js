@@ -60,7 +60,7 @@ class App extends React.Component {
               )
             }
             <Route exact path="/sell"
-              render={(props) => <Sell/>}
+              render={(props) => <Sell parentGetItems = {this.getItems}/>}
             />
             <Footer/>
         </Router>

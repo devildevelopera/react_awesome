@@ -41,6 +41,7 @@ class Sell extends React.Component {
 
   getItems = () => {
     axios.get('http://localhost:3000/posts').then(res => {
+      this.props.parentGetItems();
       this.setState({
         items: res.data,
         selectedFile: null,

@@ -1,6 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import { Carousel } from "react-bootstrap";
 import './css/fasion_carousel.css';
+
+const FashionIMG = styled.div `
+  background-image: url(${props => props.img});
+  background-color: #ddd;
+  width: 100% !important;
+  height: 60vh;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50%;
+  display: block !important;
+`;
+
 class FashionCarousel extends React.Component {
   constructor(props) {
     super(props);
@@ -29,11 +42,8 @@ class FashionCarousel extends React.Component {
           >
             { products.map((product,i) => {
               return <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src={"http://localhost:3000/uploads/"+product.img_arr[0]}
-                  alt="Fashion Product Image"
-                />
+                
+                <FashionIMG img={"http://localhost:3000/uploads/"+product.img_arr[0]}/>
 
                 <Carousel.Caption>
                   <h3>{product.name}</h3>
