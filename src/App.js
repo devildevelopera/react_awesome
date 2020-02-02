@@ -1,7 +1,9 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Route
+  Route,
+  Redirect,
+  Switch
 } from 'react-router-dom';
 import Landing from './components/landing/Landing';
 import Header from './components/header/Header';
@@ -47,27 +49,30 @@ class App extends React.Component {
         <Router>
           <ReactNotification />
             <Header quantity={quantity} history={this.props.history}/>
-            <Route exact path="/"
-              render={(props) => <Landing/>}
-            />
-            { products.map((product,i) =>
-                <Route exact key={`route${i}`}
-                  path={`/product/${product._id}`}
-                  render={(props) =>
-                    <Product product={product}/>
-                  }
-                />
-              )
-            }
-            <Route exact path="/sell"
-              render={() => <Sell parentGetItems = {this.getItems}/>}
-            />
-            <Route exact path="/login"
-              render={() => <Login parentGetItems = {this.getItems}/>}
-            />
-            <Route exact path="/register" component={Register}/>
-            <Route exact path="/profile" component={Profile}/>
-            <Route path="*" render={() => <Error/>}/>
+            <Switch>
+              <Route exact path="/"
+                render={() => <Landing/>}
+              />
+              { products.map((product,i) =>
+                  <Route exact key={`route${i}`}
+                    path={`/product/${product._id}`}
+                    render={(props) =>
+                      <Product product={product}/>
+                    }
+                  />
+                )
+              }
+              <Route exact path="/sell"
+                render={() => <Sell parentGetItems = {this.getItems}/>}
+              />
+              <Route exact path="/login"
+                render={() => <Login parentGetItems = {this.getItems}/>}
+              />
+              <Route exact path="/register" component={Register}/>
+              <Route exact path="/profile" component={Profile}/>
+              <Route exact path="/404" render={() => <Error/>}/>
+              <Redirect to="/404" />
+            </Switch>
             <Footer/>
         </Router>
     );
