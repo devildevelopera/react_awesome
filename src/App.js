@@ -71,7 +71,7 @@ class App extends React.Component {
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>
               <Route exact path="/404" render={() => <Error/>}/>
-              <Redirect to="/404" />
+              {/* <Redirect to="/404" /> */}
             </Switch>
             <Footer/>
         </Router>

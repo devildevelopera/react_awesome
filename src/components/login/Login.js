@@ -121,7 +121,7 @@ class Login extends Component {
         return (
             <div className="container" style={{minHeight:"100vh"}}>
                 <div className="row">
-                    <div className="col-md-6 mt-5 mx-auto">
+                    <div className="col-md-6 mt-5 mt-5 mx-auto">
                         <div style={{textAlign: "center"}}>
                             <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
                         </div>
@@ -153,7 +153,7 @@ class Login extends Component {
                                 <div style={{color: "red"}}>{errors['password']}</div>
                             }
                         </div>
-                        <button  onClick={this.onSubmit} className="btn btn-lg btn-primary btn-block">
+                        <button  onClick={this.onSubmit} className="btn btn-lg btn-primary btn-block mt-4">
                             Log in
                         </button>
                     </div>

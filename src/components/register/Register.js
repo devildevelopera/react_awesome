@@ -12,6 +12,7 @@ class Register extends Component {
             last_name: '',
             email: '',
             password: '',
+            cpassword: '',
             errors: {},
             formIsValid: true
         }
@@ -62,7 +63,7 @@ class Register extends Component {
     }
 
     handleValidation(){
-            let {first_name, last_name, email, password } = this.state;
+            let { first_name, last_name, email, password, cpassword } = this.state;
             let formIsValid = true
             let errors = {};
 
@@ -111,6 +112,20 @@ class Register extends Component {
                     formIsValid = false;
                     errors["password"] = "At least 8 characters";
                 }        
+            }
+
+            //Confirm password
+            if(!cpassword){
+                formIsValid = false;
+                errors["cpassword"] = "Cannot be empty";
+                }else if(cpassword.length < 8){
+                    formIsValid = false;
+                    errors["cpassword"] = "At least 8 characters";
+                }else{
+                if(password !== cpassword) {
+                    formIsValid = false;
+                    errors["cpassword"] = "Password not match";
+                }
             }
 
         this.setState({errors: errors, formIsValid: formIsValid});
@@ -163,11 +178,11 @@ class Register extends Component {
     }
 
     render() {
-        const {first_name, last_name, email, password, errors, formIsValid} = this.state
+        const {first_name, last_name, email, password, cpassword, errors, formIsValid} = this.state
         return (
             <div className="container" style={{minHeight:"100vh"}}>
                 <div className="row">
-                    <div className="col-md-6 mt-5 mx-auto">
+                    <div className="col-md-6 mt-5 mb-5 mx-auto">
                         <div style={{textAlign: "center"}}>
                             <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                         </div>
@@ -214,7 +229,7 @@ class Register extends Component {
                             }
                         </div>
                         <div className="form-group">
-                            <label htmlFor="email">Paaword</label>
+                            <label htmlFor="email">Password</label>
                             <input 
                                 type="password" 
                                 className="form-control"
@@ -227,7 +242,21 @@ class Register extends Component {
                                 <div style={{color: "red"}}>{errors['password']}</div>
                             }
                         </div>
-                        <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block">
+                        <div className="form-group">
+                            <label htmlFor="email">Password Conformation</label>
+                            <input 
+                                type="password" 
+                                className="form-control"
+                                name="cpassword"
+                                placeholder="Confirm Password"
+                                value={cpassword}
+                                onChange={this.onChange}
+                                />
+                            {!formIsValid &&
+                                <div style={{color: "red"}}>{errors['cpassword']}</div>
+                            }
+                        </div>
+                        <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
                             Register
                         </button>
                     </div>
