@@ -8,9 +8,10 @@ import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
-import Profile from './components/landing/Profile';
+import Profile from './components/profile/Profile';
 import Product from './components/product/Product';
 import Sell from './components/sell/Sell';
+import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
 
@@ -23,20 +24,17 @@ class App extends React.Component {
     }
   }
   
-  ComponentDidMount() {
+  componentDidMount() {
     const slug = `react_awesome_products`;
     const items = JSON.parse(localStorage.getItem(slug));
     this.setState({
       quantity: items ? items.length : 0
     });
-  }
-
-  componentDidMount() {    
     this.getItems();
   }
 
   getItems = () => {
-    axios.get('http://localhost:3005/posts').then(res => {
+    axios.get('/posts').then(res => {
       this.setState({
         products: res.data
       });
@@ -62,13 +60,14 @@ class App extends React.Component {
               )
             }
             <Route exact path="/sell"
-              render={(props) => <Sell parentGetItems = {this.getItems}/>}
+              render={() => <Sell parentGetItems = {this.getItems}/>}
             />
             <Route exact path="/login"
-              render={(props) => <Login parentGetItems = {this.getItems}/>}
+              render={() => <Login parentGetItems = {this.getItems}/>}
             />
             <Route exact path="/register" component={Register}/>
             <Route exact path="/profile" component={Profile}/>
+            <Route path="*" render={() => <Error/>}/>
             <Footer/>
         </Router>
     );

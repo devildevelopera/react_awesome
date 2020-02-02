@@ -19,7 +19,7 @@ class Landing extends React.Component {
   }
 
   getItems = () => {
-    axios.get('http://localhost:3005/posts').then(res => {
+    axios.get('/posts').then(res => {
       this.setState({
         items: res.data
       });

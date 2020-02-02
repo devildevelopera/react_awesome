@@ -153,8 +153,8 @@ class Login extends Component {
                                 <div style={{color: "red"}}>{errors['password']}</div>
                             }
                         </div>
-                        <button  onClick={this.onSubmit} className="btn  btn-lg btn-primary btn-block">
-                            Sign in
+                        <button  onClick={this.onSubmit} className="btn btn-lg btn-primary btn-block">
+                            Log in
                         </button>
                     </div>
                 </div>

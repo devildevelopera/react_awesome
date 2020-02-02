@@ -32,7 +32,7 @@ const LargeIMG = styled.div `
 
 class Carousel extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
       img: this.props.photos[0]
     }
@@ -45,19 +45,19 @@ class Carousel extends React.Component {
   };
 
   render() {
-    const {img} = this.state;
-    const {photos} = this.props;
+    const { img } = this.state;
+    const { photos } = this.props;
     return (
       <Wrapper>
         <div>
           {photos.map((p,i) => {
             return <IMG
               onClick={() => this.setImg(p)}
-              img={"http://localhost:3005/uploads/"+p} key={i}
+              img={"http://localhost:3005/uploads/product/"+p} key={i}
             />
           })}
         </div>
-        <LargeIMG img={`http://localhost:3005/uploads/${img}`} />
+        <LargeIMG img={`http://localhost:3005/uploads/product/${img}`} />
       </Wrapper>
     );
   }

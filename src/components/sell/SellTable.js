@@ -83,7 +83,7 @@ class SellTable extends React.Component {
   
   deleteProduct = () => {
     const delete_img_arr = this.state.delete_img_arr;
-    axios.delete('http://localhost:3005/posts/'+this.state.del_id, {data: delete_img_arr}).then(res => {
+    axios.delete('/posts/'+this.state.del_id, {data: delete_img_arr}).then(res => {
       this.props.getItems();
       this.createNotificationDelete();
     });
@@ -102,7 +102,7 @@ class SellTable extends React.Component {
     this.setState({
       open4: true,
     });
-    axios.get('http://localhost:3005/posts/'+_id).then(res => {
+    axios.get('/posts/'+_id).then(res => {
       this.setState({
         name: res.data.name,
         description: res.data.description,
@@ -119,7 +119,7 @@ class SellTable extends React.Component {
       description: this.state.description,
       price: this.state.price
     };
-    axios.patch('http://localhost:3005/posts/'+this.state.edit_id, product ).then(res => {
+    axios.patch('/posts/'+this.state.edit_id, product ).then(res => {
         this.props.getItems();
         this.createNotificationUpdate();
     });
@@ -138,7 +138,7 @@ class SellTable extends React.Component {
       previous_img_arr: this.state.previous_img_arr,
       img_arr: update_img_arr
     }
-    axios.patch('http://localhost:3005/posts/withimages/'+this.state.edit_id, product ).then(res => {
+    axios.patch('/posts/withimages/'+this.state.edit_id, product ).then(res => {
         this.props.getItems();
         this.createNotificationUpdate();
     });
@@ -174,7 +174,7 @@ class SellTable extends React.Component {
                     'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
             }
       };
-      axios.post('http://localhost:3005/posts/upload', data, config ).then(res => {
+      axios.post('/posts/upload', data, config ).then(res => {
         if (res.statusText === "OK") {
           this.productUpdateWithImages(res);
         }
@@ -239,7 +239,7 @@ class SellTable extends React.Component {
                 return (<tr>
                           <td>
                             <Link to={`/product/`+d._id}>
-                              <Image img={"http://localhost:3005/uploads/"+d.img_arr[0]} />
+                              <Image img={"http://localhost:3005/uploads/product/"+d.img_arr[0]} />
                             </Link>
                           </td>
                           <td>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from "react-router-dom";
@@ -26,9 +26,6 @@ const Grid = styled.div `
 `;
 
 function Product(props) {
-  const initialVariants = props.product.variants ? [props.product.variants] : [];
-  // const [quantity, setQuantity] = useState(1);
-  const [variants] = useState(initialVariants);
 
   const { product } = props;
 
@@ -51,7 +48,6 @@ function Product(props) {
                 product={product}
                 // quantity={quantity}
                 // setQuantity={setQuantity}
-                variants={variants}
               />
             </div>
           </Grid>
