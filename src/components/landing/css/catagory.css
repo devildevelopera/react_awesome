@@ -11,12 +11,12 @@
     text-decoration: none;
 }
 
-.men {
-    border-bottom: 2px solid #037b8e !important;
-}
-
 .newsales {
     border-bottom: 2px solid #047b1f !important;
+}
+
+.men {
+    border-bottom: 2px solid #036b7b !important;
 }
 
 .women {
@@ -28,5 +28,5 @@
 }
 
 .others {
-    border-bottom: 2px solid #ad8306 !important;
+    border-bottom: 2px solid #9a7404 !important;
 }
