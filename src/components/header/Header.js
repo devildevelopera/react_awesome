@@ -14,7 +14,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
-import './css/header.css';
+import { withRouter } from "react-router-dom";
+import './header.css';
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -93,7 +94,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function Header({quantity}) {
+function Header({quantity, history}) {
   const classes = useStyles();
   const number = quantity ? quantity : '0';
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -118,6 +119,13 @@ export default function Header({quantity}) {
     setMobileMoreAnchorEl(event.currentTarget);
   };
 
+  const logOut = event => {
+    event.preventDefault()
+    localStorage.removeItem('usertoken')
+    history.push(`/`)
+    handleMenuClose()
+  }
+
   const menuId = 'primary-search-account-menu';
   const renderMenu = (
     <Menu
@@ -129,8 +137,10 @@ export default function Header({quantity}) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={handleMenuClose}>My Profile</MenuItem>
-      <MenuItem onClick={handleMenuClose}>Change Password</MenuItem>
+      <MenuItem onClick={handleMenuClose}>
+        <Link className="my-profile" to={`/profile`}>My Profile</Link>
+      </MenuItem>
+      <MenuItem onClick={logOut}>Log Out</MenuItem>
     </Menu>
     
   );
@@ -146,24 +156,31 @@ export default function Header({quantity}) {
       open={isMobileMenuOpen}
       onClose={handleMobileMenuClose}
     >
+      <Link to={`/`}>
+        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Home</Button>
+      </Link>
+      { localStorage.usertoken &&
       <Link to={`/sell`}>
-        <Button color="inherit" className={classes.turquoise}>Sell</Button>
+        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Sell</Button>
       </Link>
+      }
       <Link to={`/`}>
-        <Button color="inherit" className={classes.turquoise}>Buy</Button>
+        <Button color="inherit" >Cart({number})</Button>
       </Link>
-      <Link to={`/`}>
-        <Button color="inherit">Cart({number})</Button>
-      </Link>
+      { localStorage.usertoken ? (
       <Link to={`/`}>
         <Button color="inherit" onClick={handleProfileMenuOpen}>Profile</Button>
       </Link>
-      <Link to={`/`}>
-        <Button color="inherit" className={classes.red}>SignIn</Button>
+      ) : (
+      <Link to={`/login`}>
+        <Button color="inherit" className={classes.red} onClick={handleMenuClose}>Sign In</Button>
       </Link>
-      <Link to={`/`}>
-        <Button color="inherit" className={classes.red}>SignUp</Button>
+      )}
+      { !localStorage.usertoken &&
+      <Link to={`/register`}>
+        <Button color="inherit" className={classes.red} onClick={handleMenuClose}>Sign Up</Button>
       </Link>
+      }
     </Menu>
   );
 
@@ -192,14 +209,13 @@ export default function Header({quantity}) {
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             <Link to={`/`}>
-              <Button color="inherit" className={classes.turquoise}>English</Button>
+              <Button color="inherit" className={classes.turquoise}>Home</Button>
             </Link>
+            { localStorage.usertoken &&
             <Link to={`/sell`}>
               <Button color="inherit" className={classes.turquoise}>Sell</Button>
             </Link>
-            <Link to={`/`}>
-              <Button color="inherit" className={classes.turquoise}>Buy</Button>
-            </Link>
+            }
             <Link to={`/`}>
               <IconButton aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={number} color="secondary">
@@ -207,6 +223,7 @@ export default function Header({quantity}) {
                 </Badge>
               </IconButton>
             </Link>
+            { localStorage.usertoken ? (
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -217,12 +234,16 @@ export default function Header({quantity}) {
             >
               <AccountCircle />
             </IconButton>
-            <Link to={`/`}>
-              <Button color="inherit" className={classes.red}>SignIn</Button>
-            </Link>
-            <Link to={`/`}>
-              <Button color="inherit" className={classes.red}>SignUp</Button>
-            </Link>
+            ) : (
+            <div style={{margin:"auto"}}>
+              <Link to={`/login`}>
+                <Button color="inherit" className={classes.red}>Sign In</Button>
+              </Link>
+              <Link to={`/register`}>
+                <Button color="inherit" className={classes.red}>Sign Up</Button>
+              </Link>
+            </div>
+            )}
           </div>
           <div className={classes.sectionMobile}>
             <IconButton
@@ -243,3 +264,5 @@ export default function Header({quantity}) {
     </div>
   );
 }
+
+export default withRouter(Header)

@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button} from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import "./css/catagory.css"
   
  class Catagory extends React.Component {

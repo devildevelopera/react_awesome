@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   BrowserRouter as Router,
   Route
 } from 'react-router-dom';
-
-import config from './assets/store_config';
-import Landing from './components/Landing';
-
-import Header from './components/ui/Header';
-import Footer from './components/ui/Footer';
+import Landing from './components/landing/Landing';
+import Header from './components/header/Header';
+import Footer from './components/footer/Footer';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
+import Profile from './components/landing/Profile';
 import Product from './components/product/Product';
 import Sell from './components/sell/Sell';
 import axios from 'axios';
+import ReactNotification from 'react-notifications-component';
 
 class App extends React.Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class App extends React.Component {
   }
 
   getItems = () => {
-    axios.get('http://151.106.5.210:3005/posts').then(res => {
+    axios.get('http://localhost:3005/posts').then(res => {
       this.setState({
         products: res.data
       });
@@ -46,7 +47,8 @@ class App extends React.Component {
     const { quantity, products } = this.state;
     return (
         <Router>
-            <Header quantity={quantity}/>
+          <ReactNotification />
+            <Header quantity={quantity} history={this.props.history}/>
             <Route exact path="/"
               render={(props) => <Landing/>}
             />
@@ -62,6 +64,11 @@ class App extends React.Component {
             <Route exact path="/sell"
               render={(props) => <Sell parentGetItems = {this.getItems}/>}
             />
+            <Route exact path="/login"
+              render={(props) => <Login parentGetItems = {this.getItems}/>}
+            />
+            <Route exact path="/register" component={Register}/>
+            <Route exact path="/profile" component={Profile}/>
             <Footer/>
         </Router>
     );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
@@ -45,17 +45,15 @@ const Price = styled.span `
 `;
 
 class ProductList extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  
   render() {
-    const products = this.props.items; 
+    const products = this.props.items;
     return (
       <Wrapper>
         { products.map((product,i) => {
           return <Link key={i} to={`/product/`+product._id}>
             <ImgWrapper borderColor="#fff">
-              <LargeIMG img={"http://151.106.5.210:3005/uploads/"+product.img_arr[0]}/>
+              <LargeIMG img={"http://localhost:3005/uploads/"+product.img_arr[0]}/>
             </ImgWrapper>
             <Title>
               {product.name}

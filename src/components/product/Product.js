@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from "react-router-dom";
-
 import PageWrapper from '../ui/PageWrapper';
 import ProductDetails from './ProductDetails';
 import Carousel from './Carousel';
@@ -29,8 +28,7 @@ const Grid = styled.div `
 function Product(props) {
   const initialVariants = props.product.variants ? [props.product.variants] : [];
   // const [quantity, setQuantity] = useState(1);
-  const [variants, setVariants] = useState(initialVariants);
-  const [sku_id, setSkuID] = useState();
+  const [variants] = useState(initialVariants);
 
   const { product } = props;
 

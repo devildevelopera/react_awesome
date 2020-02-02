@@ -30,18 +30,6 @@ const Description = styled.div `
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
 `;
-const Details = styled.div `
-  clear: both;
-  font-size: 14px;
-  margin-top: 20px;
-  > ul {
-    margin: 0;
-    padding: 0 20px 0;
-    > li {
-      margin-bottom: 10px;
-    }
-  }
-`;
 
 function ProductDetails(props) {
   const [product, setProduct] = useState(props.product);

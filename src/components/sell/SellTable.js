@@ -1,13 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 import { withTheme } from '@material-ui/core/styles';
-
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '@material-ui/core/Button';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@material-ui/core';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
+import { store } from 'react-notifications-component';
+import 'react-notifications-component/dist/theme.css'
+import 'animate.css';
 
 
 const Table = styled.table `
@@ -38,23 +40,12 @@ const Image = styled.div `
     height: 62px;
   }
 `;
-const Remove = styled.span `
-  cursor: pointer;
-  opacity: .5;
-  transition: opacity .5s;
-  &:hover { opacity: 1; }
-`;
 const Name = styled.div `
   font-size: 16px;
   > a {
     color: black;
     text-decoration-color: #FF6A64;
   }
-`;
-const Attrs = styled.div `
-  color: #888;
-  font-size: 12px;
-  text-transform: capitalize;
 `;
 
 class SellTable extends React.Component {
@@ -72,6 +63,8 @@ class SellTable extends React.Component {
       previous_img_arr: [],
       selectedFile: null,
     }
+    this.createNotificationDelete = this.createNotificationDelete.bind(this);
+    this.createNotificationUpdate = this.createNotificationUpdate.bind(this);
   }
 
   handleClose2 = () => {
@@ -87,10 +80,12 @@ class SellTable extends React.Component {
       delete_img_arr: delete_img_arr
     });
   }
+  
   deleteProduct = () => {
     const delete_img_arr = this.state.delete_img_arr;
-    axios.delete('http://151.106.5.210:3005/posts/'+this.state.del_id, {data: delete_img_arr}).then(res => {
+    axios.delete('http://localhost:3005/posts/'+this.state.del_id, {data: delete_img_arr}).then(res => {
       this.props.getItems();
+      this.createNotificationDelete();
     });
     this.setState({
       open2: false
@@ -107,7 +102,7 @@ class SellTable extends React.Component {
     this.setState({
       open4: true,
     });
-    axios.get('http://151.106.5.210:3005/posts/'+_id).then(res => {
+    axios.get('http://localhost:3005/posts/'+_id).then(res => {
       this.setState({
         name: res.data.name,
         description: res.data.description,
@@ -124,8 +119,9 @@ class SellTable extends React.Component {
       description: this.state.description,
       price: this.state.price
     };
-    axios.patch('http://151.106.5.210:3005/posts/'+this.state.edit_id, product ).then(res => {
+    axios.patch('http://localhost:3005/posts/'+this.state.edit_id, product ).then(res => {
         this.props.getItems();
+        this.createNotificationUpdate();
     });
     this.handleClose4();
   }
@@ -142,8 +138,9 @@ class SellTable extends React.Component {
       previous_img_arr: this.state.previous_img_arr,
       img_arr: update_img_arr
     }
-    axios.patch('http://151.106.5.210:3005/posts/withimages/'+this.state.edit_id, product ).then(res => {
+    axios.patch('http://localhost:3005/posts/withimages/'+this.state.edit_id, product ).then(res => {
         this.props.getItems();
+        this.createNotificationUpdate();
     });
     this.handleClose4();
   }
@@ -177,8 +174,8 @@ class SellTable extends React.Component {
                     'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
             }
       };
-      axios.post('http://151.106.5.210:3005/posts/upload', data, config ).then(res => {
-        if (res.statusText == "OK") {
+      axios.post('http://localhost:3005/posts/upload', data, config ).then(res => {
+        if (res.statusText === "OK") {
           this.productUpdateWithImages(res);
         }
       });
@@ -188,6 +185,36 @@ class SellTable extends React.Component {
 
   isFormValid = () => {
     return !this.state.name || !this.state.description || !this.state.price;
+  }
+
+  createNotificationDelete() {
+      store.addNotification({
+          title: "Successfully Deleted !",
+          message: "You can post your products anytime",
+          type: "danger",
+          insert: "top",
+          container: "bottom-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000
+          }
+        });
+  }
+
+  createNotificationUpdate() {
+      store.addNotification({
+          title: "Successfully Updated !",
+          message: "You can manage your products anytime",
+          type: "info",
+          insert: "top",
+          container: "bottom-right",
+          animationIn: ["animated", "fadeIn"],
+          animationOut: ["animated", "fadeOut"],
+          dismiss: {
+            duration: 5000
+          }
+        });
   }
 
   render () {
@@ -212,7 +239,7 @@ class SellTable extends React.Component {
                 return (<tr>
                           <td>
                             <Link to={`/product/`+d._id}>
-                              <Image img={"http://151.106.5.210:3005/uploads/"+d.img_arr[0]} />
+                              <Image img={"http://localhost:3005/uploads/"+d.img_arr[0]} />
                             </Link>
                           </td>
                           <td>

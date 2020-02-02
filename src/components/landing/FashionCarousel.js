@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Carousel } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-
 import './css/fasion_carousel.css';
 
 const FashionIMG = styled.div `
@@ -19,19 +18,20 @@ const FashionIMG = styled.div `
 class FashionCarousel extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSelect = this.handleSelect.bind(this);
-
     this.state = {
       index: 0,
       direction: null
     };
+    this.handleSelect = this.handleSelect.bind(this);
   }
+
   handleSelect(selectedIndex, e) {
     this.setState({
       index: selectedIndex,
       direction: e.direction
     });
   }
+  
   render() {
     const { index, direction } = this.state;
     const products  = this.props.items;
@@ -45,7 +45,7 @@ class FashionCarousel extends React.Component {
             { products.map((product,i) => {
               return <Carousel.Item>
                 <Link key={i} to={`/product/`+product._id}>
-                  <FashionIMG img={"http://151.106.5.210:3005/uploads/"+product.img_arr[0]}/>
+                  <FashionIMG img={"http://localhost:3005/uploads/"+product.img_arr[0]}/>
                 </Link>
                 <Carousel.Caption>
                   <h3>{product.name}</h3>

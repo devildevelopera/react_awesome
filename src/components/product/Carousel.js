@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
 const Wrapper = styled.div `
@@ -37,11 +37,7 @@ class Carousel extends React.Component {
       img: this.props.photos[0]
     }
   }
-  // ComponentDidMount() {
-  //   this.setState({
-  //     img: this.props.photos[0]
-  //   });
-  // }
+  
   setImg = (p) => {
     this.setState({
       img: p
@@ -50,18 +46,18 @@ class Carousel extends React.Component {
 
   render() {
     const {img} = this.state;
-    const {_id, photos} = this.props;
+    const {photos} = this.props;
     return (
       <Wrapper>
         <div>
           {photos.map((p,i) => {
             return <IMG
               onClick={() => this.setImg(p)}
-              img={"http://151.106.5.210:3005/uploads/"+p} key={i}
+              img={"http://localhost:3005/uploads/"+p} key={i}
             />
           })}
         </div>
-        <LargeIMG img={`http://151.106.5.210:3005/uploads/${img}`} />
+        <LargeIMG img={`http://localhost:3005/uploads/${img}`} />
       </Wrapper>
     );
   }
