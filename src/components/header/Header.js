@@ -63,9 +63,6 @@ const useStyles = makeStyles(theme => ({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  red: {
-    color: "#f36bee",
-  },
   turquoise: {
     color: "#40E0D0"
   },
@@ -173,12 +170,12 @@ function Header({quantity, history}) {
       </Link>
       ) : (
       <Link to={`/login`}>
-        <Button color="inherit" className={classes.red} onClick={handleMenuClose}>Sign In</Button>
+        <Button color="inherit" className="signin" onClick={handleMenuClose}>Sign In</Button>
       </Link>
       )}
       { !localStorage.usertoken &&
       <Link to={`/register`}>
-        <Button color="inherit" className={classes.red} onClick={handleMenuClose}>Sign Up</Button>
+        <Button color="inherit" className="signup" onClick={handleMenuClose}>Sign Up</Button>
       </Link>
       }
     </Menu>
@@ -232,15 +229,15 @@ function Header({quantity, history}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <AccountCircle />
+              <img width="30px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
             </IconButton>
             ) : (
             <div style={{margin:"auto"}}>
               <Link to={`/login`}>
-                <Button color="inherit" className={classes.red}>Sign In</Button>
+                <Button color="inherit" className="signin">Sign In</Button>
               </Link>
               <Link to={`/register`}>
-                <Button color="inherit" className={classes.red}>Sign Up</Button>
+                <Button color="inherit" className="signup">Sign Up</Button>
               </Link>
             </div>
             )}

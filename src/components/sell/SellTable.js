@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
+import './sell.css';
 
 
 const Table = styled.table `
@@ -297,7 +298,7 @@ class SellTable extends React.Component {
                   style={{ display: 'none' }}
                   onChange={(e) => this.onChangeFile(e)}
               />
-              <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
+              <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
               <TextField
                 margin="dense"
                 value={this.state.name}

@@ -10,6 +10,7 @@ import jwt_decode  from 'jwt-decode';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
+import './sell.css';
 
 const Wrapper = styled.div `
   padding: 40px;
@@ -151,7 +152,7 @@ class Sell extends React.Component {
           <Wrapper>
           <h2 style={{ marginTop: 0, fontWeight: 600 }}>Products</h2>
             <RightSide>
-              <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>
+              <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
             </RightSide>
             { items.length > 0 &&
               <div>
@@ -178,7 +179,7 @@ class Sell extends React.Component {
                 style={{ display: 'none' }}
                 onChange={(e) => this.onChangeFile(e)}
             />
-            <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
+            <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
             <TextField
               autoFocus
               margin="dense"

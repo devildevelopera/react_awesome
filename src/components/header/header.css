@@ -21,7 +21,7 @@
 .MuiButton-root {
     text-transform: none !important;
 }
-.makeStyles-sectionDesktop-11 a {
+.makeStyles-sectionDesktop-10 a {
     margin: auto;
 }
 .MuiMenuItem-root {
@@ -33,4 +33,7 @@
 .my-profile:hover{
     color :inherit;
     text-decoration: none;
+}
+.signin {
+    color: #28a745 !important;
 }

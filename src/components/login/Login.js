@@ -4,6 +4,7 @@ import { withRouter } from "react-router-dom";
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
+import './login.css';
 
 class Login extends Component {
     constructor(props){
@@ -153,7 +154,7 @@ class Login extends Component {
                                 <div style={{color: "red"}}>{errors['password']}</div>
                             }
                         </div>
-                        <button  onClick={this.onSubmit} className="btn btn-lg btn-primary btn-block mt-4">
+                        <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
                             Log in
                         </button>
                     </div>
