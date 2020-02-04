@@ -168,12 +168,16 @@ function Header({quantity, history}) {
       </Link>
       }
       <Link to={`/`}>
-        <Button color="inherit" >Cart({number})</Button>
+        <Button color="inherit" onClick={handleMenuClose}>Cart({number})</Button>
       </Link>
+      
+      { localStorage.usertoken &&
+        <Link to={`/profile`}>
+          <Button color="inherit" onClick={handleMenuClose}>Profile</Button>
+        </Link>
+      }
       { localStorage.usertoken ? (
-      <Link to={`/`}>
-        <Button color="inherit" onClick={handleProfileMenuOpen}>Profile</Button>
-      </Link>
+        <Button color="inherit" onClick={logOut}>Log out</Button>
       ) : (
       <Link to={`/login`}>
         <Button color="inherit" className="signin" onClick={handleMenuClose}>Sign In</Button>
