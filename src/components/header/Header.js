@@ -14,6 +14,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
+// import { useSelector, useDispatch } from 'react-redux';
+// import { increment, decrement } from '../../actions';
 import './header.css';
 
 const useStyles = makeStyles(theme => ({
@@ -91,6 +93,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function Header({quantity, history}) {
+  // const counter = useSelector(state => state.counter);
+  // console.log("counter: ", counter);
+  // const isLogged = useSelector(state => state.isLogged);
+  // console.log("isLogged: ", isLogged);
+  // const dispatch = useDispatch();
   const classes = useStyles();
   const number = quantity ? quantity : '0';
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -204,6 +211,8 @@ function Header({quantity, history}) {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
+            {/* <Button onClick={() => dispatch(increment(5))}>+</Button>
+            <Button onClick={() => dispatch(decrement())}>-</Button> */}
             <Link to={`/`}>
               <Button color="inherit" className={classes.turquoise}>Home</Button>
             </Link>
