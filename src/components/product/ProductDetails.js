@@ -41,7 +41,6 @@ class ProductDetails extends React.Component {
   render() {
     const  product  = this.props.product;
     const { first_name, last_name, email } = this.state;
-    console.log(email);
     return (
       <div>
           <h2 style={{ marginTop: "0" }}>{product.name}</h2>
