@@ -47,7 +47,7 @@ class Sell extends React.Component {
   getItems = () => {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
-    axios.get('/posts/individual/'+ decoded._id).then(res => {
+    axios.get('http://localhost:3005/posts/individual/'+ decoded._id).then(res => {
       this.props.parentGetItems();
       this.setState({
         items: res.data,
@@ -81,7 +81,7 @@ class Sell extends React.Component {
                   'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
           }
     };
-    axios.post('/posts/upload', data, config ).then(res => {
+    axios.post('http://localhost:3005/posts/upload', data, config ).then(res => {
       if (res.statusText === "OK") {
         this.productPost(res);
       }
@@ -103,7 +103,7 @@ class Sell extends React.Component {
       price: this.state.price,
       img_arr: img_arr,
     }
-    axios.post('/posts', product ).then(res => {
+    axios.post('http://localhost:3005/posts', product ).then(res => {
         this.getItems();
         this.createNotification();
     });

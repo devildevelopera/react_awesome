@@ -27,7 +27,7 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const user_id = this.props.product.user_id;
-    axios.get('/users/'+ user_id).then(res => {
+    axios.get('http://localhost:3005/users/'+ user_id).then(res => {
       if(res.data) {
         this.setState({
           first_name: res.data.first_name,

@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   getItems = () => {
-    axios.get('/posts').then(res => {
+    axios.get('http://localhost:3005/posts').then(res => {
       this.setState({
         products: res.data
       });
