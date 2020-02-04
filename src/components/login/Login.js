@@ -5,6 +5,9 @@ import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './login.css';
+import { connect } from 'react-redux';
+import { increment, decrement } from '../../actions';
+import compose from 'lodash/fp/compose';
 
 class Login extends Component {
     constructor(props){
@@ -40,7 +43,6 @@ class Login extends Component {
             login(user).then(res => {
                 if(res) {
                     this.props.history.push(`/sell`);
-                    this.props.parentGetItems();
                     this.createNotificationSuccess();
                     this.setState({
                         email: '',
@@ -117,6 +119,10 @@ class Login extends Component {
           });
     }
 
+    handleSubmit  = ()  => {
+        this.props.dispatch(increment(5));
+    }
+
     render() {
         const {email, password, errors, formIsValid} = this.state
         return (
@@ -157,6 +163,7 @@ class Login extends Component {
                         <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
                             Log in
                         </button>
+                        {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}
                     </div>
                 </div>
             </div>
@@ -164,4 +171,15 @@ class Login extends Component {
     }
 }
 
-export default withRouter(Login)
+const mapDispatchToProps = dispatch => {
+    return {
+      increment: () => dispatch(increment()),
+      decrement: () => dispatch(decrement()),
+      dispatch
+    }
+  }
+
+export default compose(
+    withRouter,
+    connect(null, mapDispatchToProps)
+  )(Login);

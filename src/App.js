@@ -66,7 +66,7 @@ class App extends React.Component {
                 render={() => <Sell parentGetItems = {this.getItems}/>}
               />
               <Route exact path="/login"
-                render={() => <Login parentGetItems = {this.getItems}/>}
+                render={() => <Login/>}
               />
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>

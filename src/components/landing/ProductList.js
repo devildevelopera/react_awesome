@@ -2,6 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
+import { connect } from 'react-redux'
+import compose from 'lodash/fp/compose';
 
 const Wrapper = styled.div `
   display: grid;
@@ -65,6 +67,13 @@ class ProductList extends React.Component {
       </Wrapper>
     );
   };
-  
 }
-export default withTheme(ProductList);
+
+const mapStateToProps = state => ({
+  mystate: state
+})
+
+export default compose(
+  withTheme,
+  connect(mapStateToProps)
+)(ProductList);
