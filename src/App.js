@@ -16,7 +16,6 @@ import Sell from './components/sell/Sell';
 import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
-// import  { subscribeToTimer }  from './components/api/subscribeToTimer';
 
 class App extends React.Component {
   constructor(props) {
@@ -26,9 +25,6 @@ class App extends React.Component {
       products: [],
       timestamp: 'no timestamp yet'
     }
-    // subscribeToTimer((err, timestamp) => this.setState({ 
-    //   timestamp
-    // }));
   }
   
   componentDidMount() {

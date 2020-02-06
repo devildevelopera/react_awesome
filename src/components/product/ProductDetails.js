@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import './productDetail.css';
 
 const Right = styled.div `
   display: flex;
@@ -57,7 +58,7 @@ class ProductDetails extends React.Component {
             ${product.price}
           </Price>
           <Right>
-            <Button variant="contained" color="primary"
+            <Button variant="contained" color="primary" className="addToCart"
             >
               Add To Cart
             </Button>

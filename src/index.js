@@ -4,24 +4,27 @@ import './index.css';
 import App from './App';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import allReducers from './reducers'
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import openSocket from 'socket.io-client';
+
 // uncomment if you would like to serve the final site with service workers
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
 
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
+const  socket = openSocket('http://localhost:3005');
+
+socket.on('timer', timestamp => console.log(timestamp));
+socket.emit('subscribeToTimer', 1000);
+socket.on('server message', function(message) {
+    var people = JSON.parse(message);
+    console.log(people);
+});
 
 const store = createStore(
     allReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
-
-const io = require('socket.io-client');
-const socket = io();
-socket.on('server message', function(message) {
-    var people = JSON.parse(message);
-    console.log(people);
-});
 
 ReactDOM.render(
 <Provider store={store}>
