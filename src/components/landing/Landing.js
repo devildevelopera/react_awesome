@@ -1,10 +1,19 @@
 import React from 'react';
-import PageWrapper from '../ui/PageWrapper';
+import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 import ProductList from './ProductList';
 import FashionCarousel from './FashionCarousel';
 import Catagory from './Catagory';
 import axios from 'axios';
+import './css/landing.css';
+
+const Wrapper = styled.div `
+  padding: 0 40px 40px 40px;
+  min-height: 100vh;
+  @media (max-width: 650px) {
+    padding: 20px;
+  }
+`;
 
 class Landing extends React.Component {
   constructor(props) {
@@ -28,13 +37,13 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <PageWrapper>
+      <Wrapper>
         <Catagory/>
         <FashionCarousel items={this.state.items}/>
-        <Paper style={{ padding: "40px" }}>
+        <Paper className="product-list">
           <ProductList items={this.state.items} />
         </Paper>
-      </PageWrapper>
+      </Wrapper>
     );
   }
 }

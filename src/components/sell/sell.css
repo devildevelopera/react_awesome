@@ -5,3 +5,13 @@
 .add-images {
     border-bottom: 2px solid #82042d !important;
 }
+
+.jpSPzv {
+    font-size: 1rem;
+  }
+
+@media (max-width: 650px) {
+    .jpSPzv {
+        font-size: 0.7rem;
+      }
+}

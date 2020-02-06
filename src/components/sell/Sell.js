@@ -1,7 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import PageWrapper from '../ui/PageWrapper';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import SellTable from './SellTable';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@material-ui/core';
@@ -14,9 +12,10 @@ import './sell.css';
 
 const Wrapper = styled.div `
   padding: 40px;
-  min-height: 500px;
+  min-height: 100vh;
   @media (max-width: 650px) {
-    padding: 20px;
+    padding: 10px;
+    font-size: 0.7rem;
   }
 `;
 const RightSide = styled.div `
@@ -147,24 +146,22 @@ class Sell extends React.Component {
   render () {
     const { items, open4 } = this.state;
     return (
-      <PageWrapper>
-        <Paper>
-          <Wrapper>
-          <h2 style={{ marginTop: 0, fontWeight: 600 }}>Products</h2>
-            <RightSide>
-              <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
-            </RightSide>
-            { items.length > 0 &&
-              <div>
-                <SellTable items={items} getItems={this.getItems}
-                />
-              </div>
-            }
-            { items.length === 0 &&
-              <p>Hmmmm, there aren't any your products.</p>
-            }
-          </Wrapper>
-        </Paper>
+      <div>
+        <Wrapper>
+          <h4>Products</h4>
+          <RightSide>
+            <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
+          </RightSide>
+          { items.length > 0 &&
+            <div>
+              <SellTable items={items} getItems={this.getItems}
+              />
+            </div>
+          }
+          { items.length === 0 &&
+            <p>Hmmmm, there aren't any your products.</p>
+          }
+        </Wrapper>
         <Dialog
           open={open4}
           onClose={this.handleClose4}
@@ -218,7 +215,7 @@ class Sell extends React.Component {
             </Button>
           </DialogActions>
         </Dialog>
-      </PageWrapper>
+      </div>
     );
   };
 };

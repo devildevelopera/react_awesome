@@ -181,7 +181,7 @@ class Register extends Component {
     render() {
         const {first_name, last_name, email, password, cpassword, errors, formIsValid} = this.state
         return (
-            <div className="container" style={{minHeight:"100vh"}}>
+            <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-5 mb-5 mx-auto">
                         <div style={{textAlign: "center"}}>

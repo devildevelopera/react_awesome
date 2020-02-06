@@ -16,14 +16,19 @@ import Sell from './components/sell/Sell';
 import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
+// import  { subscribeToTimer }  from './components/api/subscribeToTimer';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       quantity: 0,
-      products: []
+      products: [],
+      timestamp: 'no timestamp yet'
     }
+    // subscribeToTimer((err, timestamp) => this.setState({ 
+    //   timestamp
+    // }));
   }
   
   componentDidMount() {
@@ -73,6 +78,7 @@ class App extends React.Component {
               <Route exact path="/404" render={() => <Error/>}/>
               <Redirect to="/" />
             </Switch>
+            {/* <div style={{textAlign: "center"}}>{this.state.timestamp}</div> */}
             <Footer/>
         </Router>
     );

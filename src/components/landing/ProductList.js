@@ -18,7 +18,7 @@ const Wrapper = styled.div `
   }
 `;
 const LargeIMG = styled.div `
-  border-radius: 20px;
+  // border-radius: 20px;
   background-image: url(${props => props.img});
   background-color: #ddd;
   width: 100%;

@@ -4,12 +4,6 @@
 .MuiTypography-h6 {
     font-family: inherit !important;
 }
-.makeStyles-searchIcon-6 {
-    color: yellowgreen;
-}
-.MuiIconButton-label {
-    color: yellowgreen;
-}
 .MuiBadge-anchorOriginTopRightRectangle {
     color: red !important;
     border: 1px solid red;

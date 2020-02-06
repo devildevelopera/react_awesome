@@ -34,8 +34,7 @@ const useStyles = makeStyles(theme => ({
     cursor: "pointer",
     [theme.breakpoints.up('sm')]: {
       display: 'block',
-    },
-    color: "#1976d2",
+    }
   },
   search: {
     position: 'relative',
@@ -65,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'center',
   },
   turquoise: {
-    color: "#40E0D0"
+    color: "#28a745"
   },
   inputRoot: {
     color: 'inherit',
@@ -245,7 +244,7 @@ function Header({quantity, history}) {
               <img width="30px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
             </IconButton>
             ) : (
-            <div style={{margin:"auto"}}>
+            <div>
               <Link to={`/login`}>
                 <Button color="inherit" className="signin">Sign In</Button>
               </Link>

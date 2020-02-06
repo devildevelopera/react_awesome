@@ -126,7 +126,7 @@ class Login extends Component {
     render() {
         const {email, password, errors, formIsValid} = this.state
         return (
-            <div className="container" style={{minHeight:"100vh"}}>
+            <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-5 mt-5 mx-auto">
                         <div style={{textAlign: "center"}}>

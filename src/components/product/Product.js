@@ -2,14 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import withWidth, { isWidthUp } from '@material-ui/core/withWidth';
 import { withRouter } from "react-router-dom";
-import PageWrapper from '../ui/PageWrapper';
 import ProductDetails from './ProductDetails';
 import Carousel from './Carousel';
 import MobileCarousel from './MobileCarousel';
 import Breadcrumb from './Breadcrumb';
-import Paper from '@material-ui/core/Paper';
 
 const Wrapper = styled.div `
+  min-height: 100vh;
   padding: 40px;
   @media (max-width: 650px) {
     padding: 20px;
@@ -37,23 +36,19 @@ function Product(props) {
   }
 
   return (
-    <PageWrapper>
-      <Paper>
-        <Wrapper>
-          <Breadcrumb product={product} />
-          <Grid>
-            {photos}
-            <div style={{ gridColumn: "span 2" }}>
-              <ProductDetails
-                product={product}
-                // quantity={quantity}
-                // setQuantity={setQuantity}
-              />
-            </div>
-          </Grid>
-        </Wrapper>
-      </Paper>
-    </PageWrapper>
+      <Wrapper>
+        <Breadcrumb product={product} />
+        <Grid>
+          {photos}
+          <div style={{ gridColumn: "span 2" }}>
+            <ProductDetails
+              product={product}
+              // quantity={quantity}
+              // setQuantity={setQuantity}
+            />
+          </div>
+        </Grid>
+      </Wrapper>
   );
 };
 export default withWidth()(withRouter(Product));

@@ -7,12 +7,20 @@ import axios from 'axios';
 const Right = styled.div `
   display: flex;
   flex-direction: row-reverse;
-  margin: 30px 0 60px;
+  margin: 30px 0;
   align-items: baseline;
 `;
 const Description = styled.div `
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
+`;
+const Price = styled.div `
+  font-weight: 600;
+  text-align: right;
+`;
+const Seller = styled.div`
+  display: flex;
+  margin-top: 30px;
 `;
 
 class ProductDetails extends React.Component {
@@ -43,11 +51,11 @@ class ProductDetails extends React.Component {
     const { first_name, last_name, email } = this.state;
     return (
       <div>
-          <h2 style={{ marginTop: "0" }}>{product.name}</h2>
+          <h2>{product.name}</h2>
           <Description>{product.description}</Description>
-          <div style={{ fontWeight: "600", textAlign: "right" }}>
+          <Price>
             ${product.price}
-          </div>
+          </Price>
           <Right>
             <Button variant="contained" color="primary"
             >
@@ -62,7 +70,7 @@ class ProductDetails extends React.Component {
             />
           </Right>
           <h2>{first_name} {last_name}</h2>
-          <div style={{display: "flex", marginTop: "30"}}>
+          <Seller>
             <img width="100px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
             <div style={{margin: "auto"}}>
               <ul>
@@ -70,7 +78,7 @@ class ProductDetails extends React.Component {
                 <li>{email}</li>
               </ul>
             </div>
-          </div>
+          </Seller>
 
         </div>
     );
