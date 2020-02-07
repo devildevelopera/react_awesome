@@ -14,6 +14,7 @@ const Right = styled.div `
 const Description = styled.div `
   color: rgba(0, 0, 0, 0.87);
   font-size: 16px;
+  overflow-wrap: break-word;
 `;
 const Price = styled.div `
   font-weight: 600;
@@ -22,6 +23,12 @@ const Price = styled.div `
 const Seller = styled.div`
   display: flex;
   margin-top: 30px;
+`;
+const SellerDetail = styled.div`
+  margin: auto;
+  @media (max-width: 650px) {
+    font-size: 0.8rem;
+  }
 `;
 
 class ProductDetails extends React.Component {
@@ -49,7 +56,7 @@ class ProductDetails extends React.Component {
   
   render() {
     const  product  = this.props.product;
-    const { first_name, last_name, email } = this.state;
+    const { first_name, last_name } = this.state;
     return (
       <div>
           <h2>{product.name}</h2>
@@ -70,17 +77,17 @@ class ProductDetails extends React.Component {
               style={{ width: "40px", margin: "0 30px 0" }}
             />
           </Right>
-          <h2>{first_name} {last_name}</h2>
+          <h2>Seller Information</h2>
           <Seller>
             <img width="100px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
-            <div style={{margin: "auto"}}>
+            <SellerDetail>
               <ul>
                 <li>Offline</li>
-                <li>{email}</li>
+                <li>{first_name} {last_name}</li>
+                <li>100% Positive feedback</li>
               </ul>
-            </div>
+            </SellerDetail>
           </Seller>
-
         </div>
     );
   };
