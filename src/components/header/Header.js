@@ -241,7 +241,7 @@ function Header({quantity, history}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <img width="30px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
+              <img width="30px" src="seller.png" alt="seller"/>
             </IconButton>
             ) : (
             <div>

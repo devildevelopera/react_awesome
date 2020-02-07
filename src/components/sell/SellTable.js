@@ -237,7 +237,7 @@ class SellTable extends React.Component {
             <tbody>
               { items.map((d,i) => {
 
-                return (<tr>
+                return (<tr key={i}>
                           <td>
                             <Link to={`/product/`+d._id}>
                               <Image img={"http://localhost:3005/uploads/product/"+d.img_arr[0]} />

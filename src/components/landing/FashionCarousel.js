@@ -43,17 +43,15 @@ class FashionCarousel extends React.Component {
             onSelect={this.handleSelect}
           >
             { products.map((product,i) => {
-              return <Carousel.Item>
-                <Link key={i} to={`/product/`+product._id}>
-                  <FashionIMG img={"http://localhost:3005/uploads/product/"+product.img_arr[0]}/>
-                </Link>
-                <Carousel.Caption>
-                  <h3>{product.name}</h3>
-                  <p>
-                  {product.description}
-                  </p>
-                </Carousel.Caption>
-              </Carousel.Item>
+              return <Carousel.Item key={i}>
+                      <Link to={`/product/`+product._id}>
+                        <FashionIMG img={"http://localhost:3005/uploads/product/"+product.img_arr[0]}/>
+                      </Link>
+                      <Carousel.Caption>
+                        <h3>{product.name}</h3>
+                        <p>{product.description}</p>
+                      </Carousel.Caption>
+                    </Carousel.Item>
             })}
           </Carousel>
         </div>

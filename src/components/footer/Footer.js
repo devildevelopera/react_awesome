@@ -13,19 +13,19 @@ import "./footer.css"
              <div className="footer">
                 <Grid item xs={6}>
                     2020 &copy; Awesome<br />
-                    <div class="copyright-links"><a href="">Terms of Use</a> / <a href="">Privacy Policy</a></div>
+                    <div className="copyright-links"><a href="">Terms of Use</a> / <a href="">Privacy Policy</a></div>
                 </Grid>
                 <Grid item xs={6}>
                     <div>
-                        <a href="" class="social-icon">
+                        <a href="" className="social-icon">
                             <FacebookIcon/>
                         </a>
 
-                        <a href="" class="social-icon">
+                        <a href="" className="social-icon">
                             <TwitterIcon/>
                         </a>
 
-                        <a href="" class="social-icon">
+                        <a href="" className="social-icon">
                             <LinkedInIcon/>
                         </a>
                     </div>
