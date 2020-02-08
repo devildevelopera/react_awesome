@@ -15,6 +15,8 @@ import Profile from './components/profile/Profile';
 import Cart from './components/cart/Cart';
 import Product from './components/product/Product';
 import Sell from './components/sell/Sell';
+import ForgotPass from './components/forgotpass/ForgotPass';
+import ResetPass from './components/resetpass/ResetPass';
 // import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
@@ -72,6 +74,8 @@ class App extends React.Component {
               />
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>
+              <Route exact path="/forgotpass" component={ForgotPass}/>
+              <Route exact path="/resetpass" component={ResetPass}/>
               <Route exact path="/cart"
                 render={() => <Cart updateNumber={this.setQuantity}/>}
               />

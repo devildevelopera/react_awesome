@@ -1,3 +1,6 @@
 .carousel.slide {
     margin: 0px auto 20px;
 }
+.carousel-inner {
+    border-radius: 10px;
+}

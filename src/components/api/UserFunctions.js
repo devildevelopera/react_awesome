@@ -26,3 +26,24 @@ export const login = user =>{
             return res.data
         })
 }
+
+export const forgotpass = user =>{
+    return axios
+        .post('http://localhost:3005/users/forgotpass', {
+            email: user.email
+        })
+        .then(res => {
+            return res.data
+        })
+}
+
+export const resetpass = user =>{
+    return axios
+        .post('http://localhost:3005/users/resetpass', {
+            email: user.email,
+            password: user.email
+        })
+        .then(res => {
+            return res.data
+        })
+}

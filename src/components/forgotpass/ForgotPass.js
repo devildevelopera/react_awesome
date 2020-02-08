@@ -1,21 +1,20 @@
 import React, { Component } from 'react';
-import { login } from '../api/UserFunctions';
+import { forgotpass } from '../api/UserFunctions';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './login.css';
+import './forgotpass.css';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../../actions';
 import compose from 'lodash/fp/compose';
 
-class Login extends Component {
+class ForgotPass extends Component {
     constructor(props){
         super(props)
         this.state = {
             email: '',
-            password: '',
             errors: {},
             formIsValid: true
         }
@@ -36,18 +35,17 @@ class Login extends Component {
 
     onSubmit(e){
         const user = {
-            email: this.state.email,
-            password: this.state.password,
+            email: this.state.email
         }
 
         if (this.handleValidation()) {
-            login(user).then(res => {
+            forgotpass(user).then(res => {
                 if(res) {
-                    this.props.history.push(`/sell`);
+                    console.log(res);
+                    this.props.history.push(`/resetpass`);
                     this.createNotificationSuccess();
                     this.setState({
-                        email: '',
-                        password: ''
+                        email: ''
                     })
                 } else {
                     this.createNotificationWarning();
@@ -57,7 +55,7 @@ class Login extends Component {
     }
 
     handleValidation(){
-        let { email, password } = this.state;
+        let { email } = this.state;
         let formIsValid = true
         let errors = {};
 
@@ -75,25 +73,14 @@ class Login extends Component {
                     }
             } 
 
-            //Password
-            if(!password){
-                formIsValid = false;
-                errors["password"] = "Cannot be empty";
-                }else{
-                if(password.length < 8){
-                    formIsValid = false;
-                    errors["password"] = "At least 8 characters";
-                }        
-            }
-
         this.setState({errors: errors, formIsValid: formIsValid});
         return formIsValid;
     }
 
     createNotificationSuccess() {
         store.addNotification({
-            title: "Login Success !",
-            message: "Now you can post your products",
+            title: "Auth Success !",
+            message: "Now you can rest your password",
             type: "success",
             insert: "top",
             container: "bottom-right",
@@ -107,7 +94,7 @@ class Login extends Component {
 
     createNotificationWarning() {
         store.addNotification({
-            title: "Login Failed !",
+            title: "Auth Failed !",
             message: "User does not exist",
             type: "warning",
             insert: "top",
@@ -125,13 +112,13 @@ class Login extends Component {
     }
 
     render() {
-        const {email, password, errors, formIsValid} = this.state
+        const {email, errors, formIsValid} = this.state
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-5 mt-5 mx-auto">
                         <div style={{textAlign: "center"}}>
-                            <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
+                            <h1 className="h3 mb-3 font-weight-normal">Rcover Your Password</h1>
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Email Address</label>
@@ -147,26 +134,12 @@ class Login extends Component {
                                 <div style={{color: "red"}}>{errors['email']}</div>
                             }
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Paaword</label>
-                            <input 
-                                type="password" 
-                                className="form-control"
-                                name="password"
-                                placeholder="Enter Password"
-                                value={password}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['password']}</div>
-                            }
-                        </div>
-                        <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
-                            Log in
+                        <button  onClick={this.onSubmit} className="btn btn-lg btn-info btn-block mt-4">
+                            Send Reset Link
                         </button>
                         <div className="mt-3">
-                            <Link to={`/forgotpass`}>
-                                Fogot your password?
+                            <Link to={`/login`}>
+                                Go back to login?
                             </Link>
                         </div>
                         {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}
@@ -188,4 +161,4 @@ const mapDispatchToProps = dispatch => {
 export default compose(
     withRouter,
     connect(null, mapDispatchToProps)
-  )(Login);
+  )(ForgotPass);

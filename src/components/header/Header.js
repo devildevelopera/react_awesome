@@ -128,7 +128,6 @@ function Header({quantity, history}) {
   const logOut = event => {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
-    console.log(decoded._id)
     axios.delete('http://localhost:3005/users/logout/' + decoded._id);
     event.preventDefault()
     localStorage.removeItem('usertoken');

@@ -1,0 +1,7 @@
+.container {
+    min-height: 100vh;
+}
+
+.btn-info {
+    border-bottom: 2px solid #036b7b !important;
+}
