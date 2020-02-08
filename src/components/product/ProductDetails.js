@@ -33,8 +33,8 @@ const SellerDetail = styled.div`
 `;
 
 class ProductDetails extends React.Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       first_name: '',
       last_name: '',
@@ -68,12 +68,13 @@ class ProductDetails extends React.Component {
           </Price>
           <Right>
             <Button variant="contained" color="primary" className="addToCart"
+            onClick={() => this.props.addToCart()}
             >
               Add To Cart
             </Button>
             <TextField
-              // value={this.props.quantity}
-              // onChange={e => props.setQuantity(e.target.value)}
+              value={this.props.quantity}
+              onChange={e => this.props.setQuantity(e.target.value)}
               type="number"
               margin="normal"
               style={{ width: "40px", margin: "0 30px 0" }}

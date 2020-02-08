@@ -57,39 +57,27 @@ const Name = styled.div `
     text-decoration-color: ${props => props.underline};
   }
 `;
-const Attrs = styled.div `
-  color: #888;
-  font-size: 12px;
-  text-transform: capitalize;
-`;
 
-const CartTable = ({ items, theme, updateCount, removeItem }) => (
+const CartTable = ({ items, updateCount, removeItem }) => (
   <Table>
     <thead>
       <tr>
         <th>Product</th>
         <th>Quantity</th>
         <th>Total</th>
-        <th></th>
+        <th>Remove</th>
       </tr>
     </thead>
     <tbody>
       { items.map((d,i) => {
-        let attrs = [];
-        for (let key in d.attr) {
-          attrs.push(`${key.replace("_", " ")}: ${d.attr[key]}`)
-        }
-        attrs = attrs.join(", ");
-
         return (<tr key={`cart${i}`}>
           <td>
             <Flex>
               <Image img={d.img} />
               <Title>
-                <Name underline={theme.palette.primary.main}>
+                <Name>
                   <Link to={d.url ? d.url : "/"}>{d.name}</Link>
                 </Name>
-                <Attrs>{attrs}</Attrs>
               </Title>
             </Flex>
           </td>

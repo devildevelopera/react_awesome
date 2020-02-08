@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-import PageWrapper from '../ui/PageWrapper';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import CartTable from './CartTable';
 
 const Wrapper = styled.div `
   padding: 40px;
-  min-height: 500px;
+  min-height: 100vh;
   @media (max-width: 650px) {
     padding: 20px;
   }
@@ -31,7 +28,7 @@ const Subtotal = styled.div `
 
 function Cart(props) {
   const [items, setItems] = useState([]);
-  const slug = `${props.config.store_slug}_products`;
+  const slug = `react_awesome_products`;
 
   useEffect(() => {
     let newItems = JSON.parse(localStorage.getItem(slug));
@@ -61,16 +58,14 @@ function Cart(props) {
   }
 
   return (
-    <PageWrapper>
-      <Paper>
+      <div>
         <Wrapper>
-        <h2 style={{ marginTop: 0, fontWeight: 600 }}>Cart</h2>
+        <h4>Cart</h4>
           { items.length > 0 &&
             <div>
               <CartTable items={items}
                 updateCount={updateCount}
                 removeItem={removeItem}
-                config={props.config}
               />
               <RightSide>
                 <Subtotal>
@@ -87,8 +82,7 @@ function Cart(props) {
             <p>Hmmmm, there's nothing in your cart yet.</p>
           }
         </Wrapper>
-      </Paper>
-    </PageWrapper>
+      </div>
   );
 };
 export default Cart;

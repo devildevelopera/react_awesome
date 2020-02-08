@@ -12,6 +12,7 @@ import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Profile from './components/profile/Profile';
+import Cart from './components/cart/Cart';
 import Product from './components/product/Product';
 import Sell from './components/sell/Sell';
 // import Error from './components/404/Error';
@@ -28,11 +29,6 @@ class App extends React.Component {
   }
   
   componentDidMount() {
-    const slug = `react_awesome_products`;
-    const items = JSON.parse(localStorage.getItem(slug));
-    this.setState({
-      quantity: items ? items.length : 0
-    });
     this.getItems();
   }
 
@@ -41,6 +37,11 @@ class App extends React.Component {
       this.setState({
         products: res.data
       });
+    });
+  }
+  setQuantity = (number) => {
+    this.setState({
+      quantity: number ? number : 0
     });
   }
 
@@ -57,8 +58,8 @@ class App extends React.Component {
               { products.map((product,i) =>
                   <Route exact key={`route${i}`}
                     path={`/product/${product._id}`}
-                    render={(props) =>
-                      <Product product={product}/>
+                    render={() =>
+                      <Product product={product} updateNumber={this.setQuantity}/>
                     }
                   />
                 )
@@ -71,6 +72,9 @@ class App extends React.Component {
               />
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>
+              <Route exact path="/cart"
+                render={() => <Cart updateNumber={this.setQuantity}/>}
+              />
               {/* <Route exact path="/404" render={() => <Error/>}/>
               <Redirect to="/" /> */}
             {/* </Switch> */}

@@ -174,7 +174,7 @@ function Header({quantity, history}) {
         <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Sell</Button>
       </Link>
       }
-      <Link to={`/`}>
+      <Link to={`/cart`}>
         <Button color="inherit" onClick={handleMenuClose}>Cart({number})</Button>
       </Link>
       
@@ -232,7 +232,7 @@ function Header({quantity, history}) {
               <Button color="inherit" className={classes.turquoise}>Sell</Button>
             </Link>
             }
-            <Link to={`/`}>
+            <Link to={`/cart`}>
               <IconButton aria-label="show 4 new mails" color="inherit">
                 <Badge badgeContent={number} color="secondary">
                   <ShoppingCartIcon />
