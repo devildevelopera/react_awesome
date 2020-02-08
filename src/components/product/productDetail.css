@@ -1,3 +1,42 @@
 .addToCart {
     border-bottom: 2px solid #051a8a !important;
 }
+
+.online {
+    color: #13bb3a;
+    font-weight: 500;
+}
+
+.offline {
+    color: grey;
+    font-weight: 500;
+}
+
+.icon-container {
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  
+img {
+border-radius: 50%;
+}
+
+.status-circle {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: grey;
+    border: 2px solid white;
+    top: 5px;
+    right: 5px;
+    position: absolute;
+}
+
+.on {
+    background-color: #13bb3a;
+}
+
+.off {
+    background-color: grey;
+}

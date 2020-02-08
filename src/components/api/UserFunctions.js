@@ -17,7 +17,7 @@ export const login = user =>{
     return axios
         .post('http://localhost:3005/users/login', {
             email: user.email,
-            password: user.password
+            password: user.password,
         })
         .then(res => {
             if(res.data){

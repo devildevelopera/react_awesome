@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import { connect } from 'react-redux';
 import './productDetail.css';
 
 const Right = styled.div `
@@ -37,7 +38,7 @@ class ProductDetails extends React.Component {
     this.state = {
       first_name: '',
       last_name: '',
-      email: ''
+      user_id: ''
     }
   }
 
@@ -48,7 +49,7 @@ class ProductDetails extends React.Component {
         this.setState({
           first_name: res.data.first_name,
           last_name: res.data.last_name,
-          email: res.data.email
+          user_id: res.data._id
         })
       }
     })
@@ -56,7 +57,8 @@ class ProductDetails extends React.Component {
   
   render() {
     const  product  = this.props.product;
-    const { first_name, last_name } = this.state;
+    const { first_name, last_name, user_id } = this.state;
+    var onlineUsers = this.props.mystate.onlineUsers
     return (
       <div>
           <h2>{product.name}</h2>
@@ -79,10 +81,21 @@ class ProductDetails extends React.Component {
           </Right>
           <h2>Seller Information</h2>
           <Seller>
-            <img width="100px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
+            <div className='icon-container'>
+              <img width="100px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
+              { onlineUsers.includes(user_id) ? (
+              <div className='status-circle on'></div>
+              ):(
+                <div className='status-circle off'></div>
+              )}
+            </div>
             <SellerDetail>
               <ul>
-                <li>Offline</li>
+                { onlineUsers.includes(user_id) ? (
+                <li className="online">Online</li>
+                ):(
+                  <li className="offline">Offline</li>
+                )}
                 <li>{first_name} {last_name}</li>
                 <li>100% Positive feedback</li>
               </ul>
@@ -92,4 +105,11 @@ class ProductDetails extends React.Component {
     );
   };
 }
-export default ProductDetails;
+
+const mapStateToProps = state => ({
+  mystate: state
+})
+
+export default connect(
+  mapStateToProps
+)(ProductDetails);

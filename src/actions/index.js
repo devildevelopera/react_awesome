@@ -9,3 +9,9 @@ export const decrement = () => {
         type: 'DECREMENT'
     };
 };
+export const onlineusers = ous => {
+    return {
+        type: 'ONLINEUSERS',
+        payload: ous
+    };
+}

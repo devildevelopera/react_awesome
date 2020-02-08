@@ -12,6 +12,7 @@
     "googleapis": "27",
     "jwt-decode": "^2.2.0",
     "lodash": "^4.17.15",
+    "node-sass": "^4.13.1",
     "nodemailer": "^6.4.2",
     "nodemon": "^1.17.5",
     "react": "16.8.0",

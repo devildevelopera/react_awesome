@@ -7,24 +7,30 @@ import allReducers from './reducers'
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
 import openSocket from 'socket.io-client';
+import jwt_decode  from 'jwt-decode';
+import { onlineusers } from './actions';
 
 // uncomment if you would like to serve the final site with service workers
 // import registerServiceWorker from './registerServiceWorker';
 // registerServiceWorker();
-
-const  socket = openSocket('http://localhost:3005');
-
-socket.on('timer', timestamp => console.log(timestamp));
-socket.emit('subscribeToTimer', 1000);
-socket.on('server message', function(message) {
-    var people = JSON.parse(message);
-    console.log(people);
-});
-
 const store = createStore(
     allReducers,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
+
+const  socket = openSocket('http://localhost:3005');
+
+socket.on('server message', function(object) {
+    store.dispatch(onlineusers(Object.values(object)));
+});
+
+setInterval(() => {
+    if(localStorage.usertoken) {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+        socket.emit('client message', decoded._id);
+    }
+  }, 1000);
 
 ReactDOM.render(
 <Provider store={store}>

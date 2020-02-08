@@ -14,6 +14,9 @@ import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
+import axios from 'axios';
+import jwt_decode  from 'jwt-decode';
+
 // import { useSelector, useDispatch } from 'react-redux';
 // import { increment, decrement } from '../../actions';
 import './header.css';
@@ -123,10 +126,14 @@ function Header({quantity, history}) {
   };
 
   const logOut = event => {
+    const token = localStorage.usertoken;
+    const decoded = jwt_decode(token);
+    console.log(decoded._id)
+    axios.delete('http://localhost:3005/users/logout/' + decoded._id);
     event.preventDefault()
-    localStorage.removeItem('usertoken')
-    history.push(`/`)
-    handleMenuClose()
+    localStorage.removeItem('usertoken');
+    history.push(`/`);
+    handleMenuClose();
   }
 
   const menuId = 'primary-search-account-menu';
@@ -241,7 +248,7 @@ function Header({quantity, history}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <img width="30px" src="seller.png" alt="seller"/>
+              <img width="30px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
             </IconButton>
             ) : (
             <div>

@@ -2,9 +2,10 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  Redirect,
-  Switch
+  // Redirect,
+  // Switch
 } from 'react-router-dom';
+import ScrollToTop from './components/ui/ScrollToTop';
 import Landing from './components/landing/Landing';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
@@ -13,7 +14,7 @@ import Register from './components/register/Register';
 import Profile from './components/profile/Profile';
 import Product from './components/product/Product';
 import Sell from './components/sell/Sell';
-import Error from './components/404/Error';
+// import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
 
@@ -23,7 +24,6 @@ class App extends React.Component {
     this.state = {
       quantity: 0,
       products: [],
-      timestamp: 'no timestamp yet'
     }
   }
   
@@ -50,7 +50,7 @@ class App extends React.Component {
         <Router>
           <ReactNotification />
             <Header quantity={quantity} history={this.props.history}/>
-            <Switch>
+            {/* <Switch> */}
               <Route exact path="/"
                 render={() => <Landing/>}
               />
@@ -71,10 +71,10 @@ class App extends React.Component {
               />
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>
-              <Route exact path="/404" render={() => <Error/>}/>
-              <Redirect to="/" />
-            </Switch>
-            {/* <div style={{textAlign: "center"}}>{this.state.timestamp}</div> */}
+              {/* <Route exact path="/404" render={() => <Error/>}/>
+              <Redirect to="/" /> */}
+            {/* </Switch> */}
+            <ScrollToTop/>
             <Footer/>
         </Router>
     );
