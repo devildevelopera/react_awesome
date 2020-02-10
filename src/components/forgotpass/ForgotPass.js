@@ -42,6 +42,7 @@ class ForgotPass extends Component {
             forgotpass(user).then(res => {
                 if(res) {
                     console.log(res);
+                    localStorage.setItem('user_id', res)
                     this.props.history.push(`/resetpass`);
                     this.createNotificationSuccess();
                     this.setState({

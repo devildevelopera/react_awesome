@@ -9,7 +9,6 @@ class ResetPass extends Component {
     constructor(){
         super()
         this.state = {
-            email: '',
             password: '',
             cpassword: '',
             errors: {},
@@ -18,7 +17,6 @@ class ResetPass extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.createNotificationSuccess = this.createNotificationSuccess.bind(this);
-        this.createNotificationExist = this.createNotificationExist.bind(this);
         this.createNotificationFail = this.createNotificationFail.bind(this);
         this.handleValidation = this.handleValidation.bind(this);
     }
@@ -33,48 +31,29 @@ class ResetPass extends Component {
 
     onSubmit(e){
         const user = {
-            email: this.state.email,
-            password: this.state.password
+            password: this.state.password,
+            user_id: localStorage.user_id
         }
         if (this.handleValidation()) {
             resetpass(user).then(res => {
                 if(res === "success") {
-                    this.props.history.push(`/login`);
                     this.createNotificationSuccess();
-                    this.setState({
-                        email: '',
-                        password: ''
-                    })
-                } else if(res === "exist") {
-                    this.createNotificationExist();
-                    this.setState({
-                        email: '',
-                    })
                 } else {
                     this.createNotificationFail();
                 }
+                this.props.history.push(`/login`);
+                this.setState({
+                    password: ''
+                })
+                localStorage.removeItem('user_id');
             })
         }
     }
 
     handleValidation(){
-            let { email, password, cpassword } = this.state;
+            let { password, cpassword } = this.state;
             let formIsValid = true
             let errors = {};
-
-            //Email
-            if(!email){
-            formIsValid = false;
-            errors["email"] = "Cannot be empty";
-            }else{
-                let lastAtPos = email.lastIndexOf('@');
-                let lastDotPos = email.lastIndexOf('.');
-
-                if (!(lastAtPos < lastDotPos && lastAtPos > 0 && email.indexOf('@@') === -1 && lastDotPos > 2 && (email.length - lastDotPos) > 2)) {
-                    formIsValid = false;
-                    errors["email"] = "Email is not valid";
-                    }
-            }
 
             //Password
             if(!password){
@@ -107,24 +86,9 @@ class ResetPass extends Component {
 
     createNotificationSuccess() {
         store.addNotification({
-            title: "Register Success !",
+            title: "Reset Success !",
             message: "Now you can login here",
             type: "success",
-            insert: "top",
-            container: "bottom-right",
-            animationIn: ["animated", "fadeIn"],
-            animationOut: ["animated", "fadeOut"],
-            dismiss: {
-              duration: 5000
-            }
-          });
-    }
-
-    createNotificationExist() {
-        store.addNotification({
-            title: "User already exist !",
-            message: "Please try again",
-            type: "warning",
             insert: "top",
             container: "bottom-right",
             animationIn: ["animated", "fadeIn"],
@@ -151,28 +115,13 @@ class ResetPass extends Component {
     }
 
     render() {
-        const { email, password, cpassword, errors, formIsValid} = this.state
+        const { password, cpassword, errors, formIsValid} = this.state
         return (
             <div className="container">
                 <div className="row">
                     <div className="col-md-6 mt-5 mb-5 mx-auto">
                         <div style={{textAlign: "center"}}>
                             <h1 className="h3 mb-3 font-weight-normal">Reset Your Password</h1>
-                        </div>
-                        
-                        <div className="form-group">
-                            <label htmlFor="email">Email Address</label>
-                            <input 
-                                type="email" 
-                                className="form-control"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={email}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['email']}</div>
-                            }
                         </div>
                         <div className="form-group">
                             <label htmlFor="email">Password</label>

@@ -44,6 +44,7 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const user_id = this.props.product.user_id;
+    console.log('user_id', user_id)
     axios.get('http://localhost:3005/users/'+ user_id).then(res => {
       if(res.data) {
         this.setState({
@@ -58,7 +59,7 @@ class ProductDetails extends React.Component {
   render() {
     const  product  = this.props.product;
     const { first_name, last_name, user_id } = this.state;
-    var onlineUsers = this.props.mystate.onlineUsers
+    var onlineUsers = this.props.mystate.onlineUsers;
     return (
       <div>
           <h2>{product.name}</h2>

@@ -39,9 +39,8 @@ export const forgotpass = user =>{
 
 export const resetpass = user =>{
     return axios
-        .post('http://localhost:3005/users/resetpass', {
-            email: user.email,
-            password: user.email
+        .patch('http://localhost:3005/users/resetpass/'+user.user_id, {
+            password: user.password
         })
         .then(res => {
             return res.data
