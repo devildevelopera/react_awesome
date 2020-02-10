@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { resetpass } from '../api/UserFunctions';
 import { store } from 'react-notifications-component';
+import { Link } from 'react-router-dom';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './resetpass.css';
@@ -46,6 +47,7 @@ class ResetPass extends Component {
                     password: ''
                 })
                 localStorage.removeItem('user_id');
+                localStorage.removeItem('user_email');
             })
         }
     }
@@ -154,6 +156,11 @@ class ResetPass extends Component {
                         <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
                             Reset My Password
                         </button>
+                        <div className="mt-3">
+                            <Link to={`/login`}>
+                                Go back to login?
+                            </Link>
+                        </div>
                     </div>
                 </div>
             </div>

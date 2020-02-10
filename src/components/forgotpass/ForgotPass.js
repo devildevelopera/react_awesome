@@ -43,7 +43,8 @@ class ForgotPass extends Component {
                 if(res) {
                     console.log(res);
                     localStorage.setItem('user_id', res)
-                    this.props.history.push(`/resetpass`);
+                    localStorage.setItem('user_email', this.state.email)
+                    this.props.history.push(`/confirmemail`);
                     this.createNotificationSuccess();
                     this.setState({
                         email: ''
