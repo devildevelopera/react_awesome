@@ -29,7 +29,7 @@ import "./footer.css"
                             <LinkedInIcon/>
                         </a>
                     </div>
-                    <Email/> info@canvas.com <span>&middot;</span> <Phone/> +123 456 7890
+                    <Email/> info@awesome.com <span>&middot;</span> <Phone/> +123 456 7890
                 </Grid>
             </div>
          );

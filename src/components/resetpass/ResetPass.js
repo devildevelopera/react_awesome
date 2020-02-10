@@ -33,7 +33,7 @@ class ResetPass extends Component {
     onSubmit(e){
         const user = {
             password: this.state.password,
-            user_id: localStorage.user_id
+            user_id: this.props.match.params.uid
         }
         if (this.handleValidation()) {
             resetpass(user).then(res => {
@@ -46,7 +46,6 @@ class ResetPass extends Component {
                 this.setState({
                     password: ''
                 })
-                localStorage.removeItem('user_id');
                 localStorage.removeItem('user_email');
             })
         }

@@ -83,7 +83,7 @@ class App extends React.Component {
               <Route exact path="/register" component={Register}/>
               <Route exact path="/profile" component={Profile}/>
               <Route exact path="/forgotpass" component={ForgotPass}/>
-              <Route exact path="/resetpass" component={ResetPass}/>
+              <Route exact path="/resetpass/:uid" component={ResetPass}/>
               <Route exact path="/confirmemail" component={ConfirmEmail}/>
               <Route exact path="/cart"
                 render={() => <Cart updateNumber={this.setQuantity}/>}
