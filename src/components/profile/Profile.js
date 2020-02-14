@@ -1,6 +1,16 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import jwt_decode  from 'jwt-decode';
-
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
+const Wrapper = styled.div `
+  padding: 40px;
+  min-height: 100vh;
+  @media (max-width: 650px) {
+    padding: 10px;
+    font-size: 0.7rem;
+  }
+`;
 class Profile extends Component {
     constructor() {
         super()
@@ -24,29 +34,31 @@ class Profile extends Component {
 
     render() {
         return (
-            <div className="container" style={{minHeight:"100vh"}}>
-                <div className="mt-5">
-                    <div className="col-sm-8 mx-auto">
-                        <h1 className="text-center">Profile</h1>
-                    </div>
-                    <table className="table col-md-6 mx-auto">
-                        <tbody>
-                            <tr>
-                                <td>First Name</td>
-                                <td>{this.state.first_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Last Name</td>
-                                <td>{this.state.last_name}</td>
-                            </tr>
-                            <tr>
-                                <td>Email</td>
-                                <td>{this.state.email}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
+            <PageWrapper>
+                <Paper>
+                    <Wrapper>
+                        <div className="col-sm-8 mx-auto">
+                            <h1 className="text-center">Profile</h1>
+                        </div>
+                        <table className="table col-md-6 mx-auto">
+                            <tbody>
+                                <tr>
+                                    <td>First Name</td>
+                                    <td>{this.state.first_name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Last Name</td>
+                                    <td>{this.state.last_name}</td>
+                                </tr>
+                                <tr>
+                                    <td>Email</td>
+                                    <td>{this.state.email}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </Wrapper>
+                </Paper>
+            </PageWrapper>
         )
     }
 }

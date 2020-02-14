@@ -6,6 +6,8 @@ import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@m
 import axios from 'axios';
 import jwt_decode  from 'jwt-decode';
 import { store } from 'react-notifications-component';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './sell.css';
@@ -146,76 +148,78 @@ class Sell extends React.Component {
   render () {
     const { items, open4 } = this.state;
     return (
-      <div>
-        <Wrapper>
-          <h4>Products</h4>
-          <RightSide>
-            <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
-          </RightSide>
-          { items.length > 0 &&
-            <div>
-              <SellTable items={items} getItems={this.getItems}
+      <PageWrapper>
+        <Paper>
+          <Wrapper>
+            <h4>Products</h4>
+            <RightSide>
+              <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
+            </RightSide>
+            { items.length > 0 &&
+              <div>
+                <SellTable items={items} getItems={this.getItems}
+                />
+              </div>
+            }
+            { items.length === 0 &&
+              <p>Hmmmm, there aren't any your products.</p>
+            }
+          </Wrapper>
+          <Dialog
+            open={open4}
+            onClose={this.handleClose4}
+            aria-labelledby="form-dialog-title"
+          >
+            <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
+            <DialogContent>
+              <input id="myInput"
+                  type="file"
+                  ref={(ref) => this.uploadButton = ref}
+                  multiple
+                  style={{ display: 'none' }}
+                  onChange={(e) => this.onChangeFile(e)}
               />
-            </div>
-          }
-          { items.length === 0 &&
-            <p>Hmmmm, there aren't any your products.</p>
-          }
-        </Wrapper>
-        <Dialog
-          open={open4}
-          onClose={this.handleClose4}
-          aria-labelledby="form-dialog-title"
-        >
-          <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-          <DialogContent>
-            <input id="myInput"
-                type="file"
-                ref={(ref) => this.uploadButton = ref}
-                multiple
-                style={{ display: 'none' }}
-                onChange={(e) => this.onChangeFile(e)}
-            />
-            <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
-            <TextField
-              autoFocus
-              margin="dense"
-              value={this.state.name}
-              onChange={this.onChangeValue}
-              name="name"
-              label="Name"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              value={this.state.description}
-              onChange={this.onChangeValue}
-              name="description"
-              label="Description"
-              type="text"
-              fullWidth
-            />
-            <TextField
-              margin="dense"
-              value={this.state.price}
-              onChange={this.onChangeValue}
-              name="price"
-              label="Price"
-              type="number"
-              fullWidth
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={this.handleClose4} color="primary">
-              Cancel
-            </Button>
-            <Button onClick={this.imagesUpload} color="primary" disabled={this.isFormValid()}>
-              Save
-            </Button>
-          </DialogActions>
-        </Dialog>
-      </div>
+              <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
+              <TextField
+                autoFocus
+                margin="dense"
+                value={this.state.name}
+                onChange={this.onChangeValue}
+                name="name"
+                label="Name"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                margin="dense"
+                value={this.state.description}
+                onChange={this.onChangeValue}
+                name="description"
+                label="Description"
+                type="text"
+                fullWidth
+              />
+              <TextField
+                margin="dense"
+                value={this.state.price}
+                onChange={this.onChangeValue}
+                name="price"
+                label="Price"
+                type="number"
+                fullWidth
+              />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={this.handleClose4} color="primary">
+                Cancel
+              </Button>
+              <Button onClick={this.imagesUpload} color="primary" disabled={this.isFormValid()}>
+                Save
+              </Button>
+            </DialogActions>
+          </Dialog>
+        </Paper>
+      </PageWrapper>
     );
   };
 };

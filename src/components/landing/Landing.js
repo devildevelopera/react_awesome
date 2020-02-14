@@ -3,9 +3,9 @@ import styled from 'styled-components';
 import Paper from '@material-ui/core/Paper';
 import ProductList from './ProductList';
 import FashionCarousel from './FashionCarousel';
+import PageWrapper from '../ui/PageWrapper';
 import Catagory from './Catagory';
 import axios from 'axios';
-import './css/landing.css';
 
 const Wrapper = styled.div `
   padding: 0 40px 40px 40px;
@@ -37,13 +37,15 @@ class Landing extends React.Component {
 
   render() {
     return (
-      <Wrapper>
-        <Catagory/>
-        <FashionCarousel items={this.state.items}/>
-        <Paper className="product-list">
-          <ProductList items={this.state.items} />
-        </Paper>
-      </Wrapper>
+    <PageWrapper>
+      <Paper className="product-list">
+        <Wrapper>
+            <Catagory/>
+            <FashionCarousel items={this.state.items}/>
+            <ProductList items={this.state.items} />
+        </Wrapper>
+      </Paper>
+    </PageWrapper>
     );
   }
 }

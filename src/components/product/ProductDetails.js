@@ -4,6 +4,9 @@ import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router-dom";
+import { compose } from 'redux';
+import jwt_decode  from 'jwt-decode';
 import './productDetail.css';
 
 const Right = styled.div `
@@ -44,7 +47,6 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const user_id = this.props.product.user_id;
-    console.log('user_id', user_id)
     axios.get('http://localhost:3005/users/'+ user_id).then(res => {
       if(res.data) {
         this.setState({
@@ -55,11 +57,26 @@ class ProductDetails extends React.Component {
       }
     })
   }
+
+  addToCart = () => {
+    if(localStorage.usertoken){
+      this.props.addToCart();
+    }else{
+      this.props.history.push(`/login`);
+    }
+  }
   
   render() {
     const  product  = this.props.product;
     const { first_name, last_name, user_id } = this.state;
     var onlineUsers = this.props.mystate.onlineUsers;
+    let tocken_id = '';
+    if(localStorage.usertoken) {
+      const token = localStorage.usertoken;
+      const decoded = jwt_decode(token);
+      tocken_id = decoded._id;
+    }
+    
     return (
       <div>
           <h2>{product.name}</h2>
@@ -68,8 +85,8 @@ class ProductDetails extends React.Component {
             ${product.price}
           </Price>
           <Right>
-            <Button variant="contained" color="primary" className="addToCart"
-            onClick={() => this.props.addToCart()}
+            <Button variant="contained" color="primary" className={product.user_id!==tocken_id ? 'addToCart' : null}
+            onClick={() => this.addToCart()} disabled={product.user_id===tocken_id}
             >
               Add To Cart
             </Button>
@@ -112,6 +129,7 @@ const mapStateToProps = state => ({
   mystate: state
 })
 
-export default connect(
-  mapStateToProps
+export default compose(
+  withRouter,
+  connect(mapStateToProps)
 )(ProductDetails);

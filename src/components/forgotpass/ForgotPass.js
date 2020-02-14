@@ -8,7 +8,7 @@ import 'animate.css';
 import './forgotpass.css';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../../actions';
-import compose from 'lodash/fp/compose';
+import { compose } from 'redux';
 
 class ForgotPass extends Component {
     constructor(props){
@@ -41,7 +41,6 @@ class ForgotPass extends Component {
         if (this.handleValidation()) {
             forgotpass(user).then(res => {
                 if(res) {
-                    console.log(res);
                     localStorage.setItem('user_email', this.state.email)
                     this.props.history.push(`/confirmemail`);
                     this.createNotificationSuccess();

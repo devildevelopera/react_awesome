@@ -6,6 +6,8 @@ import ProductDetails from './ProductDetails';
 import Carousel from './Carousel';
 import MobileCarousel from './MobileCarousel';
 import Breadcrumb from './Breadcrumb';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
 
 const Wrapper = styled.div `
   min-height: 100vh;
@@ -55,20 +57,24 @@ function Product(props) {
   }
 
   return (
-      <Wrapper>
-        <Breadcrumb product={product} />
-        <Grid>
-          {photos}
-          <div style={{ gridColumn: "span 2" }}>
-            <ProductDetails
-              product={product}
-              quantity={quantity}
-              setQuantity={setQuantity}
-              addToCart={addToCart}
-            />
-          </div>
-        </Grid>
-      </Wrapper>
+    <PageWrapper>
+      <Paper>
+        <Wrapper>
+          <Breadcrumb product={product} />
+          <Grid>
+            {photos}
+            <div style={{ gridColumn: "span 2" }}>
+              <ProductDetails
+                product={product}
+                quantity={quantity}
+                setQuantity={setQuantity}
+                addToCart={addToCart}
+              />
+            </div>
+          </Grid>
+        </Wrapper>
+      </Paper>
+    </PageWrapper>
   );
 };
 export default withWidth()(withRouter(Product));

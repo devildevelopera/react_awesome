@@ -3,12 +3,16 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import CartTable from './CartTable';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
+import './cart.css';
 
 const Wrapper = styled.div `
   padding: 40px;
   min-height: 100vh;
   @media (max-width: 650px) {
     padding: 20px;
+    font-size: 0.7rem;
   }
 `;
 const RightSide = styled.div `
@@ -58,7 +62,8 @@ function Cart(props) {
   }
 
   return (
-      <div>
+    <PageWrapper>
+      <Paper>
         <Wrapper>
         <h4>Cart</h4>
           { items.length > 0 &&
@@ -73,7 +78,7 @@ function Cart(props) {
                   {totalPrice}
                 </Subtotal>
                 <Link to={`/checkout`} style={{ textDecoration: "none" }}>
-                  <Button variant="contained" color="primary">Check Out</Button>
+                  <Button variant="contained" color="primary" className="checkout">Check Out</Button>
                 </Link>
               </RightSide>
             </div>
@@ -82,7 +87,8 @@ function Cart(props) {
             <p>Hmmmm, there's nothing in your cart yet.</p>
           }
         </Wrapper>
-      </div>
+      </Paper>
+    </PageWrapper>
   );
 };
 export default Cart;

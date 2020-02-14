@@ -1,0 +1,19 @@
+.checkout {
+    border-bottom: 2px solid #051a8a !important;
+}
+
+.MuiInputBase-input.MuiInput-input {
+    font-size: 1rem;
+  }
+.gqGVrk {
+    font-size: 1rem;
+}
+
+@media (max-width: 650px) {
+    .MuiInputBase-input.MuiInput-input {
+        font-size: 0.7rem;
+      }
+    .gqGVrk {
+        font-size: 0.7rem;
+    }
+}

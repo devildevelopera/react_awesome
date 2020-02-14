@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
 import { login } from '../api/UserFunctions';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
@@ -8,7 +11,15 @@ import 'animate.css';
 import './login.css';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../../actions';
-import compose from 'lodash/fp/compose';
+import { compose } from 'redux';
+
+const Wrapper = styled.div `
+  padding: 40px;
+  min-height: 100vh;
+  @media (max-width: 650px) {
+    padding: 10px;
+  }
+`;
 
 class Login extends Component {
     constructor(props){
@@ -127,52 +138,59 @@ class Login extends Component {
     render() {
         const {email, password, errors, formIsValid} = this.state
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-6 mt-5 mt-5 mx-auto">
-                        <div style={{textAlign: "center"}}>
-                            <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
+            <PageWrapper>
+                <Paper>
+                    <Wrapper>
+                        <div className="row">
+                            <div className="col-md-6 mt-5 mt-5 mx-auto">
+                                <div style={{textAlign: "center"}}>
+                                    <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email Address</label>
+                                    <input 
+                                        type="email" 
+                                        className="form-control"
+                                        name="email"
+                                        placeholder="Enter Email"
+                                        value={email}
+                                        onChange={this.onChange}
+                                        />
+                                    {!formIsValid &&
+                                        <div style={{color: "red"}}>{errors['email']}</div>
+                                    }
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Paaword</label>
+                                    <input 
+                                        type="password" 
+                                        className="form-control"
+                                        name="password"
+                                        placeholder="Enter Password"
+                                        value={password}
+                                        onChange={this.onChange}
+                                        />
+                                    {!formIsValid &&
+                                        <div style={{color: "red"}}>{errors['password']}</div>
+                                    }
+                                </div>
+                                <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
+                                    Log in
+                                </button>
+                                <div className="mt-3 row">
+                                    <Link to={`/forgotpass`} className="col-md-6 mb-2">
+                                        Fogot your password?
+                                    </Link>
+                                    <Link to={`/register`} className="col-md-6">
+                                        Create a new account
+                                    </Link>
+                                </div>
+                                {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}
+                            </div>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email Address</label>
-                            <input 
-                                type="email" 
-                                className="form-control"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={email}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['email']}</div>
-                            }
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Paaword</label>
-                            <input 
-                                type="password" 
-                                className="form-control"
-                                name="password"
-                                placeholder="Enter Password"
-                                value={password}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['password']}</div>
-                            }
-                        </div>
-                        <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
-                            Log in
-                        </button>
-                        <div className="mt-3">
-                            <Link to={`/forgotpass`}>
-                                Fogot your password?
-                            </Link>
-                        </div>
-                        {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}
-                    </div>
-                </div>
-            </div>
+                    </Wrapper>
+                </Paper>
+            </PageWrapper>
         )
     }
 }

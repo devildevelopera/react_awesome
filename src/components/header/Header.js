@@ -1,16 +1,13 @@
 import React from 'react';
-import { fade, makeStyles } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
-import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
-import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
@@ -38,33 +35,6 @@ const useStyles = makeStyles(theme => ({
     [theme.breakpoints.up('sm')]: {
       display: 'block',
     }
-  },
-  search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    boxShadow: "0px 2px 1px -1px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 1px 3px 0px rgba(0,0,0,0.12)",
-    marginRight: theme.spacing(2),
-    marginLeft: 0,
-    width: '100%',
-    minWidth: '200px',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(3),
-      width: '30%',
-      minWidth: '200px',
-    }
-  },
-  searchIcon: {
-    width: theme.spacing(7),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   turquoise: {
     color: "#28a745"
@@ -174,26 +144,26 @@ function Header({quantity, history}) {
       </Link>
       }
       <Link to={`/cart`}>
-        <Button color="inherit" onClick={handleMenuClose}>Cart({number})</Button>
+        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Cart<span style={{color:"#f50057"}}>({number})</span></Button>
       </Link>
       
       { localStorage.usertoken &&
         <Link to={`/profile`}>
-          <Button color="inherit" onClick={handleMenuClose}>Profile</Button>
+          <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Profile</Button>
         </Link>
       }
       { localStorage.usertoken ? (
-        <Button color="inherit" onClick={logOut}>Log out</Button>
+        <Button color="inherit" className={classes.turquoise} onClick={logOut}>Sign out</Button>
       ) : (
       <Link to={`/login`}>
         <Button color="inherit" className="signin" onClick={handleMenuClose}>Sign In</Button>
       </Link>
       )}
-      { !localStorage.usertoken &&
+      {/* { !localStorage.usertoken &&
       <Link to={`/register`}>
         <Button color="inherit" className="signup" onClick={handleMenuClose}>Sign Up</Button>
       </Link>
-      }
+      } */}
     </Menu>
   );
 
@@ -202,23 +172,8 @@ function Header({quantity, history}) {
       <AppBar position="static" className={classes.white}>
         <Toolbar>
           <Link to={`/`}>
-            <Typography className={classes.title} variant="h6" noWrap>
-              AWESOME
-            </Typography>
+              <img width="150px" src="/logo.jpg" alt="logo"/>
           </Link>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
             {/* <Button onClick={() => dispatch(increment(5))}>+</Button>
@@ -232,7 +187,7 @@ function Header({quantity, history}) {
             </Link>
             }
             <Link to={`/cart`}>
-              <IconButton aria-label="show 4 new mails" color="inherit">
+              <IconButton aria-label="show 4 new mails" color="inherit" className={classes.turquoise}>
                 <Badge badgeContent={number} color="secondary">
                   <ShoppingCartIcon />
                 </Badge>
@@ -254,9 +209,9 @@ function Header({quantity, history}) {
               <Link to={`/login`}>
                 <Button color="inherit" className="signin">Sign In</Button>
               </Link>
-              <Link to={`/register`}>
+              {/* <Link to={`/register`}>
                 <Button color="inherit" className="signup">Sign Up</Button>
-              </Link>
+              </Link> */}
             </div>
             )}
           </div>

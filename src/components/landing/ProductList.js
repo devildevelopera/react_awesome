@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
-import compose from 'lodash/fp/compose';
+import { compose } from 'redux';
 
 const Wrapper = styled.div `
   display: grid;
