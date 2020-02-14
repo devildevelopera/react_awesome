@@ -31,16 +31,3 @@
 .signin {
     color: #28a745 !important;
 }
-
-.MuiToolbar-regular {
-    max-width: 1100px;
-}
-
-.MuiToolbar-gutters {
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-}
-
-.makeStyles-white-2 {
-    text-align: -webkit-center;
-}
