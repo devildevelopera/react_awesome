@@ -12,6 +12,9 @@ import './login.css';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../../actions';
 import { compose } from 'redux';
+import { Button } from 'react-bootstrap';
+import { TextField } from '@material-ui/core';
+
 
 const Wrapper = styled.div `
   padding: 40px;
@@ -28,7 +31,9 @@ class Login extends Component {
             email: '',
             password: '',
             errors: {},
-            formIsValid: true
+            formIsValid: true,
+            emailValid: true,
+            passwordValid: true
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -69,12 +74,15 @@ class Login extends Component {
 
     handleValidation(){
         let { email, password } = this.state;
-        let formIsValid = true
+        let formIsValid = true;
+        let emailValid = true;
+        let passwordValid = true;
         let errors = {};
 
             //Email
             if(!email){
                 formIsValid = false;
+                emailValid = false;
                 errors["email"] = "Cannot be empty";
             }else{
                 let lastAtPos = email.lastIndexOf('@');
@@ -82,6 +90,7 @@ class Login extends Component {
 
                 if (!(lastAtPos < lastDotPos && lastAtPos > 0 && email.indexOf('@@') === -1 && lastDotPos > 2 && (email.length - lastDotPos) > 2)) {
                     formIsValid = false;
+                    emailValid = false;
                     errors["email"] = "Email is not valid";
                     }
             } 
@@ -89,15 +98,17 @@ class Login extends Component {
             //Password
             if(!password){
                 formIsValid = false;
+                passwordValid = false;
                 errors["password"] = "Cannot be empty";
                 }else{
                 if(password.length < 8){
                     formIsValid = false;
+                    passwordValid = false;
                     errors["password"] = "At least 8 characters";
                 }        
             }
 
-        this.setState({errors: errors, formIsValid: formIsValid});
+        this.setState({errors: errors, formIsValid: formIsValid, emailValid: emailValid, passwordValid: passwordValid});
         return formIsValid;
     }
 
@@ -136,7 +147,7 @@ class Login extends Component {
     }
 
     render() {
-        const {email, password, errors, formIsValid} = this.state
+        const {email, password, errors, formIsValid, emailValid, passwordValid} = this.state
         return (
             <PageWrapper>
                 <Paper>
@@ -146,43 +157,42 @@ class Login extends Component {
                                 <div style={{textAlign: "center"}}>
                                     <h1 className="h3 mb-3 font-weight-normal">Sign In</h1>
                                 </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Email Address</label>
-                                    <input 
-                                        type="email" 
-                                        className="form-control"
-                                        name="email"
-                                        placeholder="Enter Email"
-                                        value={email}
-                                        onChange={this.onChange}
-                                        />
-                                    {!formIsValid &&
-                                        <div style={{color: "red"}}>{errors['email']}</div>
-                                    }
-                                </div>
-                                <div className="form-group">
-                                    <label htmlFor="email">Paaword</label>
-                                    <input 
-                                        type="password" 
-                                        className="form-control"
-                                        name="password"
-                                        placeholder="Enter Password"
-                                        value={password}
-                                        onChange={this.onChange}
-                                        />
-                                    {!formIsValid &&
-                                        <div style={{color: "red"}}>{errors['password']}</div>
-                                    }
-                                </div>
-                                <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
+                                <TextField
+                                    fullWidth
+                                    error={!emailValid? true: false}
+                                    helperText={!formIsValid? errors['email']: ''}
+                                    label="Email Address"
+                                    margin="dense"
+                                    name="email"
+                                    required
+                                    value={email}
+                                    onChange={this.onChange}
+                                    variant="outlined"
+                                    className="mt-3"
+                                />
+                                <TextField
+                                    fullWidth
+                                    error={!passwordValid? true: false}
+                                    helperText={!formIsValid? errors['password']: ''}
+                                    label="Confirm Password"
+                                    margin="dense"
+                                    name="password"
+                                    type="password"
+                                    variant="outlined"
+                                    className="mt-3"
+                                    value={password}
+                                    onChange={this.onChange}
+                                />
+                                {/* <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
                                     Log in
-                                </button>
-                                <div className="mt-3 row">
+                                </button> */}
+                                <Button style={{width:'100%'}} className="mt-3" variant="success" onClick={this.onSubmit}>Log in</Button>
+                                <div className="mt-3 row" style={{textAlign: 'center'}}>
                                     <Link to={`/forgotpass`} className="col-md-6 mb-2">
                                         Fogot your password?
                                     </Link>
                                     <Link to={`/register`} className="col-md-6">
-                                        Create a new account
+                                        Create a new account?
                                     </Link>
                                 </div>
                                 {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}

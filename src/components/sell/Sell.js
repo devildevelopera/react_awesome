@@ -151,7 +151,7 @@ class Sell extends React.Component {
       <PageWrapper>
         <Paper>
           <Wrapper>
-            <h4>Products</h4>
+            <h3>Products</h3>
             <RightSide>
               <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
             </RightSide>

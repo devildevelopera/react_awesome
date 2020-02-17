@@ -9,6 +9,8 @@ import './forgotpass.css';
 import { connect } from 'react-redux';
 import { increment, decrement } from '../../actions';
 import { compose } from 'redux';
+import { TextField } from '@material-ui/core';
+import { Button } from 'react-bootstrap';
 
 class ForgotPass extends Component {
     constructor(props){
@@ -16,7 +18,8 @@ class ForgotPass extends Component {
         this.state = {
             email: '',
             errors: {},
-            formIsValid: true
+            formIsValid: true,
+            emailValid: true
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -56,12 +59,14 @@ class ForgotPass extends Component {
 
     handleValidation(){
         let { email } = this.state;
-        let formIsValid = true
+        let formIsValid = true;
+        let emailValid = true;
         let errors = {};
 
             //Email
             if(!email){
                 formIsValid = false;
+                emailValid = false;
                 errors["email"] = "Cannot be empty";
             }else{
                 let lastAtPos = email.lastIndexOf('@');
@@ -69,11 +74,12 @@ class ForgotPass extends Component {
 
                 if (!(lastAtPos < lastDotPos && lastAtPos > 0 && email.indexOf('@@') === -1 && lastDotPos > 2 && (email.length - lastDotPos) > 2)) {
                     formIsValid = false;
+                    emailValid = false;
                     errors["email"] = "Email is not valid";
                     }
             } 
 
-        this.setState({errors: errors, formIsValid: formIsValid});
+        this.setState({errors: errors, formIsValid: formIsValid, emailValid: emailValid});
         return formIsValid;
     }
 
@@ -112,7 +118,7 @@ class ForgotPass extends Component {
     }
 
     render() {
-        const {email, errors, formIsValid} = this.state
+        const {email, errors, formIsValid, emailValid} = this.state
         return (
             <div className="container">
                 <div className="row">
@@ -120,24 +126,24 @@ class ForgotPass extends Component {
                         <div style={{textAlign: "center"}}>
                             <h1 className="h3 mb-3 font-weight-normal">Rcover Your Password</h1>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Email Address</label>
-                            <input 
-                                type="email" 
-                                className="form-control"
-                                name="email"
-                                placeholder="Enter Email"
-                                value={email}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['email']}</div>
-                            }
-                        </div>
-                        <button  onClick={this.onSubmit} className="btn btn-lg btn-info btn-block mt-4">
+                        <TextField
+                            fullWidth
+                            error={!emailValid? true: false}
+                            helperText={!formIsValid? errors['email']: ''}
+                            label="Email Address"
+                            margin="dense"
+                            name="email"
+                            required
+                            value={email}
+                            onChange={this.onChange}
+                            variant="outlined"
+                            className="mt-3"
+                        />
+                        {/* <button  onClick={this.onSubmit} className="btn btn-lg btn-info btn-block mt-4">
                             Send Reset Link
-                        </button>
-                        <div className="mt-3">
+                        </button> */}
+                        <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Send Reset Link</Button>
+                        <div className="mt-3" style={{textAlign: 'center'}}>
                             <Link to={`/login`}>
                                 Go back to login?
                             </Link>

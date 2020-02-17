@@ -46,3 +46,28 @@ export const resetpass = user =>{
             return res.data
         })
 }
+
+export const updatepass = user =>{
+    return axios
+        .patch('http://localhost:3005/users/updatepass/'+user.user_id, {
+            password: user.password
+        })
+        .then(res => {
+            return res.data
+        })
+}
+
+export const userUpdate = User => {
+    return axios
+        .patch('http://localhost:3005/users/userUpdate/'+User.user_id, {
+            first_name: User.first_name,
+            last_name: User.last_name,
+            email: User.email,
+            phone: User.phone,
+            country: User.country,
+            city: User.city
+        })
+        .then(res => {
+            return res
+        })
+}

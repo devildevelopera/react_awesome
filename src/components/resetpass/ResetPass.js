@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './resetpass.css';
+import { Button } from 'react-bootstrap';
+import { TextField } from '@material-ui/core';
 
 class ResetPass extends Component {
     constructor(){
@@ -13,7 +15,9 @@ class ResetPass extends Component {
             password: '',
             cpassword: '',
             errors: {},
-            formIsValid: true
+            formIsValid: true,
+            passwordValid: true,
+            cpasswordValid: true
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -27,7 +31,7 @@ class ResetPass extends Component {
             if(!this.state.formIsValid) {
                 this.handleValidation();
             }
-        });        
+        });     
     }
 
     onSubmit(e){
@@ -53,16 +57,20 @@ class ResetPass extends Component {
 
     handleValidation(){
             let { password, cpassword } = this.state;
-            let formIsValid = true
+            let formIsValid = true;
+            let passwordValid = true;
+            let cpasswordValid = true;
             let errors = {};
 
             //Password
             if(!password){
                 formIsValid = false;
+                passwordValid = false;
                 errors["password"] = "Cannot be empty";
                 }else{
                 if(password.length < 8){
                     formIsValid = false;
+                    passwordValid = false;
                     errors["password"] = "At least 8 characters";
                 }        
             }
@@ -70,18 +78,21 @@ class ResetPass extends Component {
             //Confirm password
             if(!cpassword){
                 formIsValid = false;
+                cpasswordValid = false;
                 errors["cpassword"] = "Cannot be empty";
                 }else if(cpassword.length < 8){
                     formIsValid = false;
+                    cpasswordValid = false;
                     errors["cpassword"] = "At least 8 characters";
                 }else{
                 if(password !== cpassword) {
                     formIsValid = false;
+                    cpasswordValid = false;
                     errors["cpassword"] = "Password not match";
                 }
             }
 
-        this.setState({errors: errors, formIsValid: formIsValid});
+        this.setState({errors: errors, formIsValid: formIsValid, passwordValid: passwordValid, cpasswordValid: cpasswordValid});
         return formIsValid;
     }
 
@@ -116,7 +127,7 @@ class ResetPass extends Component {
     }
 
     render() {
-        const { password, cpassword, errors, formIsValid} = this.state
+        const { password, cpassword, errors, formIsValid, passwordValid, cpasswordValid } = this.state
         return (
             <div className="container">
                 <div className="row">
@@ -124,38 +135,38 @@ class ResetPass extends Component {
                         <div style={{textAlign: "center"}}>
                             <h1 className="h3 mb-3 font-weight-normal">Reset Your Password</h1>
                         </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Password</label>
-                            <input 
-                                type="password" 
-                                className="form-control"
-                                name="password"
-                                placeholder="Enter Password"
-                                value={password}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['password']}</div>
-                            }
-                        </div>
-                        <div className="form-group">
-                            <label htmlFor="email">Password Conformation</label>
-                            <input 
-                                type="password" 
-                                className="form-control"
-                                name="cpassword"
-                                placeholder="Confirm Password"
-                                value={cpassword}
-                                onChange={this.onChange}
-                                />
-                            {!formIsValid &&
-                                <div style={{color: "red"}}>{errors['cpassword']}</div>
-                            }
-                        </div>
-                        <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
+                        <TextField
+                            fullWidth
+                            error={!passwordValid? true: false}
+                            helperText={!formIsValid? errors['password']: ''}
+                            label="New Password"
+                            margin="dense"
+                            name="password"
+                            type="password"
+                            variant="outlined"
+                            className="mt-3"
+                            value={password}
+                            onChange={this.onChange}
+                        />
+                        <TextField
+                            fullWidth
+                            error={!cpasswordValid? true: false}
+                            helperText={!formIsValid? errors['cpassword']: ''}
+                            label="Confirm password"
+                            margin="dense"
+                            name="cpassword"
+                            style={{ marginTop: '1rem' }}
+                            type="password"
+                            variant="outlined"
+                            className="mt-3"
+                            value={cpassword}
+                            onChange={this.onChange}
+                        />
+                        {/* <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
                             Reset My Password
-                        </button>
-                        <div className="mt-3">
+                        </button> */}
+                        <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Reset My Password</Button>
+                        <div className="mt-3" style={{textAlign: 'center'}}>
                             <Link to={`/login`}>
                                 Go back to login?
                             </Link>

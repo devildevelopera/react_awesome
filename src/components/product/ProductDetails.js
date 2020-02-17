@@ -34,6 +34,17 @@ const SellerDetail = styled.div`
     font-size: 0.8rem;
   }
 `;
+const IMG = styled.div `
+  background-image: url(${props => props.img});
+  background-color: #eee;
+  width: 100px;
+  height: 100px
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 50%;
+  border-radius: 50%
+`;
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -41,7 +52,8 @@ class ProductDetails extends React.Component {
     this.state = {
       first_name: '',
       last_name: '',
-      user_id: ''
+      user_id: '',
+      photo: ''
     }
   }
 
@@ -52,7 +64,8 @@ class ProductDetails extends React.Component {
         this.setState({
           first_name: res.data.first_name,
           last_name: res.data.last_name,
-          user_id: res.data._id
+          user_id: res.data._id,
+          photo: res.data.photo,
         })
       }
     })
@@ -68,7 +81,7 @@ class ProductDetails extends React.Component {
   
   render() {
     const  product  = this.props.product;
-    const { first_name, last_name, user_id } = this.state;
+    const { first_name, last_name, user_id, photo } = this.state;
     var onlineUsers = this.props.mystate.onlineUsers;
     let tocken_id = '';
     if(localStorage.usertoken) {
@@ -101,7 +114,10 @@ class ProductDetails extends React.Component {
           <h2>Seller Information</h2>
           <Seller>
             <div className='icon-container'>
-              <img width="100px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
+              { photo &&
+              <IMG
+                  img={`http://localhost:3005/uploads/profile/${photo}`}
+              />}
               { onlineUsers.includes(user_id) ? (
               <div className='status-circle on'></div>
               ):(

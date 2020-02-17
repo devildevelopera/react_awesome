@@ -65,7 +65,7 @@ function Cart(props) {
     <PageWrapper>
       <Paper>
         <Wrapper>
-        <h4>Cart</h4>
+        <h3>Cart</h3>
           { items.length > 0 &&
             <div>
               <CartTable items={items}
