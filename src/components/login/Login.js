@@ -14,7 +14,8 @@ import { increment, decrement } from '../../actions';
 import { compose } from 'redux';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
-
+import jwt_decode  from 'jwt-decode';
+import axios from 'axios';
 
 const Wrapper = styled.div `
   padding: 40px;
@@ -61,6 +62,7 @@ class Login extends Component {
                 if(res) {
                     this.props.history.push(`/sell`);
                     this.createNotificationSuccess();
+                    this.getUser();
                     this.setState({
                         email: '',
                         password: ''
@@ -70,6 +72,16 @@ class Login extends Component {
                 }
             })
         }
+    }
+
+    getUser = () => {
+        const token = localStorage.usertoken;
+        const decoded = jwt_decode(token);
+        axios.get('http://localhost:3005/users/'+decoded._id).then(res => {
+            if(res.data) {
+                localStorage.setItem('photo', res.data.photo);
+            }
+        })
     }
 
     handleValidation(){
@@ -93,7 +105,7 @@ class Login extends Component {
                     emailValid = false;
                     errors["email"] = "Email is not valid";
                     }
-            } 
+            }
 
             //Password
             if(!password){
@@ -183,9 +195,6 @@ class Login extends Component {
                                     value={password}
                                     onChange={this.onChange}
                                 />
-                                {/* <button  onClick={this.onSubmit} className="btn btn-lg btn-success btn-block mt-4">
-                                    Log in
-                                </button> */}
                                 <Button style={{width:'100%'}} className="mt-3" variant="success" onClick={this.onSubmit}>Log in</Button>
                                 <div className="mt-3 row" style={{textAlign: 'center'}}>
                                     <Link to={`/forgotpass`} className="col-md-6 mb-2">

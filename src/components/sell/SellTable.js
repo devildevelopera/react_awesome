@@ -245,7 +245,7 @@ class SellTable extends React.Component {
                           </td>
                           <td>
                             <Name>
-                              <Link to={`/product/`+d._id}>
+                              <Link to={`/product/${d._id}`}>
                               {d.name}
                               </Link>
                             </Name>

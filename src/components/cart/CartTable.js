@@ -76,7 +76,7 @@ const CartTable = ({ items, updateCount, removeItem }) => (
               <Image img={d.img} />
               <Title>
                 <Name>
-                  <Link to={d.url ? d.url : "/"}>{d.name}</Link>
+                  <Link to={`/product/${d._id}`}>{d.name}</Link>
                 </Name>
               </Title>
             </Flex>

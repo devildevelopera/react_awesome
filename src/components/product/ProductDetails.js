@@ -98,8 +98,8 @@ class ProductDetails extends React.Component {
             ${product.price}
           </Price>
           <Right>
-            <Button variant="contained" color="primary" className={product.user_id!==tocken_id ? 'addToCart' : null}
-            onClick={() => this.addToCart()} disabled={product.user_id===tocken_id}
+            <Button variant="contained" color="primary" className={product.user_id!==tocken_id? 'addToCart' : null}
+              onClick={() => this.addToCart()} disabled={product.user_id===tocken_id}
             >
               Add To Cart
             </Button>

@@ -6,9 +6,6 @@ import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './forgotpass.css';
-import { connect } from 'react-redux';
-import { increment, decrement } from '../../actions';
-import { compose } from 'redux';
 import { TextField } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
 
@@ -113,10 +110,6 @@ class ForgotPass extends Component {
           });
     }
 
-    handleSubmit  = ()  => {
-        this.props.dispatch(increment(5));
-    }
-
     render() {
         const {email, errors, formIsValid, emailValid} = this.state
         return (
@@ -139,16 +132,12 @@ class ForgotPass extends Component {
                             variant="outlined"
                             className="mt-3"
                         />
-                        {/* <button  onClick={this.onSubmit} className="btn btn-lg btn-info btn-block mt-4">
-                            Send Reset Link
-                        </button> */}
                         <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Send Reset Link</Button>
                         <div className="mt-3" style={{textAlign: 'center'}}>
                             <Link to={`/login`}>
                                 Go back to login?
                             </Link>
                         </div>
-                        {/* <button onClick={this.handleSubmit} className="btn btn-lg btn-success btn-block mt-4"> Increment</button> */}
                     </div>
                 </div>
             </div>
@@ -156,15 +145,4 @@ class ForgotPass extends Component {
     }
 }
 
-const mapDispatchToProps = dispatch => {
-    return {
-      increment: () => dispatch(increment()),
-      decrement: () => dispatch(decrement()),
-      dispatch
-    }
-  }
-
-export default compose(
-    withRouter,
-    connect(null, mapDispatchToProps)
-  )(ForgotPass);
+export default withRouter(ForgotPass);

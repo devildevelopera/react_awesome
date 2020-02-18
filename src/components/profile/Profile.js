@@ -9,6 +9,9 @@ import { Button, TextField, Select, FormControl, InputLabel } from '@material-ui
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { updatepass } from '../api/UserFunctions';
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
+import './profile.css';
 
 const Wrapper = styled.div `
   padding: 40px;
@@ -32,8 +35,8 @@ const IMG = styled.div `
 `;
 
 class Profile extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {
             first_name: '',
             last_name: '',
@@ -45,6 +48,7 @@ class Profile extends Component {
             password: '',
             cpassword: '',
             countries: [],
+            cities: [],
             selectedFile: null,
             errors: {},
             formIsValid: true,
@@ -262,10 +266,11 @@ class Profile extends Component {
                     phone: res.data.phone,
                     country: res.data.country,
                     city: res.data.city
-                })
+                });
             }
         })
         this.getCountries();
+        this.getCountryName(this.state.country);
     }
 
     getCountries = () => {
@@ -317,6 +322,9 @@ class Profile extends Component {
                     selectedFile: null,
                 })
                 this.componentDidMount();
+                localStorage.setItem('photo', filename);
+                this.props.parentGetItems();
+                // window.location.reload();
             }
         });
       }
@@ -327,16 +335,42 @@ class Profile extends Component {
         axios.delete('http://localhost:3005/users/removePhoto/'+decoded._id).then(res => {
             if (res.statusText === "OK") {
                 this.componentDidMount();
+                localStorage.setItem('photo', 'seller.png');
+                this.props.parentGetItems();
             }
         });
       }
 
+      getCities = (e) => {
+          let cityName = e.target.value;
+          if(cityName){
+            axios.get('http://localhost:3005/getCities/'+cityName).then(res => {
+                let allCities = res.data;
+                let matchedCities = [];
+                for(let i=0; i<allCities.length; i++) {
+                    if(allCities[i].country === this.state.country) {
+                        matchedCities.push(allCities[i].name)
+                    }
+                }
+                this.setState({
+                    cities: matchedCities
+                })
+            })
+          }
+      }
+
+      getCountryName = (country) => {
+          let countries = this.state.countries;
+          for(let i=0; i<countries.length; i++) {
+              if(countries[i].alpha2Code === country) {
+                  return countries[i].name;
+              }
+          }
+      }
+
     render() {
-        const { first_name, last_name, email, phone, country, city, photo, password, cpassword, countries, errors, formIsValid, firstNameValid, lastNameValid, emailValid, resetPassValid, passwordValid, cpasswordValid } = this.state;
-        const top100Films = [
-            'The Shawshank Redemption',
-            'The Godfather'
-        ];
+        const { first_name, last_name, email, phone, country, city, photo, password, cpassword, countries, cities, errors, formIsValid, firstNameValid, lastNameValid, emailValid, resetPassValid, passwordValid, cpasswordValid } = this.state;
+        
         return (
             <PageWrapper>
                 <Paper>
@@ -413,15 +447,11 @@ class Profile extends Component {
                                     variant="outlined"
                                     className="mt-3"
                                 />
-                                <TextField
-                                    fullWidth
-                                    label="Phone Number"
-                                    margin="dense"
-                                    name="phone"
+                                <PhoneInput
+                                    country={'us'}
                                     value={phone}
-                                    onChange={this.onChange}
-                                    variant="outlined"
-                                    className="mt-3"
+                                    name="phone"
+                                    onChange={phone => this.setState({ phone })}
                                 />
                                 <FormControl
                                     fullWidth
@@ -440,22 +470,22 @@ class Profile extends Component {
                                         <option value = {0}>
                                         </option>
                                         { countries.map((country, index) => (
-                                                <option key = {`select-item-${index}`} value = {country.name}>{country.name}</option>
+                                                <option key = {`select-item-${index}`} value = {country.alpha2Code}>{country.name}</option>
                                             ))
                                         }
                                     </Select>
                                 </FormControl>
                                 <Autocomplete
                                     id="combo-box-demo"
-                                    options={top100Films}
+                                    options={cities}
                                     onChange={this.onTagChange}
                                     value={city}
                                     renderInput={params => (
-                                        <TextField {...params} label="City" variant="outlined" fullWidth margin="dense"/>
+                                        <TextField {...params} label="City" variant="outlined" onChange={this.getCities} fullWidth margin="dense"/>
                                     )}
                                     className="mt-2"
                                 />
-                                <Button style={{width:'100%'}} className="mt-3" variant="contained"onClick={this.onSubmit}  color="secondary">Save Details</Button>
+                                <Button style={{width:'100%'}} className="mt-3" variant="contained" onClick={this.onSubmit}  color="secondary">Save Details</Button>
                                 <div style={{textAlign:'center', color:'grey'}} className="mt-3">
                                     <h5>Reset Pasword</h5>
                                 </div>
@@ -486,7 +516,7 @@ class Profile extends Component {
                                     value={cpassword}
                                     onChange={this.onChange}
                                 />
-                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3" variant="contained" color="primary">Update</Button>
+                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3 update" variant="contained" color="primary">Update</Button>
                             </div>
                         </div>
                     </Wrapper>
@@ -496,4 +526,4 @@ class Profile extends Component {
     }
 }
 
-export default Profile
+export default Profile;

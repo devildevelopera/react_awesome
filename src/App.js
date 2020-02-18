@@ -81,7 +81,10 @@ class App extends React.Component {
                 render={() => <Login/>}
               />
               <Route exact path="/register" component={Register}/>
-              <Route exact path="/profile" component={Profile}/>
+              {/* <Route exact path="/profile" component={Profile} parentGetItems = {this.getItems}/> */}
+              <Route exact path="/profile"
+                render={() => <Profile parentGetItems = {this.getItems}/>}
+              />
               <Route exact path="/forgotpass" component={ForgotPass}/>
               <Route exact path="/resetpass/:uid" component={ResetPass}/>
               <Route exact path="/confirmemail" component={ConfirmEmail}/>

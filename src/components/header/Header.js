@@ -1,5 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -13,10 +14,20 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
 import jwt_decode  from 'jwt-decode';
-
 // import { useSelector, useDispatch } from 'react-redux';
-// import { increment, decrement } from '../../actions';
 import './header.css';
+
+const IMG = styled.div `
+  background-image: url(${props => props.img});
+  background-color: #eee;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 50%;
+  border-radius: 50%
+`;
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -68,9 +79,8 @@ const useStyles = makeStyles(theme => ({
 function Header({quantity, history}) {
   // const counter = useSelector(state => state.counter);
   // console.log("counter: ", counter);
-  // const isLogged = useSelector(state => state.isLogged);
-  // console.log("isLogged: ", isLogged);
   // const dispatch = useDispatch();
+  const photo = localStorage.photo;
   const classes = useStyles();
   const number = quantity ? quantity : '0';
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -101,6 +111,7 @@ function Header({quantity, history}) {
     axios.delete('http://localhost:3005/users/logout/' + decoded._id);
     event.preventDefault()
     localStorage.removeItem('usertoken');
+    localStorage.removeItem('photo');
     history.push(`/`);
     handleMenuClose();
   }
@@ -193,7 +204,7 @@ function Header({quantity, history}) {
                 </Badge>
               </IconButton>
             </Link>
-            { localStorage.usertoken ? (
+            { localStorage.photo ? (
             <IconButton
               edge="end"
               aria-label="account of current user"
@@ -202,7 +213,9 @@ function Header({quantity, history}) {
               onClick={handleProfileMenuOpen}
               color="inherit"
             >
-              <img width="30px" src="http://localhost:3005/uploads/profile/seller.png" alt="seller"/>
+              <IMG
+                  img={`http://localhost:3005/uploads/profile/${photo}`}
+              />
             </IconButton>
             ) : (
             <div>

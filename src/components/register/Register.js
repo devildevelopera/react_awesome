@@ -35,7 +35,8 @@ class Register extends Component {
             lastNameValid: true,
             emailValid: true,
             passwordValid: true,
-            cpasswordValid: true
+            cpasswordValid: true,
+            term: false
         }
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -60,7 +61,7 @@ class Register extends Component {
             email: this.state.email,
             password: this.state.password
         }
-        if (this.handleValidation()) {
+        if (this.handleValidation() && this.state.term) {
             register(user).then(res => {
                 if(res === "success") {
                     this.props.history.push(`/login`);
@@ -215,7 +216,7 @@ class Register extends Component {
     }
 
     render() {
-        const {first_name, last_name, email, password, cpassword, errors, formIsValid, firstNameValid, lastNameValid, emailValid, passwordValid, cpasswordValid} = this.state
+        const {first_name, last_name, email, password, cpassword, errors, formIsValid, firstNameValid, lastNameValid, emailValid, passwordValid, cpasswordValid, term} = this.state
         return (
             <PageWrapper>
                 <Paper>
@@ -291,10 +292,7 @@ class Register extends Component {
                                     value={cpassword}
                                     onChange={this.onChange}
                                 />
-                                <Checkbox color="primary"/>I have read the <a href="">Terms and Conditions</a>
-                                {/* <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
-                                    Register
-                                </button> */}
+                                <Checkbox name="term" checked={term} onChange={e => {this.setState({ term: e.target.checked });}} color="primary"/>I have read the <a href="">Terms and Conditions</a>
                                 <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Register</Button>
                                 <div className="mt-3" style={{textAlign: 'center'}}>
                                     <Link to={`/login`}>

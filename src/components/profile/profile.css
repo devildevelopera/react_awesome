@@ -1,0 +1,17 @@
+.MuiButton-containedSecondary {
+    border-bottom: 2px solid #82042d !important;
+}
+
+.MuiButton-containedPrimary.update {
+    border-bottom: 2px solid #051a8a;
+}
+
+.react-tel-input .form-control {
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+}
+
+.react-tel-input {
+    margin: 18px 0 6px;
+}

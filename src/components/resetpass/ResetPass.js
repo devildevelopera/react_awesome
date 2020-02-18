@@ -162,9 +162,6 @@ class ResetPass extends Component {
                             value={cpassword}
                             onChange={this.onChange}
                         />
-                        {/* <button onClick={this.onSubmit} type="submit" className="btn  btn-lg btn-primary btn-block mt-4">
-                            Reset My Password
-                        </button> */}
                         <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Reset My Password</Button>
                         <div className="mt-3" style={{textAlign: 'center'}}>
                             <Link to={`/login`}>

@@ -21,7 +21,7 @@ export const login = user =>{
         })
         .then(res => {
             if(res.data){
-                localStorage.setItem('usertoken', res.data)
+                localStorage.setItem('usertoken', res.data);
             }
             return res.data
         })
