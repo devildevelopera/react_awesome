@@ -45,6 +45,7 @@ function Product(props) {
     products = Array.isArray(products) ? products : [];
 
     const item = {
+      _id: product._id,
       img: `http://localhost:3005/uploads/product/${product.img_arr[0]}`,
       name: product.name,
       price: product.price,
