@@ -60,7 +60,6 @@ class Login extends Component {
         if (this.handleValidation()) {
             login(user).then(res => {
                 if(res) {
-                    this.props.history.push(`/sell`);
                     this.createNotificationSuccess();
                     this.getUser();
                     this.setState({
@@ -80,6 +79,7 @@ class Login extends Component {
         axios.get('http://160.153.235.119:3005/users/'+decoded._id).then(res => {
             if(res.data) {
                 localStorage.setItem('photo', res.data.photo);
+                    this.props.history.push(`/sell`);
             }
         })
     }
