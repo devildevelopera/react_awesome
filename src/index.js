@@ -18,7 +18,7 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
 
-const  socket = openSocket('http://160.153.235.119:3005');
+const  socket = openSocket(`${process.env.REACT_APP_SERVER_API}`);
 
 socket.on('server message', function(object) {
     store.dispatch(onlineusers(Object.values(object)));

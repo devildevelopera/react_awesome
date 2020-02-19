@@ -43,7 +43,7 @@ function MobileCarousel({ photos, url }) {
         enableMouseEvents
       >
         {photos.map((photo,i) => (
-          <LargeIMG key={`photos${i}`} img={"http://160.153.235.119:3005/uploads/product/"+photo} />
+          <LargeIMG key={`photos${i}`} img={`${process.env.REACT_APP_SERVER_API}/uploads/product/${photo}`} />
         ))}
       </SwipeableViews>
       <MobileStepper

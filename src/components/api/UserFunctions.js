@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const register = newUser => {
     return axios
-        .post('http://160.153.235.119:3005/users/register', {
+        .post(`${process.env.REACT_APP_SERVER_API}/users/register`, {
             first_name: newUser.first_name,
             last_name: newUser.last_name,
             email: newUser.email,
@@ -15,7 +15,7 @@ export const register = newUser => {
 
 export const login = user =>{
     return axios
-        .post('http://160.153.235.119:3005/users/login', {
+        .post(`${process.env.REACT_APP_SERVER_API}/users/login`, {
             email: user.email,
             password: user.password,
         })
@@ -29,7 +29,7 @@ export const login = user =>{
 
 export const forgotpass = user =>{
     return axios
-        .post('http://160.153.235.119:3005/users/forgotpass', {
+        .post(`${process.env.REACT_APP_SERVER_API}/users/forgotpass`, {
             email: user.email
         })
         .then(res => {
@@ -39,7 +39,7 @@ export const forgotpass = user =>{
 
 export const resetpass = user =>{
     return axios
-        .patch('http://160.153.235.119:3005/users/resetpass/'+user.user_id, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/users/resetpass/${user.user_id}`, {
             password: user.password
         })
         .then(res => {
@@ -49,7 +49,7 @@ export const resetpass = user =>{
 
 export const updatepass = user =>{
     return axios
-        .patch('http://160.153.235.119:3005/users/updatepass/'+user.user_id, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/users/updatepass/${user.user_id}`, {
             password: user.password
         })
         .then(res => {
@@ -59,7 +59,7 @@ export const updatepass = user =>{
 
 export const userUpdate = User => {
     return axios
-        .patch('http://160.153.235.119:3005/users/userUpdate/'+User.user_id, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/users/userUpdate/'${User.user_id}`, {
             first_name: User.first_name,
             last_name: User.last_name,
             email: User.email,

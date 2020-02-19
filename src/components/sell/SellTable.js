@@ -84,7 +84,7 @@ class SellTable extends React.Component {
   
   deleteProduct = () => {
     const delete_img_arr = this.state.delete_img_arr;
-    axios.delete('http://160.153.235.119:3005/posts/'+this.state.del_id, {data: delete_img_arr}).then(res => {
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/posts/${this.state.del_id}`, {data: delete_img_arr}).then(res => {
       this.props.getItems();
       this.createNotificationDelete();
     });
@@ -103,7 +103,7 @@ class SellTable extends React.Component {
     this.setState({
       open4: true,
     });
-    axios.get('http://160.153.235.119:3005/posts/'+_id).then(res => {
+    axios.get(`${process.env.REACT_APP_SERVER_API}/posts/${_id}`).then(res => {
       this.setState({
         name: res.data.name,
         description: res.data.description,
@@ -120,7 +120,7 @@ class SellTable extends React.Component {
       description: this.state.description,
       price: this.state.price
     };
-    axios.patch('http://160.153.235.119:3005/posts/'+this.state.edit_id, product ).then(res => {
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/${this.state.edit_id}`, product ).then(res => {
         this.props.getItems();
         this.createNotificationUpdate();
     });
@@ -139,7 +139,7 @@ class SellTable extends React.Component {
       previous_img_arr: this.state.previous_img_arr,
       img_arr: update_img_arr
     }
-    axios.patch('http://160.153.235.119:3005/posts/withimages/'+this.state.edit_id, product ).then(res => {
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/withimages/${this.state.edit_id}`, product ).then(res => {
         this.props.getItems();
         this.createNotificationUpdate();
     });
@@ -175,7 +175,7 @@ class SellTable extends React.Component {
                     'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
             }
       };
-      axios.post('http://160.153.235.119:3005/posts/upload', data, config ).then(res => {
+      axios.post(`${process.env.REACT_APP_SERVER_API}/posts/upload`, data, config ).then(res => {
         if (res.statusText === "OK") {
           this.productUpdateWithImages(res);
         }
@@ -240,7 +240,7 @@ class SellTable extends React.Component {
                 return (<tr key={i}>
                           <td>
                             <Link to={`/product/`+d._id}>
-                              <Image img={"http://160.153.235.119:3005/uploads/product/"+d.img_arr[0]} />
+                              <Image img={`${process.env.REACT_APP_SERVER_API}/uploads/product/${d.img_arr[0]}`} />
                             </Link>
                           </td>
                           <td>

@@ -56,7 +56,7 @@ class ProductList extends React.Component {
         { products.map((product,i) => {
           return <Link key={i} to={`/product/`+product._id}>
             <ImgWrapper borderColor="#fff">
-              <LargeIMG img={"http://160.153.235.119:3005/uploads/product/"+product.img_arr[0]}/>
+              <LargeIMG img={`${process.env.REACT_APP_SERVER_API}/uploads/product/"${product.img_arr[0]}`}/>
             </ImgWrapper>
             <Title>
               {product.name}

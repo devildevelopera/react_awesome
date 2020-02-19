@@ -108,7 +108,7 @@ function Header({quantity, history}) {
   const logOut = event => {
     const token = localStorage.usertoken;
     const decoded = jwt_decode(token);
-    axios.delete('http://160.153.235.119:3005/users/logout/' + decoded._id);
+    axios.delete(`${process.env.REACT_APP_SERVER_API}/users/logout/'${decoded._id}`);
     event.preventDefault()
     localStorage.removeItem('usertoken');
     localStorage.removeItem('photo');
@@ -214,7 +214,7 @@ function Header({quantity, history}) {
               color="inherit"
             >
               <IMG
-                  img={`http://160.153.235.119:3005/uploads/profile/${photo}`}
+                  img={`${process.env.REACT_APP_SERVER_API}/uploads/profile/${photo}`}
               />
             </IconButton>
             ) : (
