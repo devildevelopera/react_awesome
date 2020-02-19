@@ -59,7 +59,7 @@ class ProductDetails extends React.Component {
 
   componentDidMount() {
     const user_id = this.props.product.user_id;
-    axios.get('http://localhost:3005/users/'+ user_id).then(res => {
+    axios.get('http://160.153.235.119:3005/users/'+ user_id).then(res => {
       if(res.data) {
         this.setState({
           first_name: res.data.first_name,
@@ -116,7 +116,7 @@ class ProductDetails extends React.Component {
             <div className='icon-container'>
               { photo &&
               <IMG
-                  img={`http://localhost:3005/uploads/profile/${photo}`}
+                  img={`http://160.153.235.119:3005/uploads/profile/${photo}`}
               />}
               { onlineUsers.includes(user_id) ? (
               <div className='status-circle on'></div>

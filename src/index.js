@@ -18,7 +18,7 @@ const store = createStore(
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
     );
 
-const  socket = openSocket('http://localhost:3005');
+const  socket = openSocket('http://160.153.235.119:3005');
 
 socket.on('server message', function(object) {
     store.dispatch(onlineusers(Object.values(object)));

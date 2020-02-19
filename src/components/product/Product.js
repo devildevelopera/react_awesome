@@ -46,7 +46,7 @@ function Product(props) {
 
     const item = {
       _id: product._id,
-      img: `http://localhost:3005/uploads/product/${product.img_arr[0]}`,
+      img: `http://160.153.235.119:3005/uploads/product/${product.img_arr[0]}`,
       name: product.name,
       price: product.price,
       quantity: quantity

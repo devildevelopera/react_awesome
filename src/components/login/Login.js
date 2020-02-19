@@ -77,7 +77,7 @@ class Login extends Component {
     getUser = () => {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
-        axios.get('http://localhost:3005/users/'+decoded._id).then(res => {
+        axios.get('http://160.153.235.119:3005/users/'+decoded._id).then(res => {
             if(res.data) {
                 localStorage.setItem('photo', res.data.photo);
             }

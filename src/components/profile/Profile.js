@@ -256,7 +256,7 @@ class Profile extends Component {
     componentDidMount() {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
-        axios.get('http://localhost:3005/users/'+decoded._id).then(res => {
+        axios.get('http://160.153.235.119:3005/users/'+decoded._id).then(res => {
             if(res.data) {
                 this.setState({
                     first_name: res.data.first_name,
@@ -303,7 +303,7 @@ class Profile extends Component {
                       'Content-Type': 'multipart/form-data; charset=utf-8; boundary="another cool boundary";'
               }
         };
-        axios.post('http://localhost:3005/users/upload/'+decoded._id, data, config ).then(res => {
+        axios.post('http://160.153.235.119:3005/users/upload/'+decoded._id, data, config ).then(res => {
           if (res.statusText === "OK") {
             this.photoUpdate(res.data.filename);
           }
@@ -316,7 +316,7 @@ class Profile extends Component {
         const user = {
           filename: filename
         }
-        axios.patch('http://localhost:3005/users/'+decoded._id, user ).then(res => {
+        axios.patch('http://160.153.235.119:3005/users/'+decoded._id, user ).then(res => {
             if (res.statusText === "OK") {
                 this.setState({
                     selectedFile: null,
@@ -332,7 +332,7 @@ class Profile extends Component {
       removePhoto = () => {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
-        axios.delete('http://localhost:3005/users/removePhoto/'+decoded._id).then(res => {
+        axios.delete('http://160.153.235.119:3005/users/removePhoto/'+decoded._id).then(res => {
             if (res.statusText === "OK") {
                 this.componentDidMount();
                 localStorage.setItem('photo', 'seller.png');
@@ -344,7 +344,7 @@ class Profile extends Component {
       getCities = (e) => {
           let cityName = e.target.value;
           if(cityName){
-            axios.get('http://localhost:3005/getCities/'+cityName).then(res => {
+            axios.get('http://160.153.235.119:3005/getCities/'+cityName).then(res => {
                 let allCities = res.data;
                 let matchedCities = [];
                 for(let i=0; i<allCities.length; i++) {
@@ -383,7 +383,7 @@ class Profile extends Component {
                                 <div style={{textAlign:'center'}} className="mt-3">
                                     { photo &&
                                     <IMG
-                                        img={`http://localhost:3005/uploads/profile/${photo}`}
+                                        img={`http://160.153.235.119:3005/uploads/profile/${photo}`}
                                     />}
                                 </div>
                                 <div style={{textAlign:'center'}} className="mt-3">

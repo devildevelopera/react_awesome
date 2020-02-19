@@ -45,7 +45,7 @@ class FashionCarousel extends React.Component {
             { products.map((product,i) => {
               return <Carousel.Item key={i}>
                       <Link to={`/product/`+product._id}>
-                        <FashionIMG img={"http://localhost:3005/uploads/product/"+product.img_arr[0]}/>
+                        <FashionIMG img={"http://160.153.235.119:3005/uploads/product/"+product.img_arr[0]}/>
                       </Link>
                       <Carousel.Caption>
                         <h3>{product.name}</h3>

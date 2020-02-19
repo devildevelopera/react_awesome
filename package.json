@@ -36,5 +36,5 @@
     "eject": "react-scripts eject",
     "server": "nodemon server/index.js"
   },
-  "proxy": "http://localhost:3005"
+  "proxy": "http://160.153.235.119:3005"
 }
