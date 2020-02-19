@@ -59,7 +59,7 @@ export const updatepass = user =>{
 
 export const userUpdate = User => {
     return axios
-        .patch(`${process.env.REACT_APP_SERVER_API}/users/userUpdate/'${User.user_id}`, {
+        .patch(`${process.env.REACT_APP_SERVER_API}/users/userUpdate/${User.user_id}`, {
             first_name: User.first_name,
             last_name: User.last_name,
             email: User.email,
