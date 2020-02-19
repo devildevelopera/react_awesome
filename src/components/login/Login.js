@@ -76,7 +76,7 @@ class Login extends Component {
     getUser = () => {
         const token = localStorage.usertoken;
         const decoded = jwt_decode(token);
-        axios.get(`${process.env.REACT_APP_SERVER_API}/users/'${decoded._id}`).then(res => {
+        axios.get(`${process.env.REACT_APP_SERVER_API}/users/${decoded._id}`).then(res => {
             if(res.data) {
                 localStorage.setItem('photo', res.data.photo);
                     this.props.history.push(`/sell`);

@@ -9,7 +9,6 @@
     "animate.css": "^3.7.2",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
-    "dotenv-webpack": "^1.7.0",
     "email-templates": "^6.0.0",
     "googleapis": "27",
     "jwt-decode": "^2.2.0",
