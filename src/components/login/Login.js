@@ -187,6 +187,7 @@ class Login extends Component {
                                     error={!passwordValid? true: false}
                                     helperText={!formIsValid? errors['password']: ''}
                                     label="Password"
+                                    required
                                     margin="dense"
                                     name="password"
                                     type="password"

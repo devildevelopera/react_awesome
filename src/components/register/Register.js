@@ -270,6 +270,7 @@ class Register extends Component {
                                     error={!passwordValid? true: false}
                                     helperText={!formIsValid? errors['password']: ''}
                                     label="Password"
+                                    required
                                     margin="dense"
                                     name="password"
                                     type="password"
@@ -283,6 +284,7 @@ class Register extends Component {
                                     error={!cpasswordValid? true: false}
                                     helperText={!formIsValid? errors['cpassword']: ''}
                                     label="Confirm password"
+                                    required
                                     margin="dense"
                                     name="cpassword"
                                     style={{ marginTop: '1rem' }}
