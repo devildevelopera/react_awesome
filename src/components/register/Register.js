@@ -269,7 +269,7 @@ class Register extends Component {
                                     fullWidth
                                     error={!passwordValid? true: false}
                                     helperText={!formIsValid? errors['password']: ''}
-                                    label="New Password"
+                                    label="Password"
                                     margin="dense"
                                     name="password"
                                     type="password"
