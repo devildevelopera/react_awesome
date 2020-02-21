@@ -1,32 +1,33 @@
 .buttongroup {
-    text-align: center;
-    padding: 10px;
+    display: flex;
+    padding: 10px 0;
 }
-.buttongroup button {
-    min-width: 90px;
-    margin: 5px 10px;
+.buttongroup .dropdown button {
     font-size: 15px;
 }
-.MuiToolbar-root.MuiToolbar-regular.MuiToolbar-gutters a:hover {
-    text-decoration: none;
+
+.dropdown-toggle {
+    white-space:normal !important;
 }
 
-.newsales {
-    border-bottom: 2px solid #047b1f !important;
+.sectionMobile {
+    display: none;
 }
 
-.men {
-    border-bottom: 2px solid #036b7b !important;
-}
-
-.women {
-    border-bottom: 2px solid #980312 !important;
-}
-
-.kids {
-    border-bottom: 2px solid #0452a7 !important;
-}
-
-.others {
-    border-bottom: 2px solid #9a7404 !important;
+@media (max-width: 860px) {
+    .buttongroup {
+        display: block;
+    }
+    .buttongroup .dropdown {
+        text-align: center;
+    }
+    .buttongroup .dropdown button {
+        width: 100%;
+    }
+    .dropdown-menu {
+        width: 100%;
+    }
+    .sectionMobile {
+        display: flex;
+    }
 }

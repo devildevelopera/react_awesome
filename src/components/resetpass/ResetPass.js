@@ -4,7 +4,6 @@ import { store } from 'react-notifications-component';
 import { Link } from 'react-router-dom';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './resetpass.css';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
 

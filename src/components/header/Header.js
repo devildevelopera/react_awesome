@@ -2,14 +2,18 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import MenuIcon from '@material-ui/icons/Menu';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+import { Navbar, Nav, Form } from 'react-bootstrap';
+import LockIcon from '@material-ui/icons/Lock';
+import LockOpenIcon from '@material-ui/icons/LockOpen';
+import ShopIcon from '@material-ui/icons/Shop';
+import HomeIcon from '@material-ui/icons/Home';
 import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
@@ -20,8 +24,8 @@ import './header.css';
 const IMG = styled.div `
   background-image: url(${props => props.img});
   background-color: #eee;
-  width: 30px;
-  height: 30px;
+  width: 35px;
+  height: 35px;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -33,12 +37,11 @@ const useStyles = makeStyles(theme => ({
   grow: {
     flexGrow: 1,
   },
-  white: {
-    background: "#fff",
-    color: "#333",
-  },
   menuButton: {
     marginRight: theme.spacing(2),
+  },
+  navbar: {
+    height: 64.781
   },
   title: {
     display: 'none',
@@ -47,8 +50,8 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     }
   },
-  turquoise: {
-    color: "#28a745"
+  white: {
+    color: "#fff"
   },
   inputRoot: {
     color: 'inherit',
@@ -147,27 +150,31 @@ function Header({quantity, history}) {
       onClose={handleMobileMenuClose}
     >
       <Link to={`/`}>
-        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Home</Button>
+        <Button onClick={handleMenuClose}><HomeIcon/></Button>
       </Link>
       { localStorage.usertoken &&
       <Link to={`/sell`}>
-        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Sell</Button>
+        <Button onClick={handleMenuClose}><ShopIcon/></Button>
       </Link>
       }
       <Link to={`/cart`}>
-        <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Cart<span style={{color:"#f50057"}}>({number})</span></Button>
+        <Button onClick={handleMenuClose}><Badge badgeContent={number} color="secondary"><ShoppingCartIcon /></Badge></Button>
       </Link>
       
       { localStorage.usertoken &&
         <Link to={`/profile`}>
-          <Button color="inherit" className={classes.turquoise} onClick={handleMenuClose}>Profile</Button>
+          <Button color="inherit" onClick={handleMenuClose}>
+              <IMG
+                  img={`${process.env.REACT_APP_SERVER_API}/uploads/profile/${photo}`}
+              />
+              </Button>
         </Link>
       }
       { localStorage.usertoken ? (
-        <Button color="inherit" className={classes.turquoise} onClick={logOut}>Sign out</Button>
+        <Button onClick={logOut}><LockIcon/></Button>
       ) : (
       <Link to={`/login`}>
-        <Button color="inherit" className="signin" onClick={handleMenuClose}>Sign In</Button>
+        <Button onClick={handleMenuClose}><LockOpenIcon/></Button>
       </Link>
       )}
       {/* { !localStorage.usertoken &&
@@ -179,72 +186,65 @@ function Header({quantity, history}) {
   );
 
   return (
-    <div className={classes.grow}>
-      <AppBar position="static" className={classes.white}>
-        <Toolbar>
-          <Link to={`/`}>
-              <img width="150px" src="/logo.jpg" alt="logo"/>
-          </Link>
-          <div className={classes.grow} />
-          <div className={classes.sectionDesktop}>
-            {/* <Button onClick={() => dispatch(increment(5))}>+</Button>
-            <Button onClick={() => dispatch(decrement())}>-</Button> */}
+        <Navbar bg="primary" variant="dark" className={classes.navbar}>
+          <Nav className="mr-auto">
             <Link to={`/`}>
-              <Button color="inherit" className={classes.turquoise}>Home</Button>
+              <Button color="inherit" className={classes.white}><MenuIcon />Categories</Button>
+            </Link>
+            <Link to={`/`}  className={classes.sectionDesktop}>
+              <Button color="inherit" className={classes.white}>Home</Button>
+            </Link>
+            <Link to={`/`}  className={classes.sectionDesktop}>
+              <Button color="inherit" className={classes.white}>About</Button>
+            </Link>
+            <Link to={`/`}  className={classes.sectionDesktop}>
+              <Button color="inherit" className={classes.white}>Contact</Button>
             </Link>
             { localStorage.usertoken &&
-            <Link to={`/sell`}>
-              <Button color="inherit" className={classes.turquoise}>Sell</Button>
+            <Link to={`/sell`}  className={classes.sectionDesktop}>
+              <Button color="inherit" className={classes.white}>Sell</Button>
             </Link>
             }
-            <Link to={`/cart`}>
-              <IconButton aria-label="show 4 new mails" color="inherit" className={classes.turquoise}>
-                <Badge badgeContent={number} color="secondary">
-                  <ShoppingCartIcon />
-                </Badge>
-              </IconButton>
-            </Link>
+          </Nav>
+          <div className={classes.grow}></div>
+          <Form inline  className={classes.sectionDesktop}>
             { localStorage.photo ? (
+              <IconButton
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <IMG
+                    img={`${process.env.REACT_APP_SERVER_API}/uploads/profile/${photo}`}
+                />
+              </IconButton>
+              ) : (
+              <div>
+                <Link to={`/login`}>
+                  <Button className="signin">Sign In</Button>
+                </Link>
+                {/* <Link to={`/register`}>
+                  <Button className={classes.white} className="signup">Sign Up</Button>
+                </Link> */}
+              </div>
+              )}
+          </Form>
+            
             <IconButton
-              edge="end"
-              aria-label="account of current user"
-              aria-controls={menuId}
-              aria-haspopup="true"
-              onClick={handleProfileMenuOpen}
-              color="inherit"
-            >
-              <IMG
-                  img={`${process.env.REACT_APP_SERVER_API}/uploads/profile/${photo}`}
-              />
-            </IconButton>
-            ) : (
-            <div>
-              <Link to={`/login`}>
-                <Button color="inherit" className="signin">Sign In</Button>
-              </Link>
-              {/* <Link to={`/register`}>
-                <Button color="inherit" className="signup">Sign Up</Button>
-              </Link> */}
-            </div>
-            )}
-          </div>
-          <div className={classes.sectionMobile}>
-            <IconButton
-              aria-label="show more"
+              className={classes.sectionMobile}
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
               color="inherit"
             >
-              <MenuIcon />
+              <MoreVertIcon />
             </IconButton>
-          </div>
-        </Toolbar>
-        {renderMobileMenu}
-      {renderMenu}
-      </AppBar>
-     
-    </div>
+            {renderMobileMenu}
+            {renderMenu}
+        </Navbar>
   );
 }
 

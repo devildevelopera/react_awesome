@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
+import Rating from '@material-ui/lab/Rating';
+import Box from '@material-ui/core/Box';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { compose } from 'redux';
@@ -46,12 +48,25 @@ const IMG = styled.div `
   border-radius: 50%
 `;
 
+const Details = styled.div `
+  margin-top: 20px;
+  > ul {
+    margin: 0;
+    padding: 0 20px 0;
+    > li {
+      margin-bottom: 10px;
+    }
+  }
+`;
+
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       first_name: '',
       last_name: '',
+      country: '',
+      city: '',
       user_id: '',
       photo: ''
     }
@@ -64,6 +79,8 @@ class ProductDetails extends React.Component {
         this.setState({
           first_name: res.data.first_name,
           last_name: res.data.last_name,
+          country: res.data.country,
+          city: res.data.city,
           user_id: res.data._id,
           photo: res.data.photo,
         })
@@ -81,7 +98,7 @@ class ProductDetails extends React.Component {
   
   render() {
     const  product  = this.props.product;
-    const { first_name, last_name, user_id, photo } = this.state;
+    const { first_name, last_name, country, city, user_id, photo } = this.state;
     var onlineUsers = this.props.mystate.onlineUsers;
     let tocken_id = '';
     if(localStorage.usertoken) {
@@ -94,11 +111,17 @@ class ProductDetails extends React.Component {
       <div>
           <h2>{product.name}</h2>
           <Description>{product.description}</Description>
+          <Details>
+            <ul>
+                <li >{product.category}</li>
+                <li >Available: {product.quantity}</li> 
+            </ul>
+          </Details>
           <Price>
             ${product.price}
           </Price>
           <Right>
-            <Button variant="contained" color="primary" className={product.user_id!==tocken_id? 'addToCart' : null}
+            <Button variant="contained" color="primary" className={product.user_id===tocken_id? 'removeShadow' : null}
               onClick={() => this.addToCart()} disabled={product.user_id===tocken_id}
             >
               Add To Cart
@@ -131,8 +154,12 @@ class ProductDetails extends React.Component {
                 ):(
                   <li className="offline">Offline</li>
                 )}
-                <li>{first_name} {last_name}</li>
-                <li>100% Positive feedback</li>
+                <li>{first_name} {last_name}
+                </li>
+                <li>{city}, {country}</li>
+                <Box component="fieldset" borderColor="transparent">
+                  <Rating name="read-only" value={4} readOnly />
+                </Box>
               </ul>
             </SellerDetail>
           </Seller>

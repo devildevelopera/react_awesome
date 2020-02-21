@@ -4,14 +4,14 @@ import Paper from '@material-ui/core/Paper';
 import ProductList from './ProductList';
 import FashionCarousel from './FashionCarousel';
 import PageWrapper from '../ui/PageWrapper';
-import Catagory from './Catagory';
+import Search from './Search';
 import axios from 'axios';
 
 const Wrapper = styled.div `
-  padding: 0 40px 40px 40px;
+  padding: 0 40px;
   min-height: 100vh;
   @media (max-width: 650px) {
-    padding: 20px;
+    padding: 0 20px;
   }
 `;
 
@@ -29,6 +29,11 @@ class Landing extends React.Component {
 
   getItems = () => {
     axios.get(`${process.env.REACT_APP_SERVER_API}/posts`).then(res => {
+      for(var i=0; i<res.data.length; i++) {
+        if(!res.data[i].active) {
+          delete res.data[i];
+        }
+      }
       this.setState({
         items: res.data
       });
@@ -38,9 +43,9 @@ class Landing extends React.Component {
   render() {
     return (
     <PageWrapper>
-      <Paper className="product-list">
+      <Paper>
         <Wrapper>
-            <Catagory/>
+            <Search/>
             <FashionCarousel items={this.state.items}/>
             <ProductList items={this.state.items} />
         </Wrapper>

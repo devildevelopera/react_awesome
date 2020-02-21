@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
 
 import TextField from '@material-ui/core/TextField';
@@ -22,10 +21,6 @@ const Table = styled.table `
     border-bottom: 1px solid #ddd;
   }
 `;
-const Flex = styled.div `
-  display: flex;
-  align-items: center;
-`;
 const Image = styled.div `
   background-image: url(${props => props.img});
   width: 125px;
@@ -43,26 +38,13 @@ const Remove = styled.span `
   transition: opacity .5s;
   &:hover { opacity: 1; }
 `;
-const Title = styled.div `
-  margin-left: 30px;
-  @media (max-width: 650px) {
-    margin-left: 10px;
-  }
-`;
-const Name = styled.div `
-  margin-bottom: 10px;
-  font-size: 16px;
-  > a {
-    color: black;
-    text-decoration-color: ${props => props.underline};
-  }
-`;
 
 const CartTable = ({ items, updateCount, removeItem }) => (
   <Table>
     <thead>
       <tr>
-        <th>Product</th>
+        <th>Image</th>
+        <th>Title</th>
         <th>Quantity</th>
         <th>Total</th>
         <th>Remove</th>
@@ -72,14 +54,10 @@ const CartTable = ({ items, updateCount, removeItem }) => (
       { items.map((d,i) => {
         return (<tr key={`cart${i}`}>
           <td>
-            <Flex>
               <Image img={d.img} />
-              <Title>
-                <Name>
-                  <Link to={`/product/${d._id}`}>{d.name}</Link>
-                </Name>
-              </Title>
-            </Flex>
+          </td>
+          <td>
+              {d.name}
           </td>
           <td>
             <TextField

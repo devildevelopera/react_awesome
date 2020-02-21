@@ -9,9 +9,6 @@ const Wrapper = styled.div `
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 40px;
-  > a {
-    text-decoration: none;
-  }
   @media (max-width: 650px) {
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 20px;

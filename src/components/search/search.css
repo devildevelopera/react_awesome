@@ -1,0 +1,32 @@
+.MuiButtonBase-root.MuiIconButton-root.search-icon {
+    padding: 5px !important;
+  }
+
+.dropdown-menu {
+  font-size: 15px !important;
+}
+
+#product_cat {
+  background: transparent;
+  outline: 0;
+  border: 0 ;
+  line-height: 40px;
+  padding-left: 15px;
+  font-size: 15px;
+}
+
+.sectionDesktop {
+  display: flex;
+}
+.MuiGrid-grid-xs-true {
+  flex-grow: 0 !important;
+}
+
+@media (max-width: 860px) {
+  #product_cat {
+    display: none;
+  }
+  .sectionDesktop {
+    display: none;
+  }
+}

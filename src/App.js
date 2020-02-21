@@ -18,9 +18,11 @@ import Sell from './components/sell/Sell';
 import ForgotPass from './components/forgotpass/ForgotPass';
 import ResetPass from './components/resetpass/ResetPass';
 import ConfirmEmail from './components/confirmemail/ConfirmEmail';
+import VerticalLinearStepper from './components/newproduct/VerticalLinearStepper';
 // import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
+import Search from './components/search/Search';
 
 class App extends React.Component {
   constructor(props) {
@@ -60,6 +62,7 @@ class App extends React.Component {
     return (
         <Router>
           <ReactNotification />
+            <Search quantity={quantity}/>
             <Header quantity={quantity} history={this.props.history}/>
             {/* <Switch> */}
               <Route exact path="/"
@@ -88,6 +91,7 @@ class App extends React.Component {
               <Route exact path="/forgotpass" component={ForgotPass}/>
               <Route exact path="/resetpass/:uid" component={ResetPass}/>
               <Route exact path="/confirmemail" component={ConfirmEmail}/>
+              <Route exact path="/newproduct" component={VerticalLinearStepper}/>
               <Route exact path="/cart"
                 render={() => <Cart updateNumber={this.setQuantity}/>}
               />

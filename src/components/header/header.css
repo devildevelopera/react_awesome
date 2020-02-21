@@ -4,11 +4,6 @@
 .MuiTypography-h6 {
     font-family: inherit !important;
 }
-/* .MuiBadge-anchorOriginTopRightRectangle {
-    color: red !important;
-    border: 1px solid red;
-    background-color: #fff !important;
-} */
 .MuiMenu-list {
     display: grid;
 }
@@ -26,8 +21,13 @@
 }
 .my-profile:hover{
     color :inherit;
-    text-decoration: none;
 }
-.signin {
-    color: #28a745 !important;
+.navbar {
+    padding: 0.3rem 1rem !important;
+}
+.MuiButtonBase-root.MuiButton-root.MuiButton-text.signin {
+    color: #fff;
+}
+.makeStyles-sectionDesktop-199.form-inline{
+    margin-right: 20px;
 }

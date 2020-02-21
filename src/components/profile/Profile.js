@@ -516,7 +516,7 @@ class Profile extends Component {
                                     value={cpassword}
                                     onChange={this.onChange}
                                 />
-                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3 update" variant="contained" color="primary">Update</Button>
+                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3" variant="contained" color="primary">Update</Button>
                             </div>
                         </div>
                     </Wrapper>

@@ -13,27 +13,47 @@ body, html {
   font-family: 'Raleway', sans-serif;
 }
 
-h2 { color: #000 !important; }
+.btn-info {
+  border-bottom: 2px solid #036b7b !important;
+}
 
-h2 {
-  color: #32325d;
-  font-weight: 400;
-  line-height: 50px;
-  font-size: 30px;
-  margin: 20px 0;
-  padding: 0;
+.btn-success {
+  border-bottom: 2px solid #047b1f !important;
 }
-.Checkout {
-  margin: 0 auto;
-  max-width: 800px;
-  box-sizing: border-box;
-  padding: 0 5px;
+
+.btn-danger {
+  border-bottom: 2px solid #980312 !important;
 }
-label {
-  color: #6b7c93;
-  font-weight: 300;
-  letter-spacing: 0.025em;
+
+.btn-primary {
+  border-bottom: 2px solid #0452a7 !important;
 }
-form {
-  margin-bottom: 40px;
+
+.btn-warning {
+  border-bottom: 2px solid #9a7404 !important;
 }
+
+.MuiButton-containedSecondary {
+  border-bottom: 2px solid #82042d !important;
+}
+
+.MuiButton-containedPrimary {
+  border-bottom: 2px solid #051a8a !important;
+}
+
+.MuiPaper-elevation1 {
+  box-shadow: none !important;
+}
+
+a:hover {
+  text-decoration: none !important;
+}
+
+.MuiSelect-select:focus {
+  background-color: inherit !important;
+}
+
+.btn.focus, .btn:focus {
+  box-shadow: none !important;
+}
+

@@ -8,10 +8,6 @@ const Wrapper = styled.div `
   font-size: 14px;
   > a {
     color: #555;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
   }
   @media (max-width: 650px) {
     margin-bottom: 20px;

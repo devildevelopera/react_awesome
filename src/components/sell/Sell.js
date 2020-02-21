@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from '@material-ui/core/Button';
 import SellTable from './SellTable';
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, FormControl, InputLabel, Select } from '@material-ui/core';
 import axios from 'axios';
 import jwt_decode  from 'jwt-decode';
 import { store } from 'react-notifications-component';
@@ -34,9 +34,11 @@ class Sell extends React.Component {
       items: [],
       open4: false,
       name: "",
+      category: "",
       description: "",
       price: "",
-      selectedFile: null,
+      quantity: "",
+      selectedFile: null
     }
     this.createNotification = this.createNotification.bind(this);
   }
@@ -54,8 +56,10 @@ class Sell extends React.Component {
         items: res.data,
         selectedFile: null,
         name: "",
+        category: "",
         description: "",
-        price: ""
+        price: "",
+        quantity: ""
       });
     });
   }
@@ -100,8 +104,10 @@ class Sell extends React.Component {
     const product = {
       user_id: decoded._id,
       name: this.state.name,
+      category: this.state.category,
       description: this.state.description,
       price: this.state.price,
+      quantity: this.state.quantity,
       img_arr: img_arr,
     }
     axios.post(`${process.env.REACT_APP_SERVER_API}/posts`, product ).then(res => {
@@ -127,7 +133,7 @@ class Sell extends React.Component {
   }
 
   isFormValid = () => {
-    return !this.state.selectedFile || !this.state.name || !this.state.description || !this.state.price;
+    return !this.state.selectedFile || !this.state.name || !this.state.category || !this.state.description || !this.state.price || !this.state.quantity;
   }
 
   createNotification() {
@@ -153,7 +159,10 @@ class Sell extends React.Component {
           <Wrapper>
             <h3>Products</h3>
             <RightSide>
-              <Button variant="contained" color="primary" className="add-product" onClick={this.handleClickOpen4}>Add Product</Button>
+              <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>
+              {/* <Link to={'/newproduct'}>
+                <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>
+              </Link> */}
             </RightSide>
             { items.length > 0 &&
               <div>
@@ -179,7 +188,7 @@ class Sell extends React.Component {
                   style={{ display: 'none' }}
                   onChange={(e) => this.onChangeFile(e)}
               />
-              <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
+              <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
               <TextField
                 autoFocus
                 margin="dense"
@@ -190,15 +199,31 @@ class Sell extends React.Component {
                 type="text"
                 fullWidth
               />
-              <TextField
-                margin="dense"
-                value={this.state.description}
-                onChange={this.onChangeValue}
-                name="description"
-                label="Description"
-                type="text"
-                fullWidth
-              />
+              <FormControl
+                  fullWidth
+                  margin="normal"
+                  className="mt-2"
+              >
+                  <InputLabel htmlFor="country-native-required" className="InputLabel">Category</InputLabel>
+                  <Select
+                      label="Category"
+                      native
+                      name="category"
+                      onChange={this.onChangeValue}
+                      value = {this.state.category}
+                  >
+                      <option value="" />
+                      <option value = {"CE"}>Consumer Electronics</option>
+                      <option value = {"SH"}>Sports & Health</option>
+                      <option value = {"BT"}>Babies & Toys</option>
+                      <option value = {"GP"}>Groceries & Pets</option>
+                      <option value = {"HL"}>Home & Lifestyle</option>
+                      <option value = {"WF"}>Women's Fashion</option>
+                      <option value = {"MF"}>Men's Fashion</option>
+                      <option value = {"WA"}>Watches & Accessories</option>
+                      <option value = {"AM"}>Automotive & Motorbike</option>
+                  </Select>
+              </FormControl>
               <TextField
                 margin="dense"
                 value={this.state.price}
@@ -206,6 +231,26 @@ class Sell extends React.Component {
                 name="price"
                 label="Price"
                 type="number"
+                style={{width:"50%", padding: "1px"}}
+              />
+              <TextField
+                margin="dense"
+                value={this.state.quantity}
+                onChange={this.onChangeValue}
+                name="quantity"
+                label="Quantity"
+                type="number"
+                style={{width:"50%", padding: "1px"}}
+              />
+              <TextField
+                multiline={true}
+                rows="3"
+                margin="dense"
+                value={this.state.description}
+                onChange={this.onChangeValue}
+                name="description"
+                label="Description"
+                type="text"
                 fullWidth
               />
             </DialogContent>

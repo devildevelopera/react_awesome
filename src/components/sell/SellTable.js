@@ -4,7 +4,8 @@ import { withTheme } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import EditIcon from '@material-ui/icons/Edit'
 import Button from '@material-ui/core/Button';
-import { Dialog, DialogTitle, DialogContent, DialogActions, TextField } from '@material-ui/core';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Switch, FormControl, InputLabel, Select } from '@material-ui/core';
 import axios from 'axios'
 import { Link } from 'react-router-dom';
 import { store } from 'react-notifications-component';
@@ -41,13 +42,6 @@ const Image = styled.div `
     height: 62px;
   }
 `;
-const Name = styled.div `
-  font-size: 16px;
-  > a {
-    color: black;
-    text-decoration-color: #FF6A64;
-  }
-`;
 
 class SellTable extends React.Component {
   constructor(props){
@@ -57,8 +51,10 @@ class SellTable extends React.Component {
       open4: false,
       del_id: "",
       name: "",
+      category: "",
       description: "",
       price: "",
+      quantity: "",
       edit_id: "",
       delete_img_arr: [],
       previous_img_arr: [],
@@ -106,8 +102,10 @@ class SellTable extends React.Component {
     axios.get(`${process.env.REACT_APP_SERVER_API}/posts/${_id}`).then(res => {
       this.setState({
         name: res.data.name,
+        category: res.data.category,
         description: res.data.description,
         price: res.data.price,
+        quantity: res.data.quantity,
         edit_id: res.data._id,
         previous_img_arr: res.data.img_arr
       });
@@ -117,8 +115,10 @@ class SellTable extends React.Component {
   productUpdate = () => {
     const product = {
       name: this.state.name,
+      category: this.state.category,
       description: this.state.description,
-      price: this.state.price
+      price: this.state.price,
+      quantity: this.state.quantity
     };
     axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/${this.state.edit_id}`, product ).then(res => {
         this.props.getItems();
@@ -134,8 +134,10 @@ class SellTable extends React.Component {
     }
     const product = {
       name: this.state.name,
+      category: this.state.category,
       description: this.state.description,
       price: this.state.price,
+      quantity: this.state.quantity,
       previous_img_arr: this.state.previous_img_arr,
       img_arr: update_img_arr
     }
@@ -185,7 +187,14 @@ class SellTable extends React.Component {
   }
 
   isFormValid = () => {
-    return !this.state.name || !this.state.description || !this.state.price;
+    return !this.state.name || !this.state.category || !this.state.description || !this.state.price || !this.state.quantity;
+  }
+
+  toggleChecked = (_id, active) => {
+    const inactive = !active;
+    axios.patch(`${process.env.REACT_APP_SERVER_API}/posts/activetoggle/${_id}/${inactive}`).then(res => {
+      this.props.getItems();
+    });
   }
 
   createNotificationDelete() {
@@ -228,10 +237,10 @@ class SellTable extends React.Component {
               <tr>
                 <th>Image</th>
                 <th>Name</th>
-                <th>Price</th>
-                <th>Description</th>
+                <th>View</th>
                 <th>Edit</th>
                 <th>Delete</th>
+                <th>Active</th>
               </tr>
             </thead>
             <tbody>
@@ -239,28 +248,24 @@ class SellTable extends React.Component {
 
                 return (<tr key={i}>
                           <td>
-                            <Link to={`/product/`+d._id}>
                               <Image img={`${process.env.REACT_APP_SERVER_API}/uploads/product/${d.img_arr[0]}`} />
-                            </Link>
                           </td>
                           <td>
-                            <Name>
-                              <Link to={`/product/${d._id}`}>
                               {d.name}
+                          </td>
+                          <td>
+                              <Link to={`/product/${d._id}`}>
+                                <VisibilityIcon/>
                               </Link>
-                            </Name>
-                          </td>
-                          <td>
-                            ${d.price}
-                          </td>
-                          <td>
-                            {d.description}
                           </td>
                           <td>
                             <EditIcon onClick={() => this.handleClickOpen4(d._id)}/>
                           </td>
                           <td>
                             <DeleteForeverIcon onClick={() => this.handleClickOpen2(d._id, d.img_arr)} />
+                          </td>
+                          <td>
+                            <Switch size="small" color="secondary" checked={d.active} onChange={() => this.toggleChecked(d._id, d.active)}/>
                           </td>
                         </tr>);
                     })}
@@ -298,7 +303,7 @@ class SellTable extends React.Component {
                   style={{ display: 'none' }}
                   onChange={(e) => this.onChangeFile(e)}
               />
-              <Button variant="contained" color="secondary" className="add-images" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
+              <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
               <TextField
                 margin="dense"
                 value={this.state.name}
@@ -308,15 +313,31 @@ class SellTable extends React.Component {
                 type="text"
                 fullWidth
               />
-              <TextField
-                margin="dense"
-                value={this.state.description}
-                onChange={this.onChangeValue}
-                name="description"
-                label="Description"
-                type="text"
-                fullWidth
-              />
+              <FormControl
+                  fullWidth
+                  margin="normal"
+                  className="mt-2"
+              >
+                  <InputLabel htmlFor="country-native-required" className="InputLabel">Category</InputLabel>
+                  <Select
+                      label="Category"
+                      native
+                      name="category"
+                      onChange={this.onChangeValue}
+                      value = {this.state.category}
+                  >
+                      <option value="" />
+                      <option value = {"CE"}>Consumer Electronics</option>
+                      <option value = {"SH"}>Sports & Health</option>
+                      <option value = {"BT"}>Babies & Toys</option>
+                      <option value = {"GP"}>Groceries & Pets</option>
+                      <option value = {"HL"}>Home & Lifestyle</option>
+                      <option value = {"WF"}>Women's Fashion</option>
+                      <option value = {"MF"}>Men's Fashion</option>
+                      <option value = {"WA"}>Watches & Accessories</option>
+                      <option value = {"AM"}>Automotive & Motorbike</option>
+                  </Select>
+              </FormControl>
               <TextField
                 margin="dense"
                 value={this.state.price}
@@ -324,6 +345,26 @@ class SellTable extends React.Component {
                 name="price"
                 label="Price"
                 type="number"
+                style={{width:"50%", padding: "1px"}}
+              />
+              <TextField
+                margin="dense"
+                value={this.state.quantity}
+                onChange={this.onChangeValue}
+                name="quantity"
+                label="Quantity"
+                type="number"
+                style={{width:"50%", padding: "1px"}}
+              />
+              <TextField
+                multiline={true}
+                rows="3"
+                margin="dense"
+                value={this.state.description}
+                onChange={this.onChangeValue}
+                name="description"
+                label="Description"
+                type="text"
                 fullWidth
               />
             </DialogContent>

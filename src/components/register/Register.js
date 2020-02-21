@@ -7,7 +7,6 @@ import { register } from '../api/UserFunctions';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './register.css';
 import { Checkbox } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
@@ -222,7 +221,7 @@ class Register extends Component {
                 <Paper>
                     <Wrapper>
                         <div className="row">
-                            <div className="col-md-6 mt-5 mb-5 mx-auto">
+                            <div className="col-md-6 mx-auto">
                                 <div style={{textAlign: "center"}}>
                                     <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                                 </div>
