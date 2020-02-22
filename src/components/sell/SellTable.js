@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { withTheme } from '@material-ui/core/styles';
 import DeleteForeverIcon from '@material-ui/icons/DeleteForever'
 import EditIcon from '@material-ui/icons/Edit'
-import Button from '@material-ui/core/Button';
+import { Button } from 'react-bootstrap';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, Switch, FormControl, InputLabel, Select } from '@material-ui/core';
 import axios from 'axios'
@@ -303,7 +303,7 @@ class SellTable extends React.Component {
                   style={{ display: 'none' }}
                   onChange={(e) => this.onChangeFile(e)}
               />
-              <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
+              <Button variant="danger" onClick={(e) => this.openFileDialog(e)}>Edit Images</Button>
               <TextField
                 margin="dense"
                 value={this.state.name}
@@ -369,10 +369,10 @@ class SellTable extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose4} color="primary">
+              <Button onClick={this.handleClose4} variant="outline-dark">
                 Cancel
               </Button>
-              <Button onClick={this.imagesUpload} color="primary" disabled={this.isFormValid()}>
+              <Button onClick={this.imagesUpload} variant="outline-primary" disabled={this.isFormValid()}>
                 Save
               </Button>
             </DialogActions>

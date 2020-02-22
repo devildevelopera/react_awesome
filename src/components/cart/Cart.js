@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
+import { Button } from 'react-bootstrap';
 import CartTable from './CartTable';
 import PageWrapper from '../ui/PageWrapper';
 import Paper from '@material-ui/core/Paper';
@@ -78,7 +78,7 @@ function Cart(props) {
                   {totalPrice}
                 </Subtotal>
                 <Link to={`/checkout`}>
-                  <Button variant="contained" color="primary">Check Out</Button>
+                  <Button variant="success">Check Out</Button>
                 </Link>
               </RightSide>
             </div>

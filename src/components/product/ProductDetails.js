@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import { Button } from 'react-bootstrap';
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 import Rating from '@material-ui/lab/Rating';
@@ -122,7 +122,7 @@ class ProductDetails extends React.Component {
             ${product.price}
           </Price>
           <Right>
-            <Button variant="contained" color="primary" className={product.user_id===tocken_id? 'removeShadow' : null}
+            <Button variant="success" className={product.user_id===tocken_id? 'removeShadow' : null}
               onClick={() => this.addToCart()} disabled={product.user_id===tocken_id}
             >
               Add To Cart

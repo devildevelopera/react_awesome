@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Button from '@material-ui/core/Button';
+import { Button } from 'react-bootstrap';
 import SellTable from './SellTable';
 import { Dialog, DialogTitle, DialogContent, DialogActions, TextField, FormControl, InputLabel, Select } from '@material-ui/core';
 import axios from 'axios';
@@ -161,7 +161,7 @@ class Sell extends React.Component {
             <Breadcrumb/>
             <h3>Products</h3>
             <RightSide>
-              <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>
+              <Button variant="success" onClick={this.handleClickOpen4}>Add Product</Button>
               {/* <Link to={'/newproduct'}>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>
               </Link> */}
@@ -190,7 +190,7 @@ class Sell extends React.Component {
                   style={{ display: 'none' }}
                   onChange={(e) => this.onChangeFile(e)}
               />
-              <Button variant="contained" color="secondary" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
+              <Button variant="danger" onClick={(e) => this.openFileDialog(e)}>Add Images</Button>
               <TextField
                 autoFocus
                 margin="dense"
@@ -257,10 +257,10 @@ class Sell extends React.Component {
               />
             </DialogContent>
             <DialogActions>
-              <Button onClick={this.handleClose4} color="primary">
+              <Button onClick={this.handleClose4} variant="outline-dark">
                 Cancel
               </Button>
-              <Button onClick={this.imagesUpload} color="primary" disabled={this.isFormValid()}>
+              <Button onClick={this.imagesUpload} variant="outline-primary" disabled={this.isFormValid()}>
                 Save
               </Button>
             </DialogActions>

@@ -5,7 +5,8 @@ import PageWrapper from '../ui/PageWrapper';
 import Paper from '@material-ui/core/Paper';
 import { store } from 'react-notifications-component';
 import { userUpdate } from '../api/UserFunctions';
-import { Button, TextField, Select, FormControl, InputLabel } from '@material-ui/core';
+import { TextField, Select, FormControl, InputLabel } from '@material-ui/core';
+import { Button } from 'react-bootstrap';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { updatepass } from '../api/UserFunctions';
@@ -392,11 +393,11 @@ class Profile extends Component {
                                     <Button
                                         color="secondary"
                                         onClick={(e) => this.openFileDialog(e)}
-                                        variant="outlined"
+                                        variant="outline-danger"
                                         >
                                         Upload picture
                                     </Button>&nbsp;
-                                    <Button variant="outlined" color="primary" onClick={this.removePhoto}>Remove picture</Button>
+                                    <Button variant="outline-dark" onClick={this.removePhoto}>Remove picture</Button>
                                 </div>
                                 <input id="myInput"
                                     type="file"
@@ -487,7 +488,7 @@ class Profile extends Component {
                                     )}
                                     className="mt-2"
                                 />
-                                <Button style={{width:'100%'}} className="mt-3" variant="contained" onClick={this.onSubmit}  color="secondary">Save Details</Button>
+                                <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Save Details</Button>
                                 <div style={{textAlign:'center', color:'grey'}} className="mt-3">
                                     <h5>Reset Pasword</h5>
                                 </div>
@@ -518,7 +519,7 @@ class Profile extends Component {
                                     value={cpassword}
                                     onChange={this.onChange}
                                 />
-                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3" variant="contained" color="primary">Update</Button>
+                                <Button style={{width:'100%'}} onClick={this.onSubmitPass} className="mt-3" variant="info">Update</Button>
                             </div>
                         </div>
                     </Wrapper>
