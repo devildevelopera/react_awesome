@@ -6,7 +6,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import { Link } from 'react-router-dom';
 
-import './search.css';
+import './topsearch.css';
 
 class Search extends React.Component {
      render() {
@@ -53,22 +53,16 @@ class Search extends React.Component {
                                 <select name="product_cat" id="product_cat" className="form-control1">
                                     <option value="">Category</option>
                                     <option className="level-0" value="villa">Consumer Electronics</option>
-                                    <option className="level-0" value="duplex">Duplex</option>
-                                    <option className="level-0" value="home-appliances">Home Appliances</option>
-                                    <option className="level-0" value="penthouse">Penthouse</option>
-                                    <option className="level-0" value="mobile-phones">Mobile Phones</option>
-                                    <option className="level-0" value="protection-phones">Cases &amp; Protection</option>
-                                    <option className="level-0" value="power-bank">Power Banks</option>
-                                    <option className="level-0" value="mobile-phone-chargers">Mobile Chargers</option>
-                                    <option className="level-0" value="data-cables-phones">Data Cables</option>
-                                    <option className="level-0" value="selfie-stickers">Selfie Sticks</option>
-                                    <option className="level-0" value="tablets">Tablets</option>
-                                    <option className="level-0" value="protection-tablets">Tablets Protection</option>
-                                    <option className="level-0" value="console-gaming">Console Gaming</option>
-                                    <option className="level-0" value="televisions">Televisions</option>
-                                    <option className="level-0" value="refrigerators">Refrigerators</option>
-                                    <option className="level-0" value="accessories">Automotive & Motorbike</option>
+                                    <option className="level-0" value="duplex">Sports & Health</option>
+                                    <option className="level-0" value="penthouse">Babies & Toys</option>
+                                    <option className="level-0" value="penthouse">Groceries & Pets</option>
+                                    <option className="level-0" value="penthouse">Mobile Phones</option>
+                                    <option className="level-0" value="penthouse">Home & Lifestyle</option>
+                                    <option className="level-0" value="penthouse">Women’s Fashion</option>
+                                    <option className="level-0" value="penthouse">Men’s Fashion</option>
+                                    <option className="level-0" value="penthouse">Watches & Accessories</option>
                                 </select>
+                                <Divider style={searchStyle.divider} />
                                 <InputBase
                                     style={searchStyle.input}
                                     placeholder="Search Products..."

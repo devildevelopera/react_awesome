@@ -22,7 +22,7 @@ import VerticalLinearStepper from './components/newproduct/VerticalLinearStepper
 // import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
-import Search from './components/search/Search';
+import TopSearch from './components/topsearch/TopSearch';
 
 class App extends React.Component {
   constructor(props) {
@@ -62,7 +62,7 @@ class App extends React.Component {
     return (
         <Router>
           <ReactNotification />
-            <Search quantity={quantity}/>
+            <TopSearch quantity={quantity}/>
             <Header quantity={quantity} history={this.props.history}/>
             {/* <Switch> */}
               <Route exact path="/"

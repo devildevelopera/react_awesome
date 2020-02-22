@@ -18,6 +18,7 @@ import Button from '@material-ui/core/Button';
 import { withRouter } from "react-router-dom";
 import axios from 'axios';
 import jwt_decode  from 'jwt-decode';
+import { Dropdown } from 'react-bootstrap';
 // import { useSelector, useDispatch } from 'react-redux';
 import './header.css';
 
@@ -188,9 +189,22 @@ function Header({quantity, history}) {
   return (
         <Navbar bg="primary" variant="dark" className={classes.navbar}>
           <Nav className="mr-auto">
-            <Link to={`/`}>
-              <Button color="inherit" className={classes.white}><MenuIcon />Categories</Button>
-            </Link>
+            <Dropdown>
+              <Dropdown.Toggle variant="default" id="dropdown-basic">
+               <MenuIcon/>Categories
+              </Dropdown.Toggle>
+              <Dropdown.Menu>
+                <Dropdown.Item href="#/action-1">Consumer Electronics</Dropdown.Item>
+                <Dropdown.Item href="#/action-2">Sports & Health</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Babies & Toys</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Groceries & Pets</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Mobile Phones</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Home & Lifestyle</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Women’s Fashion</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Men’s Fashion</Dropdown.Item>
+                <Dropdown.Item href="#/action-3">Watches & Accessories</Dropdown.Item>
+              </Dropdown.Menu>
+            </Dropdown>
             <Link to={`/`}  className={classes.sectionDesktop}>
               <Button color="inherit" className={classes.white}>Home</Button>
             </Link>
@@ -238,7 +252,7 @@ function Header({quantity, history}) {
               aria-controls={mobileMenuId}
               aria-haspopup="true"
               onClick={handleMobileMenuOpen}
-              color="inherit"
+              id="moreicon"
             >
               <MoreVertIcon />
             </IconButton>

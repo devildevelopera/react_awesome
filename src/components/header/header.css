@@ -31,3 +31,24 @@
 .makeStyles-sectionDesktop-199.form-inline{
     margin-right: 20px;
 }
+.dropdown-toggle::after {
+    content: none !important;
+}
+#dropdown-basic {
+    color: #fff !important;
+}
+#moreicon {
+    color: #fff !important;
+}
+.dropdown-menu {
+    margin: .525rem 0 0 !important;
+    border-radius: 0 !important;
+}
+.dropdown-item.active, .dropdown-item:active {
+    background-color: #fff !important;
+    color: black !important;
+}
+.dropdown-item:hover {
+    color: #007bff !important;
+}
+
