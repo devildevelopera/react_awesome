@@ -194,15 +194,15 @@ function Header({quantity, history}) {
                <MenuIcon/>Categories
               </Dropdown.Toggle>
               <Dropdown.Menu>
-                <Dropdown.Item href="#/action-1">Consumer Electronics</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Sports & Health</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Babies & Toys</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Groceries & Pets</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Mobile Phones</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Home & Lifestyle</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Women’s Fashion</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Men’s Fashion</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Watches & Accessories</Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/CE`}>Consumer Electronics</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/SH`}>Sports & Health</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/BT`}>Babies & Toys</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/GP`}>Groceries & Pets</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/HL`}>Home & Lifestyle</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/WF`}>Women’s Fashion</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/MF`}>Men’s Fashion</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/WA`}>Watches & Accessories</Link></Dropdown.Item>
+                <Dropdown.Item><Link to={`/category/AM`}>Automotive & Motorbike</Link></Dropdown.Item>
               </Dropdown.Menu>
             </Dropdown>
             <Link to={`/`}  className={classes.sectionDesktop}>

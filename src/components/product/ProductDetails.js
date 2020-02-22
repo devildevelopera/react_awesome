@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import jwt_decode  from 'jwt-decode';
+import { fullcategory } from '../function/FullCategory';
 import './productDetail.css';
 
 const Right = styled.div `
@@ -113,7 +114,7 @@ class ProductDetails extends React.Component {
           <Description>{product.description}</Description>
           <Details>
             <ul>
-                <li >{product.category}</li>
+                <li >{fullcategory(product.category)}</li>
                 <li >Available: {product.quantity}</li> 
             </ul>
           </Details>

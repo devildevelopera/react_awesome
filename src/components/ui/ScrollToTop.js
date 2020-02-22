@@ -1,5 +1,21 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
 import './ScrollToTop.css';
+
+const IMG = styled.div `
+  background-image: url(${props => props.img});
+  width: 60px;
+  height: 60px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 50%;
+  border-radius: 50%
+  @media (max-width: 650px) {
+    width: 40px;
+    height: 40px;
+  }
+`;
 
 export default class ScrollToTop extends Component {
   constructor(props) {
@@ -41,7 +57,7 @@ export default class ScrollToTop extends Component {
       <div className="scroll-to-top">
         {is_visible && (
           <div onClick={() => this.scrollToTop()}>
-            <img width="70px" src="scrolltotop.png" alt="scrolltop-icon"/>
+            <IMG img={"/scrolltotop.png"}/>
           </div>
         )}
       </div>

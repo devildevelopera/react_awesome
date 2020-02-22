@@ -43,12 +43,10 @@
 .dropdown-menu {
     margin: .525rem 0 0 !important;
     border-radius: 0 !important;
+    min-width: 12.5rem !important;
 }
 .dropdown-item.active, .dropdown-item:active {
     background-color: #fff !important;
     color: black !important;
-}
-.dropdown-item:hover {
-    color: #007bff !important;
 }
 

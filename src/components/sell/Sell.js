@@ -8,6 +8,7 @@ import jwt_decode  from 'jwt-decode';
 import { store } from 'react-notifications-component';
 import PageWrapper from '../ui/PageWrapper';
 import Paper from '@material-ui/core/Paper';
+import Breadcrumb from './Breadcrumb';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import './sell.css';
@@ -157,6 +158,7 @@ class Sell extends React.Component {
       <PageWrapper>
         <Paper>
           <Wrapper>
+            <Breadcrumb/>
             <h3>Products</h3>
             <RightSide>
               <Button variant="contained" color="primary" onClick={this.handleClickOpen4}>Add Product</Button>

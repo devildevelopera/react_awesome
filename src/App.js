@@ -7,6 +7,7 @@ import {
 } from 'react-router-dom';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Landing from './components/landing/Landing';
+import Category from './components/landing/Category';
 import Header from './components/header/Header';
 import Footer from './components/footer/Footer';
 import Login from './components/login/Login';
@@ -59,6 +60,7 @@ class App extends React.Component {
 
   render() {
     const { quantity, products } = this.state;
+    const categories = ['CE', 'SH', 'BT', 'GP', 'HL', 'WF', 'MF', 'WA', 'AM'];
     return (
         <Router>
           <ReactNotification />
@@ -68,6 +70,15 @@ class App extends React.Component {
               <Route exact path="/"
                 render={() => <Landing/>}
               />
+              { categories.map((category,i) =>
+                  <Route exact key={`route${i}`}
+                    path={`/category/${category}`}
+                    render={() =>
+                      <Category category={category}/>
+                    }
+                  />
+                )
+              }
               { products.map((product,i) =>
                   <Route exact key={`route${i}`}
                     path={`/product/${product._id}`}

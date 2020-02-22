@@ -10,6 +10,7 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import axios from 'axios';
 import { updatepass } from '../api/UserFunctions';
 import PhoneInput from 'react-phone-input-2'
+import Breadcrumb from './Breadcrumb';
 import 'react-phone-input-2/lib/style.css'
 import './profile.css';
 
@@ -375,6 +376,7 @@ class Profile extends Component {
             <PageWrapper>
                 <Paper>
                     <Wrapper>
+                        <Breadcrumb/>
                         <div className="row">
                             <div className="col-md-6 mx-auto">
                                 <div style={{textAlign:'center'}} className="mt-3">

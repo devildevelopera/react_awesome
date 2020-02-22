@@ -221,7 +221,7 @@ class Register extends Component {
                 <Paper>
                     <Wrapper>
                         <div className="row">
-                            <div className="col-md-6 mx-auto">
+                            <div className="col-md-5 mx-auto">
                                 <div style={{textAlign: "center"}}>
                                     <h1 className="h3 mb-3 font-weight-normal">Sign Up</h1>
                                 </div>

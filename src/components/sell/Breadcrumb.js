@@ -18,11 +18,11 @@ const Spacer = styled.span `
   margin: 0 10px;
 `;
 
-const Breadcrumb = ({ product }) => (
+const Breadcrumb = () => (
   <Wrapper>
     <Link to={'/'}>{"Home"}</Link>
     <Spacer color="#FF6A64">&raquo;</Spacer>
-    <Link to={`/product/${product._id}`}>{product.name}</Link>
+    <Link to={`/sell`}>Sell</Link>
   </Wrapper>
 );
 
