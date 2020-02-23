@@ -45,7 +45,7 @@ class Search extends React.Component {
                 <div>
                     <Grid container>
                         <Grid item xs style={searchStyle.grid}>
-                            <Paper style={searchStyle.paper}><img className="logo" width="200px" src="/logo.jpg" alt="logo"/></Paper>
+                            <Paper style={searchStyle.paper}><Link to={'/'}><img className="logo" width="200px" src="/logo.jpg" alt="logo"/></Link></Paper>
                         </Grid>
                         <Grid item xs={6} style={searchStyle.grid} className="sectionDesktop">
                             <Paper style={searchStyle.root}>

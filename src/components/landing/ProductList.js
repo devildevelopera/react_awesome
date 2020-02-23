@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { withTheme } from '@material-ui/core/styles';
 import { connect } from 'react-redux'
 import { compose } from 'redux';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
 
 const Wrapper = styled.div `
   display: grid;
@@ -43,6 +44,12 @@ const Price = styled.span `
   font-size: 14px;
   margin-top: 5px;
 `;
+const Favourite = styled.span `
+  position: absolute;
+  margin-left: 10px;
+  margin-top: 8px;
+  color: #f50057;
+`;
 
 class ProductList extends React.Component {
   
@@ -53,6 +60,9 @@ class ProductList extends React.Component {
         { products.map((product,i) => {
           return <Link key={i} to={`/product/`+product._id}>
             <ImgWrapper borderColor="#fff">
+              <Favourite>
+                <FavoriteBorderIcon/>
+              </Favourite>
               <LargeIMG img={`${process.env.REACT_APP_SERVER_API}/uploads/product/${product.img_arr[0]}`}/>
             </ImgWrapper>
             <Title>
