@@ -3,13 +3,28 @@ import { Paper, IconButton, InputBase, Divider, Grid } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
+import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
 import './topsearch.css';
+
+const IMG = styled.div `
+  background-image: url(${props => props.img});
+  background-color: #eee;
+  width: 30px;
+  height: 30px;
+  background-size: cover;
+  background-repeat: no-repeat;
+  display: inline-block;
+  background-position: 50%;
+  border-radius: 50%;
+  margin-left: 10px;
+`;
 
 class Search extends React.Component {
      render() {
         const number = this.props.quantity;
+        const slug = `react_awesome_products`;
+        let products = JSON.parse(localStorage.getItem(slug));
         const searchStyle = {
             root: {
               borderRadius: 21,
@@ -73,12 +88,18 @@ class Search extends React.Component {
                             </Paper>
                         </Grid>
                         <Grid item xs style={searchStyle.grid} className="sectionDesktop">
-                            <Paper style={searchStyle.paper}>
+                            <Paper style={searchStyle.paper} className="mini-photos">
                                 <Link to={'/cart'}>
-                                    <Badge badgeContent={number} color="secondary">
+                                    <Badge badgeContent={number} color="secondary" className="top-cart">
                                         <ShoppingCartIcon/>
                                     </Badge>
                                 </Link>
+                                { products.map((product, i) => 
+                                    <IMG
+                                        key = {i}
+                                        img={`${product.img}`}
+                                    />
+                                )}
                             </Paper>
                         </Grid>
                     </Grid>

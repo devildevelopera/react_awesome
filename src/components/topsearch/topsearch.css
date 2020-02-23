@@ -18,8 +18,17 @@
 .sectionDesktop {
   display: flex;
 }
+
 .MuiGrid-grid-xs-true {
   flex-grow: 0 !important;
+}
+
+.mini-photos {
+  display: flex;
+}
+
+.top-cart {
+  margin-right: 10px;
 }
 
 @media (max-width: 860px) {
