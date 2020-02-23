@@ -1,4 +1,4 @@
-export const fullcategory = category =>{
+export const fullcategory = category => {
     switch(category) {
         case "CE":
             return "Consumer Electronics";

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Paper, IconButton, InputBase, Divider, Grid } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import { Link } from 'react-router-dom';
@@ -70,15 +69,6 @@ class Search extends React.Component {
                                 />
                                 <IconButton style={searchStyle.iconButton} aria-label="Search" className="search-icon">
                                     <SearchIcon/>
-                                </IconButton>
-                                <Divider style={searchStyle.divider} />
-                                <IconButton
-                                    color="primary"
-                                    style={searchStyle.iconButton}
-                                    aria-label="Directions"
-                                    className="search-icon"
-                                >
-                                    <KeyboardArrowRightIcon/>
                                 </IconButton>
                             </Paper>
                         </Grid>

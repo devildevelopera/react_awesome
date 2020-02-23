@@ -1,8 +1,7 @@
 import React from 'react';
 import "./css/catagory.css";
-import { Paper, IconButton, InputBase, Divider } from '@material-ui/core';
+import { Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 
 class Search extends React.Component {
      render() {
@@ -45,15 +44,6 @@ class Search extends React.Component {
                     />
                     <IconButton style={searchStyle.iconButton} aria-label="Search" className="search-icon">
                         <SearchIcon/>
-                    </IconButton>
-                    <Divider style={searchStyle.divider} />
-                    <IconButton
-                        color="primary"
-                        style={searchStyle.iconButton}
-                        aria-label="Directions"
-                        className="search-icon"
-                    >
-                        <KeyboardArrowRightIcon/>
                     </IconButton>
                 </Paper>
          );

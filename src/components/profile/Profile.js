@@ -45,7 +45,8 @@ class Profile extends Component {
             email: '',
             phone: '',
             country: '',
-            city: 'The Godfather',
+            city: '',
+            pcode: '',
             photo: '',
             password: '',
             cpassword: '',
@@ -112,7 +113,8 @@ class Profile extends Component {
             email: this.state.email,
             phone: this.state.phone,
             country: this.state.country,
-            city: this.state.city
+            city: this.state.city,
+            pcode: this.state.pcode
         }
         if(this.handleValidation()){
             userUpdate(user).then(res => {
@@ -267,7 +269,8 @@ class Profile extends Component {
                     photo: res.data.photo,
                     phone: res.data.phone,
                     country: res.data.country,
-                    city: res.data.city
+                    city: res.data.city,
+                    pcode: res.data.pcode
                 });
             }
         })
@@ -371,7 +374,7 @@ class Profile extends Component {
       }
 
     render() {
-        const { first_name, last_name, email, phone, country, city, photo, password, cpassword, countries, cities, errors, formIsValid, firstNameValid, lastNameValid, emailValid, resetPassValid, passwordValid, cpasswordValid } = this.state;
+        const { first_name, last_name, email, phone, country, city, photo, pcode, password, cpassword, countries, cities, errors, formIsValid, firstNameValid, lastNameValid, emailValid, resetPassValid, passwordValid, cpasswordValid } = this.state;
         
         return (
             <PageWrapper>
@@ -487,6 +490,17 @@ class Profile extends Component {
                                         <TextField {...params} label="City" variant="outlined" onChange={this.getCities} fullWidth margin="dense"/>
                                     )}
                                     className="mt-2"
+                                />
+                                <TextField
+                                    fullWidth
+                                    label="Postal Code"
+                                    margin="dense"
+                                    type="number"
+                                    name="pcode"
+                                    value={pcode}
+                                    onChange={this.onChange}
+                                    variant="outlined"
+                                    className="mt-3"
                                 />
                                 <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Save Details</Button>
                                 <div style={{textAlign:'center', color:'grey'}} className="mt-3">

@@ -65,7 +65,8 @@ export const userUpdate = User => {
             email: User.email,
             phone: User.phone,
             country: User.country,
-            city: User.city
+            city: User.city,
+            pcode: User.pcode
         })
         .then(res => {
             return res
