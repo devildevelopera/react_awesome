@@ -1,5 +1,5 @@
 import React from 'react';
-import "./css/catagory.css";
+import "./css/search.scss";
 import { Paper, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 

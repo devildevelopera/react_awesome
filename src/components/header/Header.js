@@ -20,7 +20,7 @@ import axios from 'axios';
 import jwt_decode  from 'jwt-decode';
 import { Dropdown } from 'react-bootstrap';
 // import { useSelector, useDispatch } from 'react-redux';
-import './header.css';
+import './header.scss';
 
 const IMG = styled.div `
   background-image: url(${props => props.img});

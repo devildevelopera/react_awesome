@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Carousel } from "react-bootstrap";
 import { Link } from 'react-router-dom';
-import './css/fasion_carousel.css';
+import './css/fasion_carousel.scss';
 
 const FashionIMG = styled.div `
   background-image: url(${props => props.img});

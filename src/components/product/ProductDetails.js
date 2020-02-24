@@ -10,7 +10,7 @@ import { withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import jwt_decode  from 'jwt-decode';
 import { fullcategory } from '../function/FullCategory';
-import './productDetail.css';
+import './productDetail.scss';
 
 const Right = styled.div `
   display: flex;

@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './sell.css';
+import './sell.scss';
 
 
 const Table = styled.table `

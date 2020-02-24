@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import Breadcrumb from './Breadcrumb';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './sell.css';
+import './sell.scss';
 
 const Wrapper = styled.div `
   padding: 40px;

@@ -13,7 +13,7 @@ import { updatepass } from '../api/UserFunctions';
 import PhoneInput from 'react-phone-input-2'
 import Breadcrumb from './Breadcrumb';
 import 'react-phone-input-2/lib/style.css'
-import './profile.css';
+import './profile.scss';
 
 const Wrapper = styled.div `
   padding: 40px;

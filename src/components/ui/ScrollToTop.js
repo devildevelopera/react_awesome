@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import styled from 'styled-components';
-import './ScrollToTop.css';
+import './ScrollToTop.scss';
 
 const IMG = styled.div `
   background-image: url(${props => props.img});

@@ -5,7 +5,7 @@ import { Button } from 'react-bootstrap';
 import CartTable from './CartTable';
 import PageWrapper from '../ui/PageWrapper';
 import Paper from '@material-ui/core/Paper';
-import './cart.css';
+import './cart.scss';
 
 const Wrapper = styled.div `
   padding: 40px;

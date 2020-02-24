@@ -5,7 +5,7 @@ import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Badge from '@material-ui/core/Badge';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import './topsearch.css';
+import './topsearch.scss';
 
 const IMG = styled.div `
   background-image: url(${props => props.img});

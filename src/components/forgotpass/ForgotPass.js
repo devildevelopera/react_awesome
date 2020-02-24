@@ -5,7 +5,7 @@ import { withRouter } from "react-router-dom";
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './forgotpass.css';
+import './forgotpass.scss';
 import { TextField } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
 
