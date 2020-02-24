@@ -1,28 +1,25 @@
 .footer {
-    background: #2c3e50;
-    color: #fff;
-    min-height: 50px;
-    display: flex;
-    padding: 20px;
+	background: #2c3e50;
+	color: #fff;
+	min-height: 50px;
+	display: flex;
+	padding: 20px;
 }
-
 .social-icon {
-    color: #fff;
-    transition: all .3s ease;
+	color: #fff;
+	transition: all .3s ease;
+	&:hover {
+		color: #E52F62;
+		transition: all .3s ease;
+	}
 }
-
-.social-icon:hover{
-    color: #E52F62;
-    transition: all .3s ease;
+.copyright-links {
+	a {
+		color: #fff;
+		border-bottom-color: #fff;
+		&:hover {
+			color: #E52F62;
+			border-bottom-color: #E52F62;
+		}
+	}
 }
-
-.copyright-links a {
-    color: #fff;
-    border-bottom-color: #fff;
-}
-
-.copyright-links a:hover{
-    color: #E52F62;
-    border-bottom-color: #E52F62;
-}
-

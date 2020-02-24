@@ -293,7 +293,7 @@ class Register extends Component {
                                     value={cpassword}
                                     onChange={this.onChange}
                                 />
-                                <Checkbox name="term" checked={term} onChange={e => {this.setState({ term: e.target.checked });}} color="primary"/>I have read the <a href="">Terms and Conditions</a>
+                                <Checkbox name="term" checked={term} onChange={e => {this.setState({ term: e.target.checked });}} color="primary"/>I have read the <a href="/">Terms and Conditions</a>
                                 <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Register</Button>
                                 <div className="mt-3" style={{textAlign: 'center'}}>
                                     <Link to={`/login`}>

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { resetpass } from '../api/UserFunctions';
 import { store } from 'react-notifications-component';
 import { Link } from 'react-router-dom';
@@ -6,6 +7,16 @@ import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
 import { Button } from 'react-bootstrap';
 import { TextField } from '@material-ui/core';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
+
+const Wrapper = styled.div `
+  padding: 40px;
+  min-height: 100vh;
+  @media (max-width: 650px) {
+    padding: 10px;
+  }
+`;
 
 class ResetPass extends Component {
     constructor(){
@@ -128,48 +139,52 @@ class ResetPass extends Component {
     render() {
         const { password, cpassword, errors, formIsValid, passwordValid, cpasswordValid } = this.state
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-5 mt-5 mb-5 mx-auto">
-                        <div style={{textAlign: "center"}}>
-                            <h1 className="h3 mb-3 font-weight-normal">Reset Your Password</h1>
+            <PageWrapper>
+                <Paper>
+                    <Wrapper>
+                        <div className="row">
+                            <div className="col-md-5 mx-auto">
+                                <div style={{textAlign: "center"}}>
+                                    <h1 className="h3 mb-3 font-weight-normal">Reset Your Password</h1>
+                                </div>
+                                <TextField
+                                    fullWidth
+                                    error={!passwordValid? true: false}
+                                    helperText={!formIsValid? errors['password']: ''}
+                                    label="New Password"
+                                    margin="dense"
+                                    name="password"
+                                    type="password"
+                                    variant="outlined"
+                                    className="mt-3"
+                                    value={password}
+                                    onChange={this.onChange}
+                                />
+                                <TextField
+                                    fullWidth
+                                    error={!cpasswordValid? true: false}
+                                    helperText={!formIsValid? errors['cpassword']: ''}
+                                    label="Confirm password"
+                                    margin="dense"
+                                    name="cpassword"
+                                    style={{ marginTop: '1rem' }}
+                                    type="password"
+                                    variant="outlined"
+                                    className="mt-3"
+                                    value={cpassword}
+                                    onChange={this.onChange}
+                                />
+                                <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Reset My Password</Button>
+                                <div className="mt-3" style={{textAlign: 'center'}}>
+                                    <Link to={`/login`}>
+                                        Go back to login?
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                        <TextField
-                            fullWidth
-                            error={!passwordValid? true: false}
-                            helperText={!formIsValid? errors['password']: ''}
-                            label="New Password"
-                            margin="dense"
-                            name="password"
-                            type="password"
-                            variant="outlined"
-                            className="mt-3"
-                            value={password}
-                            onChange={this.onChange}
-                        />
-                        <TextField
-                            fullWidth
-                            error={!cpasswordValid? true: false}
-                            helperText={!formIsValid? errors['cpassword']: ''}
-                            label="Confirm password"
-                            margin="dense"
-                            name="cpassword"
-                            style={{ marginTop: '1rem' }}
-                            type="password"
-                            variant="outlined"
-                            className="mt-3"
-                            value={cpassword}
-                            onChange={this.onChange}
-                        />
-                        <Button style={{width:'100%'}} className="mt-3" variant="primary" onClick={this.onSubmit}>Reset My Password</Button>
-                        <div className="mt-3" style={{textAlign: 'center'}}>
-                            <Link to={`/login`}>
-                                Go back to login?
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </Wrapper>
+                </Paper>
+            </PageWrapper>
         )
     }
 }

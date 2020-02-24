@@ -1,13 +1,23 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import { forgotpass } from '../api/UserFunctions';
 import { Link } from 'react-router-dom';
 import { withRouter } from "react-router-dom";
 import { store } from 'react-notifications-component';
 import 'react-notifications-component/dist/theme.css'
 import 'animate.css';
-import './forgotpass.scss';
 import { TextField } from '@material-ui/core';
 import { Button } from 'react-bootstrap';
+import PageWrapper from '../ui/PageWrapper';
+import Paper from '@material-ui/core/Paper';
+
+const Wrapper = styled.div `
+  padding: 40px;
+  min-height: 100vh;
+  @media (max-width: 650px) {
+    padding: 10px;
+  }
+`;
 
 class ForgotPass extends Component {
     constructor(props){
@@ -113,34 +123,38 @@ class ForgotPass extends Component {
     render() {
         const {email, errors, formIsValid, emailValid} = this.state
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-md-5 mt-5 mt-5 mx-auto">
-                        <div style={{textAlign: "center"}}>
-                            <h1 className="h3 mb-3 font-weight-normal">Rcover Your Password</h1>
+            <PageWrapper>
+                <Paper>
+                    <Wrapper>
+                        <div className="row">
+                            <div className="col-md-5 mx-auto">
+                                <div style={{textAlign: "center"}}>
+                                    <h1 className="h3 mb-3 font-weight-normal">Rcover Your Password</h1>
+                                </div>
+                                <TextField
+                                    fullWidth
+                                    error={!emailValid? true: false}
+                                    helperText={!formIsValid? errors['email']: ''}
+                                    label="Email Address"
+                                    margin="dense"
+                                    name="email"
+                                    required
+                                    value={email}
+                                    onChange={this.onChange}
+                                    variant="outlined"
+                                    className="mt-3"
+                                />
+                                <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Send Reset Link</Button>
+                                <div className="mt-3" style={{textAlign: 'center'}}>
+                                    <Link to={`/login`}>
+                                        Go back to login?
+                                    </Link>
+                                </div>
+                            </div>
                         </div>
-                        <TextField
-                            fullWidth
-                            error={!emailValid? true: false}
-                            helperText={!formIsValid? errors['email']: ''}
-                            label="Email Address"
-                            margin="dense"
-                            name="email"
-                            required
-                            value={email}
-                            onChange={this.onChange}
-                            variant="outlined"
-                            className="mt-3"
-                        />
-                        <Button style={{width:'100%'}} className="mt-3" variant="info" onClick={this.onSubmit}>Send Reset Link</Button>
-                        <div className="mt-3" style={{textAlign: 'center'}}>
-                            <Link to={`/login`}>
-                                Go back to login?
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                    </Wrapper>
+                </Paper>
+            </PageWrapper>
         )
     }
 }

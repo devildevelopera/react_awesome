@@ -35,6 +35,7 @@ function Cart(props) {
   const slug = `react_awesome_products`;
 
   useEffect(() => {
+    let slug = "react_awesome_products"
     let newItems = JSON.parse(localStorage.getItem(slug));
     setItems(newItems ? newItems : [])
   }, []);

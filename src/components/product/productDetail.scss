@@ -1,42 +1,35 @@
 .removeShadow {
-    border-bottom: none !important;
+	border-bottom: none !important;
 }
-
 .online {
-    color: #13bb3a;
-    font-weight: 500;
+	color: #13bb3a;
+	font-weight: 500;
 }
-
 .offline {
-    color: grey;
-    font-weight: 500;
+	color: grey;
+	font-weight: 500;
 }
-
 .icon-container {
-    width: 100px;
-    height: 100px;
-    position: relative;
-  }
-  
+	width: 100px;
+	height: 100px;
+	position: relative;
+}
 img {
-border-radius: 50%;
+	border-radius: 50%;
 }
-
 .status-circle {
-    width: 15px;
-    height: 15px;
-    border-radius: 50%;
-    background-color: grey;
-    border: 2px solid white;
-    top: 5px;
-    right: 5px;
-    position: absolute;
+	width: 15px;
+	height: 15px;
+	border-radius: 50%;
+	background-color: grey;
+	border: 2px solid white;
+	top: 5px;
+	right: 5px;
+	position: absolute;
 }
-
 .on {
-    background-color: #13bb3a;
+	background-color: #13bb3a;
 }
-
 .off {
-    background-color: grey;
+	background-color: grey;
 }

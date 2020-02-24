@@ -1,33 +1,32 @@
 .buttongroup {
-    display: flex;
-    padding: 10px 0;
+	display: flex;
+	padding: 10px 0;
+	.dropdown {
+		button {
+			font-size: 15px;
+		}
+	}
 }
-.buttongroup .dropdown button {
-    font-size: 15px;
-}
-
 .dropdown-toggle {
-    white-space:normal !important;
+	white-space: normal !important;
 }
-
 .sectionMobile {
-    display: none;
+	display: none;
 }
-
 @media (max-width: 860px) {
-    .buttongroup {
-        display: block;
-    }
-    .buttongroup .dropdown {
-        text-align: center;
-    }
-    .buttongroup .dropdown button {
-        width: 100%;
-    }
-    .dropdown-menu {
-        width: 100%;
-    }
-    .sectionMobile {
-        display: flex;
-    }
+	.buttongroup {
+		display: block;
+		.dropdown {
+			text-align: center;
+			button {
+				width: 100%;
+			}
+		}
+	}
+	.dropdown-menu {
+		width: 100%;
+	}
+	.sectionMobile {
+		display: flex;
+	}
 }
