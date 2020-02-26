@@ -24,7 +24,7 @@ class Search extends React.Component {
      render() {
         const number = this.props.quantity;
         const slug = `react_awesome_products`;
-        let products = JSON.parse(localStorage.getItem(slug));
+        let products = localStorage.getItem(slug)? JSON.parse(localStorage.getItem(slug)): [];
         const searchStyle = {
             root: {
               borderRadius: 21,

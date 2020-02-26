@@ -41,7 +41,7 @@ const IMG = styled.div `
   background-image: url(${props => props.img});
   background-color: #eee;
   width: 100px;
-  height: 100px
+  height: 100px;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;

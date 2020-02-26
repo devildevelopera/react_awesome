@@ -28,7 +28,7 @@ const IMG = styled.div `
   background-image: url(${props => props.img});
   background-color: #eee;
   width: 120px;
-  height: 120px
+  height: 120px;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;

@@ -2,8 +2,8 @@ import React from 'react';
 import {
   BrowserRouter as Router,
   Route,
-  // Redirect,
-  // Switch
+  Redirect,
+  Switch
 } from 'react-router-dom';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Landing from './components/landing/Landing';
@@ -20,7 +20,7 @@ import ForgotPass from './components/forgotpass/ForgotPass';
 import ResetPass from './components/resetpass/ResetPass';
 import ConfirmEmail from './components/confirmemail/ConfirmEmail';
 import VerticalLinearStepper from './components/newproduct/VerticalLinearStepper';
-// import Error from './components/404/Error';
+import Error from './components/404/Error';
 import axios from 'axios';
 import ReactNotification from 'react-notifications-component';
 import TopSearch from './components/topsearch/TopSearch';
@@ -66,7 +66,7 @@ class App extends React.Component {
           <ReactNotification />
             <TopSearch quantity={quantity}/>
             <Header quantity={quantity} history={this.props.history}/>
-            {/* <Switch> */}
+            <Switch>
               <Route exact path="/"
                 render={() => <Landing/>}
               />
@@ -106,9 +106,9 @@ class App extends React.Component {
               <Route exact path="/cart"
                 render={() => <Cart updateNumber={this.setQuantity}/>}
               />
-              {/* <Route exact path="/404" render={() => <Error/>}/>
-              <Redirect to="/" /> */}
-            {/* </Switch> */}
+              <Route exact path="/404" render={() => <Error/>}/>
+              <Redirect to="/" />
+            </Switch>
             <ScrollToTop/>
             <Footer/>
         </Router>
