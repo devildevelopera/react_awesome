@@ -281,10 +281,10 @@ class SellTable extends React.Component {
               Are you sure to delete this product?
             </DialogTitle>
             <DialogActions>
-              <Button onClick={this.handleClose2} color="primary">
+              <Button onClick={this.handleClose2} variant="outline-dark">
                 Cancel
               </Button>
-              <Button onClick={this.deleteProduct} color="primary" autoFocus>
+              <Button onClick={this.deleteProduct} variant="outline-primary">
                 Delete
               </Button>
             </DialogActions>
