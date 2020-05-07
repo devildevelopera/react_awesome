@@ -10,8 +10,8 @@ import './topsearch.scss';
 const IMG = styled.div `
   background-image: url(${props => props.img});
   background-color: #eee;
-  width: 30px;
-  height: 30px;
+  width: 15px;
+  height: 15px;
   background-size: cover;
   background-repeat: no-repeat;
   display: inline-block;
@@ -88,18 +88,20 @@ class Search extends React.Component {
                             </Paper>
                         </Grid>
                         <Grid item xs style={searchStyle.grid} className="sectionDesktop">
-                            <Paper style={searchStyle.paper} className="mini-photos">
+                            <Paper className="mini-photos">
                                 <Link to={'/cart'}>
                                     <Badge badgeContent={number} color="secondary" className="top-cart">
                                         <ShoppingCartIcon/>
                                     </Badge>
                                 </Link>
-                                { products.map((product, i) => 
-                                    <IMG
-                                        key = {i}
-                                        img={`${product.img}`}
-                                    />
-                                )}
+                                <div style={{"display": "inline-block", "width": "100px"}}>
+                                    { products.map((product, i) => 
+                                        <IMG
+                                            key = {i}
+                                            img={`${product.img}`}
+                                        />
+                                    )}
+                                </div>
                             </Paper>
                         </Grid>
                     </Grid>
